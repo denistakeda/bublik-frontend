@@ -3,16 +3,16 @@
 require.config({
 	baseUrl:"",
 	paths: {
-		angular: 'libs/angular.min',
-		jQuery: 'libs/jquery.min',
-		'bootstrap':'libs/bootstrap.min',
-		css: 'libs/css'
+		angular: 'libs/angular/1_2_12/angular.min',
+		jQuery: 'libs/jquery/some_version/jquery.min',
+		'bootstrap':'libs/bootstrap_js/some_version/bootstrap.min',
+		css: 'libs/css_js/some_version/css'
 	},
 
 	shim: {
 		'jQuery': { exports: '$'},
 		'angular': {deps: ['jQuery'], exports: 'angular'},
-		'bootstrap': {deps: ['jQuery','css!libs/bootstrap.min.css', 'css!libs/bootstrap-theme.min.css']}
+		'bootstrap': {deps: ['jQuery','css!libs/bootstrap_css/some_version/bootstrap.min.css', 'css!libs/bootstrap_css/some_version/bootstrap-theme.min.css']}
 	},
 	waitSeconds: 120
 
@@ -21,5 +21,5 @@ require.config({
 
 
 define(['app', 'widgets/smarthome/smarthome'], function(app){
-	angular.element(document.body, app);
+    angular.bootstrap(document, ['Application']);
 });
