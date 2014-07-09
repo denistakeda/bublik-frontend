@@ -20,11 +20,11 @@ define([
 	'angular',
 	'jquery',
 	'components/languageLoader',
-	'components/apps/bublik/bublik'
+	'components/apps/bublik/bublik',
 	//'components/services/config'
 	//'components/languageLoader',
 	//'components/services/config',
-	//'ibx',  // load module to prevent loading in production
+	'glx'  // load module to prevent loading in production
 	//'text', // load module to prevent loading in production
 	//'components/templates',
 	//'components/apps/unisearch/unisearch',

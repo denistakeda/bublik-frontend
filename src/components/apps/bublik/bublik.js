@@ -1,6 +1,7 @@
 define([
 	'bublikApp',
-	'css!components/apps/bublik/bublik.css'
+	'css!components/apps/bublik/bublik.css',
+	'glx!topmenu'
 ], function (app) {
 	"use strict";
 
