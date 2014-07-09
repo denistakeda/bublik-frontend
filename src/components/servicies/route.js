@@ -96,7 +96,6 @@ define([
 				if (routeParams[attr]) {
 					return routeParams[attr];
 				} else {
-					// console.log( 'Settings '+attr+' does not exists' );
 					return null;
 				}
 			},

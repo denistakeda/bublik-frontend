@@ -4,7 +4,6 @@ define([
 ], function (app) {
 	"use strict";
 
-	console.log('bublik.js');
 	var directive = function (/*storage, Request, backend, config*/) {
 		return {
 			restrict: "C",

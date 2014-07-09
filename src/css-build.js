@@ -63,7 +63,6 @@ define(function() {
 	var loader =
 	{
 		load: function (name, require, load, config) {
-			//console.log('css-build: load: '+name);
 			load(true);
 			loadfile(config.baseUrl+name,function(F){
 				buildMap[name]=strip(F);
@@ -104,12 +103,10 @@ define(function() {
 
 		writeFile: function (pluginName, moduleName, write)
 		{
-			//console.log('css-build: writeFile');
 		},
 
 		onLayerEnd: function (write, data)
 		{
-			//console.log('css-build: onLayerEnd');
 		}
 	};
 

@@ -8,7 +8,6 @@ define([
 	"use strict";
 
 	var app = angular.module('Application', []);
-	console.log(app);
 	/*var app = angular.module('Application', ["ui.utils", "ngSanitize", "ui.date"]).value("$anchorScroll",angular.noop);
 	app.config( ['$httpProvider', function($httpProvider) {
 		var addXSRFcookie = function(){

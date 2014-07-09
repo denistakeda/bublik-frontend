@@ -1,4 +1,4 @@
-console.log("widget-pack1");
+
 if (JSON && JSON.stringify && window.Prototype) {
 	var _stringify = JSON.stringify;
 
@@ -12,7 +12,6 @@ if (JSON && JSON.stringify && window.Prototype) {
 }
 
 define('bublikApp', ["components/apps/app"], function () {
-	console.log("widget-pack2");
 	return require("components/apps/app");
 })
 
@@ -35,7 +34,6 @@ define([
 	//'ibx!searchbar-short'
 
 ], function(angular, $, loadLanguage/*,config*/){
-	console.log("widget-pack3");
 	return function(opt, cb){
 		loadLanguage(cb);
 		//config(opt||{});
