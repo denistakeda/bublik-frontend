@@ -1,0 +1,16 @@
+{
+  "name": "GalaxiasBublik",
+  "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "node": "0.8.x - 0.10.x",
+    "npm": "1.1.x - 1.2.x",
+    "grunt": "~0.4.x"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-cli": "~0.1.9"
+  },
+  "dependencies": {},
+  "main": "app.js"
+}

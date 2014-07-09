@@ -1,17 +1,16 @@
 {
-  "name": "InforbixWidgets",
-  "version": "9.02.00",
+  "name": "Galaxias Bublik",
+  "version": "0.0.1",
   "private": true,
   "engines": {
     "node": "0.8.x - 0.10.x",
     "npm": "1.1.x - 1.2.x",
-    "karma": "~0.10.2",
     "grunt": "~0.4.x"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
-    "grunt-cli": "~0.1.9",
-    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-cli": "~0.1.9"
+   /* "grunt-contrib-jshint": "~0.6.4",
     "grunt-contrib-nodeunit": "~0.1.2",
     "grunt-contrib-requirejs": "~0.4.0",
     "grunt-replace": "~0.4.0",
@@ -33,7 +32,7 @@
     "grunt-contrib-less": "~0.7.0",
     "less-middleware": "~0.1.12",
     "grunt-angular-templates": "~0.4.7",
-    "http-proxy": "~1.1.4"
+    "http-proxy": "~1.1.4"*/
   },
   "dependencies": {},
   "main": "app.js"
