@@ -26,6 +26,6 @@ app.get(/\/steal.*/, function(req, res){
 	res.send("(function(){})();");
 })
 //require('./fixtures/wat')(app);	// WAT fixture
-require('./fixtures/smartsearch')(app);	// smartsearch fixture
+//require('./fixtures/smartsearch')(app);	// smartsearch fixture
 
 require('http').createServer(app).listen(8082);
