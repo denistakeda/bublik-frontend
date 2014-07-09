@@ -21,6 +21,7 @@ define([
 	'jquery',
 	'components/languageLoader',
 	'components/apps/bublik/bublik',
+	'css!components/apps/bublik/bublik.css',
 	//'components/services/config'
 	//'components/languageLoader',
 	//'components/services/config',
