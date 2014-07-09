@@ -1,0 +1,48 @@
+.ibx-layout{
+
+//
+// Load core variables and mixins
+// --------------------------------------------------
+
+@import "variables";
+@import "mixins";
+
+
+
+.container{
+	min-width: 800px;
+}
+@media (min-width: 1300px) {
+	.container {
+		width: 1250px;
+	}
+}
+
+@media (min-width: 1400px) {
+	.container {
+		width: 1350px;
+	}
+}
+
+@media (min-width: 1600px) {
+	.container {
+		width: 1500px;
+	}
+}
+@media (min-width: 1900px) {
+	.container {
+		width: 1700px;
+	}
+}
+
+
+	.modal-header h3 {
+		word-break: break-all;
+	}
+	.dropdown-menu {
+		border-radius: 0px;
+	}
+	.modal-content{
+		.box-shadow(0 0 376px rgba(0, 0, 0, 0.3));
+	}
+}
