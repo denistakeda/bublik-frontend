@@ -187,21 +187,20 @@ if (cluster.isMaster) { // master
 	app.use(function(req, res, next){
 		req.nextTick&&req.nextTick();
 
-		res.oldWriteHead = res.writeHead;
-		res.writeHead = function(statusCode, headers){
+		//res.oldWriteHead = res.writeHead;
+		//res.writeHead = function(statusCode, headers){
 			/* add logic to change headers here */
-			res.setHeader("Access-Control-Allow-Origin", "*");
-			res.setHeader("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
-			res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, Content-Length, X-Requested-With, Access-Token, X-Use-Backends");
+			//res.setHeader("Access-Control-Allow-Origin", "*");
+			//res.setHeader("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
+			//res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, Content-Length, X-Requested-With, Access-Token, X-Use-Backends");
 
-			res.oldWriteHead(statusCode, headers);
-		}
-
+			//res.oldWriteHead(statusCode, headers);
+		//}
 		/**
 		 * Static files, server definition located in 'app.js'
 		 */
 		if (/^\/inforbix\/web\//.test(req.url)) {
-            // inforbix web on angularjs
+			// inforbix web on angularjs
 			return proxy.web(req, res, {
 				target: {
 					host: process.env.TENANT + '-local.autodeskplm.com',
@@ -212,21 +211,20 @@ if (cluster.isMaster) { // master
 		/**
 		 * Query service API
 		 */
-		if (/\/qs\//.test(req.url)) {
+		if (/\/api\//.test(req.url)) {
 			req.headers['X-Tenant-Id'] = process.env.APITENANT || process.env.TENANT;
+			console.log("api");
 			return proxy.web(req, res, {
-				target: {
-					host: '192.168.0.66',
-					port: 8082
-				}
+				target: "http://bublik.galaxias.co/api/localization.json"
 			});
 		}
+
 
 		next();
 	});
 
 	var port = process.env.PORT || 8000;
 	require('http').createServer(app).listen(port, function(){
-		console.log( "[%s] [%s] Listening %s-local.autodeskplm.com:%s and use api as tenant %s", process.pid, new Date().toISOString(), process.env.TENANT, port, process.env.APITENANT || process.env.TENANT );
+		console.log( "[%s] [%s] Listening %s-local.com:%s and use api as tenant %s", process.pid, new Date().toISOString(), process.env.TENANT, port, process.env.APITENANT || process.env.TENANT );
 	});
 }
