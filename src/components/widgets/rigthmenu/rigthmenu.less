@@ -1,0 +1,20 @@
+@import "../../../libs/bootstrap/less/variables";
+
+.glx-rigth-menu{
+  li {
+    font-size: @font-size-base * 0.9;
+    color: darken(@brand-primary, 20%);
+    :hover{
+      color: darken(@brand-primary, 30%);
+      border-left: 1px solid @brand-primary;
+    }
+    a{
+      padding-left: @font-size-base * 2;
+    }
+  }
+
+  li.active{
+    color: darken(@brand-primary, 30%);
+    border-left: 2px solid @brand-primary;
+  }
+}
