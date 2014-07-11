@@ -1,7 +1,8 @@
 define([
 	'bublikApp',
 	'css!libs/bootstrap/dist/css/bootstrap.min.css',
-	'glx!topmenu'
+	'glx!topmenu',
+    'glx!header'
 ], function (app) {
 	"use strict";
 
