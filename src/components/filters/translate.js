@@ -1,12 +1,13 @@
 define([
-    'ibxApp',
-    'angular'
+    'bublikApp',
+    'angular',
+    'components/servicies/dictionary'
 ], function(app, angular){
     "use strict";
 
-        var filter=function($parse) {
+        var filter=function($parse, dictionary) {
             return function(key,params) {
-                var tstring= $parse(key)(angular.loadLanguage());
+                var tstring= $parse(key)(dictionary);
                 if(!tstring)
                     return key;
 
@@ -16,7 +17,7 @@ define([
                 return tstring;
             }
         }
-        filter.$inject=["$parse"];
-        app.filter("ibxT", filter);
+        filter.$inject=["$parse", "dictionary"];
+        app.filter("translate", filter);
     return app;
 });

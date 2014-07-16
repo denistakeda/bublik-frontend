@@ -3,7 +3,9 @@
  */
 define([
 	"bublikApp",
-	"angular"
+	"angular",
+    'components/servicies/resources'
+
 ], function (app, angular) {
 	"use strict";
 
@@ -19,7 +21,7 @@ define([
 		}
 	};
 
-	var service = function ($resource) {
+	var service = function (resources) {
 
 		var	_setters = {
 
@@ -29,13 +31,6 @@ define([
 			 * GET data methods, should be private as well
 			 */
 			_getters = {
-                getLocalization: function(){
-                    var User = $resource('/api/localization');
-                    User.get(function(localization) {
-                        console.log(localization);
-                    });
-                    console.log("!!!");
-                }
 			},
 
 			/**
@@ -49,7 +44,7 @@ define([
 
 		return angular.extend({}, _setters, _getters, _callbacks);
 	}
-	service.$inject = ['$resource' ];
+	service.$inject = ['resources' ];
 	app.factory("backend", service);
 	return service;
 })

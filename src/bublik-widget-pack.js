@@ -19,7 +19,7 @@ define('bublikApp', ["components/apps/app"], function () {
 define([
 	'angular',
 	'jquery',
-	'components/languageLoader',
+	//'components/languageLoader',
 	'components/apps/bublik/bublik',
 	'css!components/apps/bublik/bublik.css',
 	//'components/services/config'
@@ -36,7 +36,8 @@ define([
 
 ], function(angular, $, loadLanguage/*,config*/){
 	return function(opt, cb){
-		loadLanguage(cb);
+        cb&&cb();
+		//loadLanguage(cb);
 		//config(opt||{});
 		/*loadLanguage(cb || angular.mock,
 			function (data, status, headers, config) {  // error handler

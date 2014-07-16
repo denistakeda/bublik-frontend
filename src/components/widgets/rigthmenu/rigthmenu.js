@@ -10,7 +10,6 @@ define([
             restrict: "C",
             templateUrl: '../components/widgets/rigthmenu/rigthmenu.html',
             link: function (scope, elm, attrs) {
-                backend.getLocalization();
             }
         }
     }

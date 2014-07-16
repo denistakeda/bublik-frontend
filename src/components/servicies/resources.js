@@ -2,7 +2,7 @@
  * Ajax layer
  */
 define([
-    'ibxApp',
+    'bublikApp',
     'angular'
 ], function (app, angular) {
     "use strict";

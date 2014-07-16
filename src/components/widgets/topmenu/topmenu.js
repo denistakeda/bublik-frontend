@@ -1,5 +1,6 @@
 define([
 	'bublikApp',
+    'components/filters/translate',
 	'css!components/widgets/topmenu/topmenu.css'
 ], function (app) {
 	"use strict";
