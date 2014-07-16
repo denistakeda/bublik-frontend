@@ -2,19 +2,21 @@
 
 .glx-rigth-menu{
   li {
-    font-size: @font-size-base * 0.9;
+
     color: darken(@brand-primary, 20%);
     :hover{
-      color: darken(@brand-primary, 30%);
       border-left: 1px solid @brand-primary;
+      background: #fff;
     }
     a{
+      background: #fff;
       padding-left: @font-size-base * 2;
     }
   }
 
-  li.active{
-    color: darken(@brand-primary, 30%);
+  li.active a{
+    color: #0B0B3B;
     border-left: 2px solid @brand-primary;
+    font-weight: bold;
   }
 }

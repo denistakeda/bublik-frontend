@@ -1,13 +1,15 @@
 define([
 	// Standard Libs
-	'angular'		// lib/angular/angular
+	'angular',		// lib/angular/angular
+    'angular-resource'
+    //'angular-route'
 	//'ui-utils',
 	//'ui-date',
 	//'angular-sanitize'
 ], function (angular) {
 	"use strict";
 
-	var app = angular.module('Application', []);
+	var app = angular.module('Application', ['ngResource']);
 //	var app = angular.module('Application', ["ui.utils", "ngSanitize", "ui.date"]).value("$anchorScroll",angular.noop);
 //	app.config( ['$httpProvider', function($httpProvider) {
 //		var addXSRFcookie = function(){
