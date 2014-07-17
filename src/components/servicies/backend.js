@@ -4,7 +4,8 @@
 define([
 	"bublikApp",
 	"angular",
-    'components/servicies/resources'
+    'components/servicies/resources',
+    'components/servicies/storage'
 
 ], function (app, angular) {
 	"use strict";
@@ -21,7 +22,7 @@ define([
 		}
 	};
 
-	var service = function (resources) {
+	var service = function (resources, storage) {
 
 		var	_setters = {
 
@@ -31,6 +32,14 @@ define([
 			 * GET data methods, should be private as well
 			 */
 			_getters = {
+                getTopOfCompanies: function(level, limit, offset){
+                    resources.topOfCompanies.get({level: level, limit: limit, offset: offset},
+                        function(data){
+                            angular.extend(storage.topOfCompanies, data);
+                        });
+
+                }
+
 			},
 
 			/**
@@ -44,7 +53,7 @@ define([
 
 		return angular.extend({}, _setters, _getters, _callbacks);
 	}
-	service.$inject = ['resources' ];
+	service.$inject = ['resources', 'storage' ];
 	app.factory("backend", service);
 	return service;
 })

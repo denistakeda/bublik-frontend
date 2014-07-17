@@ -4,7 +4,10 @@ define([
 	'css!libs/bootstrap/dist/css/bootstrap.min.css',
 	'glx!topmenu',
     'glx!header',
-    'glx!rigthmenu'
+    'glx!rigthmenu',
+
+    //List of main widgets
+    'glx!topcompanies'
 
 ], function (app) {
 	"use strict";
