@@ -20,6 +20,7 @@ module.exports = function(grunt) {
 						'angular-resource': 'empty:',
 						'angular-animate': 'empty:',
 						'angular-touch': 'empty:',
+                        'angular-route': 'empty:',
 
 						'bootstrap':'libs/bootstrap/dist/js/bootstrap.min'
 					},
@@ -28,6 +29,7 @@ module.exports = function(grunt) {
 						'angular-resource': { deps: ['angular']},
 						'angular-animate': { deps: ['angular']},
 						'angular-touch': { deps: ['angular']},
+                        'angular-route': { deps: ['angular']},
 
 						'jquery': { exports: '$'},
 						'jQueryUI': { deps: ['jquery', 'css!libs/jquery/smoothness/jquery-ui.css', 'css!libs/jquery/smoothness/jquery-ui-dd.min.css'], exports: '$.ui'},

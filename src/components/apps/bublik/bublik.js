@@ -1,9 +1,11 @@
 define([
 	'bublikApp',
+    'components/apps/bublik/router',
 	'css!libs/bootstrap/dist/css/bootstrap.min.css',
 	'glx!topmenu',
     'glx!header',
     'glx!rigthmenu'
+
 ], function (app) {
 	"use strict";
 
