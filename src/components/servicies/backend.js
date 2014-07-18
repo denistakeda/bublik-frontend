@@ -33,7 +33,7 @@ define([
 			 */
 			_getters = {
 				getTopOfCompanies: function(level, limit){
-					storage.topOfCompanies = {loading: true};
+					storage.topOfCompanies = {loading: true, hasMore: true};
 					resources.topOfCompanies.get({level: level, limit: limit?limit:10, offset: 0},
 						function(data){
 							angular.extend(storage.topOfCompanies, data);

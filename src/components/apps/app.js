@@ -3,14 +3,15 @@ define([
 	'angular',		// lib/angular/angular
 	'angular-resource',
 	'angular-infinite-scroll',
-    'angular-route'
+	'angular-route',
+	'angular-spinner'
 	//'ui-utils',
 	//'ui-date',
 	//'angular-sanitize'
 ], function (angular) {
 	"use strict";
 
-	var app = angular.module('Application', ['ngResource', 'ngRoute', 'infinite-scroll']);
+	var app = angular.module('Application', ['ngResource', 'ngRoute', 'infinite-scroll', 'angularSpinner']);
 //	var app = angular.module('Application', ["ui.utils", "ngSanitize", "ui.date"]).value("$anchorScroll",angular.noop);
 //	app.config( ['$httpProvider', function($httpProvider) {
 //		var addXSRFcookie = function(){

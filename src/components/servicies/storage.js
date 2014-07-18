@@ -9,7 +9,7 @@ define([
 			/**
 			 * @property results {Array} snippets related with current conditions
 			 */
-			topOfCompanies: {}
+			topOfCompanies: {loading: true, hasMore:true}
 		};
 
 
