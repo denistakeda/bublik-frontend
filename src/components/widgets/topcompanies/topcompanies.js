@@ -14,7 +14,7 @@ define([
 			restrict: "C",
 			templateUrl: '../components/widgets/topcompanies/topcompanies.html',
 			link: function(scope, elm, attrs){
-				backend.getTopOfCompanies("city",50);
+				backend.getTopOfCompanies("city",10);
 				scope.topOfCompanies = storage.topOfCompanies;
 				scope.puging = function(){backend.loadNextTopOfCompanies();};
 			}
