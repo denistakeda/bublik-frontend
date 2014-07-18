@@ -4,6 +4,7 @@ define([
 	'components/servicies/storage',
 	'components/servicies/backend',
 	'angular-infinite-scroll',
+	'glx!topcompanies-topitem',
 	'css!components/widgets/topcompanies/topcompanies.css'
 ], function(app){
 	"use strict";
