@@ -1,7 +1,8 @@
 define([
 	// Standard Libs
 	'angular',		// lib/angular/angular
-    'angular-resource',
+	'angular-resource',
+	'angular-infinite-scroll',
     'angular-route'
 	//'ui-utils',
 	//'ui-date',

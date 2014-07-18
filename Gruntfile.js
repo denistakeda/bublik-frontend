@@ -21,6 +21,7 @@ module.exports = function(grunt) {
 						'angular-animate': 'empty:',
 						'angular-touch': 'empty:',
                         'angular-route': 'empty:',
+						'angular-infinite-scroll': 'empty:',
 
 						'bootstrap':'libs/bootstrap/dist/js/bootstrap.min'
 					},
@@ -29,6 +30,7 @@ module.exports = function(grunt) {
 						'angular-resource': { deps: ['angular']},
 						'angular-animate': { deps: ['angular']},
 						'angular-touch': { deps: ['angular']},
+						'angular-infinite-scroll': { deps: ['angular']},
                         'angular-route': { deps: ['angular']},
 
 						'jquery': { exports: '$'},

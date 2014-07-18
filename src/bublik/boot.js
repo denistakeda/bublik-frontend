@@ -13,6 +13,7 @@ require.config({
 		'angular-sanitize': 'libs/angular/1.2.13/angular-sanitize.min',
 		'angular-resource': 'libs/angular/1.2.13/angular-resource.min',
 		'angular-animate': 'libs/angular/1.2.13/angular-animate.min',
+		'angular-infinite-scroll': 'libs/angular/1.2.13/ng-infinite-scroll.min'
 		'angular-touch': 'libs/angular/1.2.13/angular-touch.min',
         'angular-route': 'libs/angular/1.2.13/angular-route.min'
 	},
@@ -22,6 +23,7 @@ require.config({
 		'angular-resource': { deps: ['angular']},
 		'angular-animate': { deps: ['angular']},
 		'angular-touch': { deps: ['angular']},
+		'angular-infinite-scroll': { deps: ['angular']},
         'angular-route': { deps: ['angular']},
 
 		"ui-utils": {
