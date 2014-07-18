@@ -10,7 +10,7 @@ define([
 ], function (angular) {
 	"use strict";
 
-	var app = angular.module('Application', ['ngResource', 'ngRoute']);
+	var app = angular.module('Application', ['ngResource', 'ngRoute', 'infinite-scroll']);
 //	var app = angular.module('Application', ["ui.utils", "ngSanitize", "ui.date"]).value("$anchorScroll",angular.noop);
 //	app.config( ['$httpProvider', function($httpProvider) {
 //		var addXSRFcookie = function(){
