@@ -17,7 +17,8 @@ require.config({
 		'angular-infinite-scroll': 'libs/angular/1.2.13/ng-infinite-scroll.min',
 		'angular-touch': 'libs/angular/1.2.13/angular-touch.min',
 		'angular-route': 'libs/angular/1.2.13/angular-route.min',
-		'angular-spinner':'libs/angular/1.2.13/angular-spinner.min'
+		'angular-spinner':'libs/angular/1.2.13/angular-spinner.min',
+        'angular-ui': 'libs/angular/1.2.13/ui-bootstrap-tpls.min'
 	},
 
 	shim: {
@@ -28,6 +29,7 @@ require.config({
 		'angular-infinite-scroll': { deps: ['angular']},
 		'angular-route': { deps: ['angular']},
 		'angular-spinner': { deps: ['angular', 'spin']},
+        'angular-ui': {deps: ['angular', 'bootstrap']},
 
 		"ui-utils": {
 			deps: ["angular"]

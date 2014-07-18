@@ -24,6 +24,7 @@ module.exports = function(grunt) {
 						'angular-route': 'empty:',
 						'angular-infinite-scroll': 'empty:',
 						'angular-spinner': 'empty:',
+                        'angular-ui': 'empty:',
 
 						'bootstrap':'libs/bootstrap/dist/js/bootstrap.min'
 					},
@@ -35,6 +36,7 @@ module.exports = function(grunt) {
 						'angular-infinite-scroll': { deps: ['angular']},
 						'angular-route': { deps: ['angular']},
 						'angular-spinner': { deps: ['angular', 'spin']},
+                        'angular-ui': {deps: ['angular', 'bootstrap']},
 
 						'jquery': { exports: '$'},
 						'jQueryUI': { deps: ['jquery', 'css!libs/jquery/smoothness/jquery-ui.css', 'css!libs/jquery/smoothness/jquery-ui-dd.min.css'], exports: '$.ui'},

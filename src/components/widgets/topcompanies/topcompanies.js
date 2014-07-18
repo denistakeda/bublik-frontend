@@ -14,9 +14,18 @@ define([
 			restrict: "C",
 			templateUrl: '../components/widgets/topcompanies/topcompanies.html',
 			link: function(scope, elm, attrs){
-				backend.getTopOfCompanies("city",10);
+                scope.topLevel = 'city';
+				backend.getTopOfCompanies(scope.topLevel,10);
 				scope.topOfCompanies = storage.topOfCompanies;
-				scope.puging = function(){backend.loadNextTopOfCompanies();};
+
+                scope.$watch("topLevel", function(newVal, oldVal){
+                    if (!newVal || newVal===oldVal) return;
+                    backend.getTopOfCompanies(scope.topLevel,10);
+                });
+
+				scope.puging = function(){
+                    backend.loadNextTopOfCompanies();
+                };
 			}
 		}
 	};
