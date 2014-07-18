@@ -1,8 +1,15 @@
 <h1>{{"widget.topOfCompanies.mainHeader"|localize}}</h1>
 <div>
+
 	<div infinite-scroll="puging()" infinite-scroll-distance="3"
 		 infinite-scroll-disabled="topOfCompanies.loading||!topOfCompanies.hasMore">
-		<div class="glx-top-item" ng-repeat="item in topOfCompanies.items" top-item="item">{{item}}</div>
+		<div ng-repeat="item in topOfCompanies.items">
+			<div class="row clearfix">
+				<div class="glx-top-item"  top-item="item"></div>
+			</div>
+			<hr>
+		</div>
+
 	</div>
 	<span ng-show="topOfCompanies.loading" us-spinner></span>
 </div>

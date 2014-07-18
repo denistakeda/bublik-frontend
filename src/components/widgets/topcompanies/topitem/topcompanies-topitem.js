@@ -4,7 +4,7 @@ define([
 	'components/servicies/storage',
 	'components/servicies/backend',
 	'angular-infinite-scroll',
-	'css!components/widgets/topitem/topitem.css'
+	'css!components/widgets/topcompanies/topitem/topcompanies-topitem.css'
 ], function(app){
 	"use strict";
 
