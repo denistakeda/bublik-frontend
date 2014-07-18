@@ -44,7 +44,7 @@ define([
 					storage.topOfCompanies.loading  = true;
 					resources.topOfCompanies.get({level: resources.topOfCompanies.level, limit: limit?limit:10, offset: storage.topOfCompanies.items.length},
 						function(data){
-							storage.topOfCompanies.items.push(data.items);
+							storage.topOfCompanies.items=storage.topOfCompanies.items.concat(data.items);
 							storage.topOfCompanies.loading  = false;
 						});
 				}
