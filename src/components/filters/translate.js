@@ -18,6 +18,6 @@ define([
             }
         }
         filter.$inject=["$parse", "dictionary"];
-        app.filter("translate", filter);
+        app.filter("localize", filter);
     return app;
 });

@@ -223,7 +223,7 @@ if (cluster.isMaster) { // master
         next();
     });
 
-    var port = process.env.PORT || 8000;
+    var port = process.env.PORT || 8001;
     require('http').createServer(app).listen(port, function(){
         console.log( "[%s] [%s] Listening %s-local.autodeskplm.com:%s and use api as tenant %s", process.pid, new Date().toISOString(), process.env.TENANT, port, process.env.APITENANT || process.env.TENANT );
     });

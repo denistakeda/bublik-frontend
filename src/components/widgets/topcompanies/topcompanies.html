@@ -1,2 +1,6 @@
-<h1>Top of companies</h1>
-{{topOfCompanies}}
+<h1>{{"widget.topOfCompanies.mainHeader"|localize}}</h1>
+<div infinite-scroll="puging()" infinite-scroll-distance="3"
+	 infinite-scroll-disabled="topOfCompanies.loading">
+	<div class="glx-top-item" ng-repeat="item in topOfCompanies.items" top-item="item">{{item}}</div>
+</div>
+<div ng-show="topOfCompanies.loading">Loading...</div>
