@@ -17,10 +17,8 @@ module.exports = function(grunt) {
 						jQueryUI: 'empty:',
 						spin: 'empty:',
 
-						'angular-sanitize': 'empty:',
 						'angular-resource': 'empty:',
 						'angular-animate': 'empty:',
-						'angular-touch': 'empty:',
 						'angular-route': 'empty:',
 						'angular-infinite-scroll': 'empty:',
 						'angular-spinner': 'empty:',
@@ -29,10 +27,8 @@ module.exports = function(grunt) {
 						'bootstrap':'libs/bootstrap/dist/js/bootstrap.min'
 					},
 					shim: {
-						'angular-sanitize': { deps: ['angular']},
 						'angular-resource': { deps: ['angular']},
 						'angular-animate': { deps: ['angular']},
-						'angular-touch': { deps: ['angular']},
 						'angular-infinite-scroll': { deps: ['angular']},
 						'angular-route': { deps: ['angular']},
 						'angular-spinner': { deps: ['angular', 'spin']},
@@ -147,7 +143,7 @@ module.exports = function(grunt) {
 					}
 				},
 				files: [
-					{expand: true, flatten: true, src: ['target/runtime/unisearch/boot.js'], dest: 'target/runtime/unisearch/'}
+					{expand: true, flatten: true, src: ['target/runtime/bublik/boot.js'], dest: 'target/runtime/bublik/'}
 				]
 			}
 		},

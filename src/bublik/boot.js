@@ -11,21 +11,17 @@ require.config({
 		'bootstrap':'libs/bootstrap/dist/js/bootstrap.min',
 		'spin': 'libs/spin.min',
 
-		'angular-sanitize': 'libs/angular/1.2.13/angular-sanitize.min',
 		'angular-resource': 'libs/angular/1.2.13/angular-resource.min',
 		'angular-animate': 'libs/angular/1.2.13/angular-animate.min',
 		'angular-infinite-scroll': 'libs/angular/1.2.13/ng-infinite-scroll.min',
-		'angular-touch': 'libs/angular/1.2.13/angular-touch.min',
 		'angular-route': 'libs/angular/1.2.13/angular-route.min',
 		'angular-spinner':'libs/angular/1.2.13/angular-spinner.min',
         'angular-ui': 'libs/angular/1.2.13/ui-bootstrap-tpls.min'
 	},
 
 	shim: {
-		'angular-sanitize': { deps: ['angular']},
 		'angular-resource': { deps: ['angular']},
 		'angular-animate': { deps: ['angular']},
-		'angular-touch': { deps: ['angular']},
 		'angular-infinite-scroll': { deps: ['angular']},
 		'angular-route': { deps: ['angular']},
 		'angular-spinner': { deps: ['angular', 'spin']},
@@ -47,9 +43,6 @@ require.config({
 });
 
 require(["angular", "bublik-widget-pack"], function(angular, glxPack){
-	/*var requiredModules = glxPack({}, function(){
-		angular.bootstrap(document, requiredModules);
-	});*/
 
 	glxPack({}, function(){
 		angular.bootstrap(document, ['Application']);
