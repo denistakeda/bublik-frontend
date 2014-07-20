@@ -15,16 +15,15 @@ define([
 			templateUrl: '../components/widgets/topcompanies/topcompanies.html',
 			link: function(scope, elm, attrs){
                 scope.topLevel = 'city';
-				backend.getTopOfCompanies(scope.topLevel,10);
+				backend.getTopOfCompanies(scope.topLevel,27);
 				scope.topOfCompanies = storage.topOfCompanies;
 
-                scope.$watch("topLevel", function(newVal, oldVal){
-                    if (!newVal || newVal===oldVal) return;
-                    backend.getTopOfCompanies(scope.topLevel,10);
-                });
+                scope.changeTopLevel = function(){
+                    backend.getTopOfCompanies(scope.topLevel,27);
+                };
 
 				scope.puging = function(){
-                    backend.loadNextTopOfCompanies();
+                    backend.loadNextTopOfCompanies(9);
                 };
 			}
 		}

@@ -1,6 +1,7 @@
 define([
     'bublikApp',
     "components/servicies/backend",
+    'libs/bootstrap/js/affix',
     'css!components/widgets/rigthmenu/rigthmenu.css'
 ], function (app) {
     "use strict";

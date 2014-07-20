@@ -1,9 +1,18 @@
 <h1>{{"widget.topOfCompanies.mainHeader"|localize}}</h1>
 <hr>
 <div class="btn-group">
-    <label class="btn btn-primary" ng-model="topLevel" btn-radio="'city'">{{"widget.topOfCompanies.topLevel.city"|localize}}</label>
-    <label class="btn btn-primary" ng-model="topLevel" btn-radio="'country'">{{"widget.topOfCompanies.topLevel.country"|localize}}</label>
-    <label class="btn btn-primary" ng-model="topLevel" btn-radio="'world'">{{"widget.topOfCompanies.topLevel.world"|localize}}</label>
+    <label class="btn btn-primary" ng-model="topLevel"
+           btn-radio="'city'" ng-change="changeTopLevel()">
+        {{"widget.topOfCompanies.topLevel.city"|localize}}
+    </label>
+    <label class="btn btn-primary" ng-model="topLevel"
+           btn-radio="'country'" ng-change="changeTopLevel()">
+        {{"widget.topOfCompanies.topLevel.country"|localize}}
+    </label>
+    <label class="btn btn-primary" ng-model="topLevel"
+           btn-radio="'world'" ng-change="changeTopLevel()">
+        {{"widget.topOfCompanies.topLevel.world"|localize}}
+    </label>
 </div>
 <hr>
 <div>
