@@ -25,21 +25,16 @@ define([
 	var service = function(resources, storage){
 
 		var _setters = {
-
+				clearStorage: function(){
+					storage = {};
+				}
 			},
 
 			/**
 			 * GET data methods, should be private as well
 			 */
 			_getters = {
-				getTopOfCompanies: function(level, limit){
-					storage.topOfCompanies = {loading: true, hasMore: true};
-					resources.topOfCompanies.get({level: level, limit: limit?limit:10, offset: 0},
-						function(data){
-							angular.extend(storage.topOfCompanies, data);
-							storage.topOfCompanies.loading  = false;
-						});
-				},
+
 				loadNextTopOfCompanies: function(limit){
 					storage.topOfCompanies.loading  = true;
 					resources.topOfCompanies.get({level: resources.topOfCompanies.level, limit: limit?limit:10, offset: storage.topOfCompanies.items.length},
@@ -55,7 +50,15 @@ define([
 			 * Handle data callbacks. Can be used if you need to emulate success callbacks with exist data.
 			 */
 			_callbacks = {
-
+				getTopOfCompanies: function(level, limit, cb){
+					storage.topOfCompanies = {loading: true, hasMore: true};
+					resources.topOfCompanies.get({level: level, limit: limit?limit:10, offset: 0},
+						function(data){
+							angular.extend(storage.topOfCompanies, data);
+							storage.topOfCompanies.loading  = false;
+							cb(storage.topOfCompanies);
+						});
+				}
 			};
 
 
