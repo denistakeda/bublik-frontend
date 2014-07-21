@@ -143,7 +143,7 @@ module.exports = function(grunt) {
 					}
 				},
 				files: [
-					{expand: true, flatten: true, src: ['target/runtime/bublik/boot.js'], dest: 'target/runtime/bublik/'}
+					{expand: true, flatten: true, src: ['target/runtime/boot.js'], dest: 'target/runtime/'}
 				]
 			}
 		},
