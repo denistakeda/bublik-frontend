@@ -5,11 +5,11 @@ define([
 	'angular-infinite-scroll',
 	'angular-route',
 	'angular-spinner',
-    'angular-ui'
+	'angular-ui'
 	//'ui-utils',
 	//'ui-date',
 	//'angular-sanitize'
-], function (angular) {
+], function(angular){
 	"use strict";
 
 	var app = angular.module('Application', ['ngResource', 'ngRoute', 'infinite-scroll', 'angularSpinner', 'ui.bootstrap']);

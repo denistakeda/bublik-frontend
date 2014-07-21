@@ -8,17 +8,17 @@ define([
 ], function(app, angular){
 	"use strict";
 
-	var filter=function(storage, QueryFilter, SessionState, $filter) {
+	var filter = function(storage, QueryFilter, SessionState, $filter){
 		var cache = {};
-		return function highlight(needle, haystack) {
-			var cacheKey = angular.toJson([needle,haystack]);
+		return function highlight(needle, haystack){
+			var cacheKey = angular.toJson([needle, haystack]);
 			if (!cache[SessionState.getCurrentState()]) {  // garbage collector
 				cache = {};
 				cache[SessionState.getCurrentState()] = {};
 			}
 			if (cache[SessionState.getCurrentState()][cacheKey]) return cache[SessionState.getCurrentState()][cacheKey];
 			var out;//, queryString = storage.queryString;
-			switch(haystack){
+			switch (haystack) {
 				case "dataprop":
 					angular.forEach(storage.filters, function(filter){
 						if (filter.uri === needle.uri)
@@ -50,19 +50,19 @@ define([
 //				case "string":
 				default:
 					out = needle.toString();
-					if (!out || out==="null") {
+					if (!out || out === "null") {
 						cache[SessionState.getCurrentState()][cacheKey] = out;
 						return out;
 					}
 					// search by search token
 					angular.forEach(storage.filters, function(criteria){
-						if ( !(criteria instanceof QueryFilter.FulltextSearch) ) {  // or criteria.simpleType !== 'fulltext'
+						if (!(criteria instanceof QueryFilter.FulltextSearch)) {  // or criteria.simpleType !== 'fulltext'
 							return; // not fulltext search criteria, skip it
 						}
 						var token = criteria.searchString;
 
 						// invalid token - there are only special symbols
-						if (! /\w/.test(token)) {
+						if (!/\w/.test(token)) {
 							cache[SessionState.getCurrentState()][cacheKey] = out;
 							return out;
 						}
@@ -71,25 +71,25 @@ define([
 						if (/^".+"$/.test(token)) {
 							regToken = token.replace(/^"(.+)"$/, "$1");
 							regToken = regToken.replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!<>\|\:])/g, "\\$1");
-							out = out.replace( new RegExp( "(" + regToken + ")", 'gi'), "<span class='highlight'>$1</span>" );
+							out = out.replace(new RegExp("(" + regToken + ")", 'gi'), "<span class='highlight'>$1</span>");
 							cache[SessionState.getCurrentState()][cacheKey] = out;
 							return out;
 						}
 						token = token.replace(new RegExp("([!@#$^&%_+\\\"'\\\\=\\[\\]\\/\\{\\}\\(\\)\\|:;<>?,\\.])", 'g'), ' ');
-						token = token.replace(/^\s*(.*)\s*$/,"$1").replace(/\s{2,}/g, " ");
+						token = token.replace(/^\s*(.*)\s*$/, "$1").replace(/\s{2,}/g, " ");
 						var tokens = /^".+"$/.test(token) ? [ token.replace(/^"(.+)"$/, "$1") ] : token.split(" ");
 						angular.forEach(tokens, function(token){
-							if (token!=="") {
+							if (token !== "") {
 								regToken = token;
 								regToken = regToken.replace(/\*/g, "\\w*?");
 								regToken += "(?=\\W|$|_)";
 								var subs = out.split(/(<span\sclass=["']highlight['"]>.+?<\/span>)/);
 								out = "";
 								angular.forEach(subs, function(sub, i){
-									if (i%2) {
+									if (i % 2) {
 										out += sub;
 									} else {
-										out += sub.replace( new RegExp("("+regToken+")", 'gi'), "<span class='highlight'>$1</span>" );
+										out += sub.replace(new RegExp("(" + regToken + ")", 'gi'), "<span class='highlight'>$1</span>");
 									}
 								})
 							}
@@ -100,7 +100,7 @@ define([
 			return out;
 		}
 	}
-	filter.$inject=["ibxStorage", "IbxQueryFilter", "SessionState", "$filter"];
+	filter.$inject = ["ibxStorage", "IbxQueryFilter", "SessionState", "$filter"];
 	app.filter("ibxHighlight", filter);
 	return app;
 });

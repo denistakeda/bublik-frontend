@@ -1,30 +1,30 @@
 <h1>{{"widget.topOfCompanies.mainHeader"|localize}}</h1>
 <hr>
 <div class="btn-group">
-    <label class="btn btn-primary" ng-model="topLevel"
-           btn-radio="'city'" ng-change="changeTopLevel()">
-        {{"widget.topOfCompanies.topLevel.city"|localize}}
-    </label>
-    <label class="btn btn-primary" ng-model="topLevel"
-           btn-radio="'country'" ng-change="changeTopLevel()">
-        {{"widget.topOfCompanies.topLevel.country"|localize}}
-    </label>
-    <label class="btn btn-primary" ng-model="topLevel"
-           btn-radio="'world'" ng-change="changeTopLevel()">
-        {{"widget.topOfCompanies.topLevel.world"|localize}}
-    </label>
+	<label class="btn btn-primary" ng-model="topLevel"
+		   btn-radio="'city'" ng-change="changeTopLevel()">
+		{{"widget.topOfCompanies.topLevel.city"|localize}}
+	</label>
+	<label class="btn btn-primary" ng-model="topLevel"
+		   btn-radio="'country'" ng-change="changeTopLevel()">
+		{{"widget.topOfCompanies.topLevel.country"|localize}}
+	</label>
+	<label class="btn btn-primary" ng-model="topLevel"
+		   btn-radio="'world'" ng-change="changeTopLevel()">
+		{{"widget.topOfCompanies.topLevel.world"|localize}}
+	</label>
 </div>
 <hr>
 <div>
-    <div infinite-scroll="puging()" infinite-scroll-distance="3"
-         infinite-scroll-disabled="topOfCompanies.loading||!topOfCompanies.hasMore">
-        <div class="row clearfix">
-            <div ng-repeat="item in topOfCompanies.items" class="col-md-4 col-sm-4 col-xs-1">
-                <div class="glx-top-item" top-item="item"></div>
-            </div>
-        </div>
-    </div>
-    <span ng-show="topOfCompanies.loading" us-spinner></span>
+	<div infinite-scroll="puging()" infinite-scroll-distance="3"
+		 infinite-scroll-disabled="topOfCompanies.loading||!topOfCompanies.hasMore">
+		<div class="row clearfix">
+			<div ng-repeat="item in topOfCompanies.items" class="col-md-4 col-sm-4 col-xs-1">
+				<div class="glx-top-item" top-item="item"></div>
+			</div>
+		</div>
+	</div>
+	<span ng-show="topOfCompanies.loading" us-spinner></span>
 
 
 </div>

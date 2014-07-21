@@ -1,26 +1,26 @@
 <div class="pull-left logo-container">
-    <!--Logo-->
-    <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <a href="#/company/{{topItem.id}}">
-                <img class="com-logo" tooltip="{{topItem.description}}"
-                     tooltip-placement="top" src="{{topItem.fullLogoUrl}}"/>
-            </a>
-        </div>
-    </div>
-    <!--Caption-->
-    <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-        <a href="#/company/{{topItem.id}}"><h4>{{topItem.title}}</h4></a>
-        </div>
-    </div>
-    <!--Rating-->
-    <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-        <rating ng-model="topItem.rating" max="5" readonly="true">rgs</rating>
-        <span>{{topItem.rating}}</span>
-        </div>
-    </div>
+	<!--Logo-->
+	<div class="row">
+		<div class="col-md-12 col-sm-12 col-xs-12">
+			<a href="#/company/{{topItem.id}}">
+				<img class="com-logo" tooltip="{{topItem.description}}"
+					 tooltip-placement="top" src="{{topItem.fullLogoUrl}}"/>
+			</a>
+		</div>
+	</div>
+	<!--Caption-->
+	<div class="row">
+		<div class="col-md-12 col-sm-12 col-xs-12 text-center">
+			<a href="#/company/{{topItem.id}}"><h4>{{topItem.title}}</h4></a>
+		</div>
+	</div>
+	<!--Rating-->
+	<div class="row">
+		<div class="col-md-12 col-sm-12 col-xs-12 text-center">
+			<rating ng-model="topItem.rating" max="5" readonly="true">rgs</rating>
+			<span>{{topItem.rating}}</span>
+		</div>
+	</div>
 </div>
 
 <!--

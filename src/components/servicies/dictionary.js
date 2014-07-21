@@ -1,12 +1,12 @@
 define([
 	"bublikApp",
 	"angular",
-    'components/servicies/resources'
+	'components/servicies/resources'
 
-], function (app, angular) {
+], function(app, angular){
 	"use strict";
 
-	var service = function (resources) {
+	var service = function(resources){
 		return resources.localization.get();
 	}
 	service.$inject = ['resources' ];

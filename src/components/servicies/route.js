@@ -5,7 +5,7 @@ define([
 	"use strict";
 
 	// service
-	var service = function($rootScope) {
+	var service = function($rootScope){
 
 
 		var routeParams = {};
@@ -17,47 +17,47 @@ define([
 		}
 
 		var parse = function(hash){
-			if (hash.indexOf('#')===0) hash = hash.substr(1);
+			if (hash.indexOf('#') === 0) hash = hash.substr(1);
 			routeParams = {};	// renew
 			angular.forEach(settings.paths, function(path){
 				var p = path;
 				// try to search params
 				// get variable list
-				var variables= p.match(/:\w+/g);
+				var variables = p.match(/:\w+/g);
 				// and change them to (\w+)
-				var matches = hash.match( new RegExp( p.replace(/:\w+/g, "([^&]+)") ) );
+				var matches = hash.match(new RegExp(p.replace(/:\w+/g, "([^&]+)")));
 				if (variables && matches) {	// we found results!
 					angular.forEach(variables, function(item, i){
-						routeParams[item.substr(1)] = matches[i+1]
+						routeParams[item.substr(1)] = matches[i + 1]
 					});
 				}
 			});
 		};
 
-		var putInHash = function(k,v){
-			var hash = window.parent.location.hash, updatedhash="";
+		var putInHash = function(k, v){
+			var hash = window.parent.location.hash, updatedhash = "";
 			// search key 'k' in paths
 			angular.forEach(settings.paths, function(path){
 				var p = path;
 				// get variable list
-				var variables= p.match(/:\w+/g);
-				if ( variables && ~variables.indexOf(':'+k) ) {	// need change variable with current path!
+				var variables = p.match(/:\w+/g);
+				if (variables && ~variables.indexOf(':' + k)) {	// need change variable with current path!
 					// find position of path with hardcoded value
-					var newPart = path.replace(new RegExp(':'+k, 'gi'), '-#-');
+					var newPart = path.replace(new RegExp(':' + k, 'gi'), '-#-');
 					// replace other variables to there \w+
 					newPart = newPart.replace(/:\w+/g, "[^&]+");
 					// replace hardcoded back
-					newPart = '('+newPart.replace('-#-', ')[^&]+(')+')';
+					newPart = '(' + newPart.replace('-#-', ')[^&]+(') + ')';
 
-					updatedhash = hash.replace( new RegExp(newPart), "$1"+v+"$2" );
-					if (updatedhash === hash && v && !~hash.search( new RegExp(newPart) ) ) {
+					updatedhash = hash.replace(new RegExp(newPart), "$1" + v + "$2");
+					if (updatedhash === hash && v && !~hash.search(new RegExp(newPart))) {
 						// need to add key+value
-						newPart = path.replace(new RegExp(':'+k, 'gi'), v);
+						newPart = path.replace(new RegExp(':' + k, 'gi'), v);
 						angular.forEach(variables, function(vrbl){
-							if (vrbl==k) return;
-							newPart = newPart.replace(new RegExp(':'+vrbl, 'gi'), routeParams[vrbl]);
+							if (vrbl == k) return;
+							newPart = newPart.replace(new RegExp(':' + vrbl, 'gi'), routeParams[vrbl]);
 						});
-						updatedhash = hash+(hash.length?'&':'')+newPart;
+						updatedhash = hash + (hash.length ? '&' : '') + newPart;
 					}
 				}
 			});
@@ -66,7 +66,7 @@ define([
 			parse(window.parent.location.hash);
 		}
 
-		window.parent.window.onhashchange = function () {
+		window.parent.window.onhashchange = function(){
 			parse(window.parent.location.hash);
 			$rootScope.$$phase || $rootScope.$digest();
 		}
@@ -109,7 +109,7 @@ define([
 					putInHash(attr, v);
 				}
 				if (typeof attr == 'object' && typeof v == 'undefined') {
-					angular.forEach(attr, function(k,v){
+					angular.forEach(attr, function(k, v){
 						put(k, v);
 					});
 				} else {
@@ -117,12 +117,12 @@ define([
 				}
 				$rootScope.$$phase || $rootScope.$digest();	// TODO can be problem with performance
 			},
-			makeUrl:function(params, absolute){
-				var url="";
-				angular.forEach(params,function(val,key){
-					url+=key+"="+val+"&";
+			makeUrl: function(params, absolute){
+				var url = "";
+				angular.forEach(params, function(val, key){
+					url += key + "=" + val + "&";
 				})
-				url='#'+url.substr(0,url.length-1);
+				url = '#' + url.substr(0, url.length - 1);
 				if (absolute) url = window.parent.location.pathname + url;
 				return url;
 			}

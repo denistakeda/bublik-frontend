@@ -8,7 +8,7 @@ define([
 	'libs/jquery.cookie',
 	'components/services/config',
 	'components/factories/handleError'
-], function (app, $, angular) {
+], function(app, $, angular){
 	"use strict";
 	$.ajaxSetup({dataType: 'json'});
 	/**
@@ -17,21 +17,21 @@ define([
 	 * we also can add 'crossDomain: true' to ajax options.
 	 */
 	$.support.cors = true;
-	$.ajaxPrefilter(function (options, originalOptions, jqXHR) {
+	$.ajaxPrefilter(function(options, originalOptions, jqXHR){
 		// security fix
 //		jqXHR.setRequestHeader('X-Use-Backends', "elastic");
 //		jqXHR.setRequestHeader('X-XSRF-Security', $.cookie('xsrf_security') || "");
 //		jqXHR.setRequestHeader('Client-Timezone', new Date().toString().match(/([A-Z]+[\+-][0-9]+)/)[1]);
 	});
 	var cache = {}, queue = [];
-	var service = function ($rootScope, $timeout, handleError, config) {
-		var parametrize = function (request, params) {
+	var service = function($rootScope, $timeout, handleError, config){
+		var parametrize = function(request, params){
 			var self = this,
 				url = request,
 				val,
 				encodedVal;
 
-			function encodeUriQuery(val, pctEncodeSpaces) {
+			function encodeUriQuery(val, pctEncodeSpaces){
 				return encodeURIComponent(val).
 					replace(/%40/gi, '@').
 					replace(/%3A/gi, ':').
@@ -40,7 +40,7 @@ define([
 					replace((pctEncodeSpaces ? null : /%20/g), '+');
 			}
 
-			function encodeUriSegment(val) {
+			function encodeUriSegment(val){
 				return encodeUriQuery(val, true).
 					replace(/%26/gi, '&').
 					replace(/%3D/gi, '=').
@@ -48,7 +48,7 @@ define([
 			}
 
 			params = params || {};
-			angular.forEach(params, function (_, urlParam) {
+			angular.forEach(params, function(_, urlParam){
 
 				val = params.hasOwnProperty(urlParam) ? params[urlParam] : self.defaults[urlParam];
 
@@ -68,7 +68,7 @@ define([
 			return url;
 		}
 
-		var out = function (params) {
+		var out = function(params){
 			if (!params) {	// dummy
 				var dummy = new $.Deferred();
 				dummy.resolve({});  // Dummy resolved
@@ -79,10 +79,10 @@ define([
 			if (attributes.bind)
 				attributes.url = parametrize(attributes.url, attributes.bind);
 
-			var checkQueue = function () {
+			var checkQueue = function(){
 				// check
-				var callFunctions = function (fs) {
-					angular.forEach(fs, function (f) {
+				var callFunctions = function(fs){
+					angular.forEach(fs, function(f){
 						if (angular.isFunction(f)) f();
 					});
 				}
@@ -99,9 +99,10 @@ define([
 
 				// create deferred and return promise
 				var defered = new $.Deferred();
-				defered.cancelRequest = function(){};
+				defered.cancelRequest = function(){
+				};
 
-				var sendRequest = function (attributes) {
+				var sendRequest = function(attributes){
 					var xhr, requestDeferred = new $.Deferred();
 					var abort = false;
 					defered.cancelRequest = function(){
@@ -120,8 +121,8 @@ define([
 						if (!(/^https?:\/\//).test(xhrAttrs.url))
 							xhrAttrs.url = config.get("apiDomain") + xhrAttrs.url;
 						xhr = $.ajax(xhrAttrs);
-						xhr.always(function () {	// Object #<Object> has no method 'abort'. So we don't return modified promise.
-							$timeout(function () {	// fire after user's callback
+						xhr.always(function(){	// Object #<Object> has no method 'abort'. So we don't return modified promise.
+							$timeout(function(){	// fire after user's callback
 								$rootScope.$$phase || $rootScope.$digest();
 							}, 0);
 
@@ -133,7 +134,7 @@ define([
 							}
 						});
 						xhr.success(defered.resolve);
-						xhr.fail(function (xhr, textstatus, errorthrown) {
+						xhr.fail(function(xhr, textstatus, errorthrown){
 							defered.reject(xhr, textstatus, errorthrown);
 							var response;
 							if (xhr.statusText === "abort") return;   // if we made abort ignore this error
@@ -145,7 +146,7 @@ define([
 							}
 							handleError.httpError(response, xhr, attributes)
 						});
-						defered.cancelRequest = function () {
+						defered.cancelRequest = function(){
 							xhr.abort();
 						}
 						return xhr;
@@ -158,7 +159,7 @@ define([
 					var xhr = sendRequest(attributes);
 				} else {    // put in prior
 					if (!queue[attributes.priority]) queue[attributes.priority] = [];
-					var queueFunction = function () {
+					var queueFunction = function(){
 						var xhr = sendRequest(attributes);
 						// remove self
 						queue[attributes.priority].splice(queue[attributes.priority].indexOf(queueFunction), 1);
@@ -166,14 +167,14 @@ define([
 						queue[attributes.priority].push(xhr);
 					};
 					queue[attributes.priority].push(queueFunction);
-					defered.cancelRequest = function () {
+					defered.cancelRequest = function(){
 						queue[attributes.priority].splice(queue[attributes.priority].indexOf(queueFunction), 1);
 					}
 					$timeout(checkQueue, 10);
 				}
 
 				return defered.promise({
-					abort: function () {
+					abort: function(){
 						defered.cancelRequest()
 					}
 				});
@@ -204,26 +205,26 @@ define([
 			}
 			return cache[attributes.url].xhr;
 		}
-		out.cancelAll = (function () {
+		out.cancelAll = (function(){
 			/**
 			 * cancel all function
 			 * Use <code>store : true</code> option to use storage pool.
 			 * <code>Inforbix.RestAPI.cancelAll()</code> function can cancel all those requests
 			 */
 			var currentRequests = [];
-			$.ajaxPrefilter(function (options, originalOptions, jqXHR) {
+			$.ajaxPrefilter(function(options, originalOptions, jqXHR){
 				// security fix
 //					jqXHR.setRequestHeader('X-XSRF-Security', $.cookie('xsrf_security') || "");
 
 				var idx = currentRequests.push(jqXHR) - 1;
 				jqXHR.url = options.url;
-				jqXHR.always(function () {
+				jqXHR.always(function(){
 					if (currentRequests[idx])
 						delete currentRequests[idx];    // make 'undefined', do not splice
 				});
 			});
-			return function () {
-				angular.forEach(currentRequests, function (jqXHR, idx) {
+			return function(){
+				angular.forEach(currentRequests, function(jqXHR, idx){
 					try {
 						if (jqXHR.readyState < 4) {     // hmm...
 							jqXHR.abort();

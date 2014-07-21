@@ -1,10 +1,10 @@
 define([
 	'bublikApp',
 	'css!components/widgets/header/header.css'
-], function (app) {
+], function(app){
 	"use strict";
 
-	var directive = function () {
+	var directive = function(){
 		return {
 			restrict: "C",
 			templateUrl: '../components/widgets/header/header.html'

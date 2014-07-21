@@ -1,29 +1,29 @@
 define([
 	'bublikApp',
-    'components/apps/bublik/router',
+	'components/apps/bublik/router',
 	'css!libs/bootstrap/dist/css/bootstrap.min.css',
 	'glx!topmenu',
-    'glx!header',
-    'glx!rigthmenu',
+	'glx!header',
+	'glx!rigthmenu',
 
-    //List of main widgets
-    'glx!topcompanies'
+	//List of main widgets
+	'glx!topcompanies'
 
-], function (app) {
+], function(app){
 	"use strict";
 
-	var directive = function (/*storage, Request, backend, config*/) {
+	var directive = function(/*storage, Request, backend, config*/){
 		return {
 			restrict: "C",
 			templateUrl: '../components/apps/bublik/bublik.html',
-			link: function (scope, elm, attrs) {
+			link: function(scope, elm, attrs){
 				/*scope.storage=storage;
 
-				backend.getSupportedFeatures();
+				 backend.getSupportedFeatures();
 
-				scope.facetsSupported = function(){
-					return config.get("supportedFeatures").facets;
-				}*/
+				 scope.facetsSupported = function(){
+				 return config.get("supportedFeatures").facets;
+				 }*/
 			}
 		}
 	}

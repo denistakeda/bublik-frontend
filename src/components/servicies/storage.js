@@ -9,10 +9,8 @@ define([
 			/**
 			 * @property results {Array} snippets related with current conditions
 			 */
-			topOfCompanies: {loading: true, hasMore:true}
+			topOfCompanies: {loading: true, hasMore: true}
 		};
-
-
 
 
 		return _public;
