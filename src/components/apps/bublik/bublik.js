@@ -6,8 +6,10 @@ define([
 	'glx!header',
 	'glx!rigthmenu',
 
+
 	//List of main widgets
-	'glx!topcompanies'
+	'glx!topcompanies',
+	'glx!userregistration'
 
 ], function(app){
 	"use strict";
