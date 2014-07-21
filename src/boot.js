@@ -1,7 +1,7 @@
 "use strict";
 
 require.config({
-	baseUrl: '../',
+	baseUrl: './',
 	paths: {
 		angular: 'libs/angular/1.2.13/angular.min',
 		"ui-utils": "libs/ui-utils-0.1.1/ui-utils.min",

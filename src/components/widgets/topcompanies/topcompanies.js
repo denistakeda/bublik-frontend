@@ -14,21 +14,19 @@ define([
 			restrict: "C",
 			templateUrl: '../components/widgets/topcompanies/topcompanies.html',
 			link: function(scope, elm, attrs){
-                scope.topLevel = 'city';
+				scope.topLevel = 'city';
 				scope.changeTopLevel = function(){
-					backend.getTopOfCompanies(scope.topLevel,27, function(topOfCompanies){
+					backend.getTopOfCompanies(scope.topLevel, 27, function(topOfCompanies){
 						scope.topOfCompanies = topOfCompanies;
 					});
 				};
 				scope.changeTopLevel();
-				backend.getTopOfCompanies(scope.topLevel,27);
 				scope.topOfCompanies = storage.topOfCompanies;
 
 
-
 				scope.puging = function(){
-                    backend.loadNextTopOfCompanies(9);
-                };
+					backend.loadNextTopOfCompanies(9);
+				};
 			}
 		}
 	};

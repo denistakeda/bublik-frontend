@@ -36,11 +36,11 @@ define([
 			_getters = {
 
 				loadNextTopOfCompanies: function(limit){
-					storage.topOfCompanies.loading  = true;
-					resources.topOfCompanies.get({level: resources.topOfCompanies.level, limit: limit?limit:10, offset: storage.topOfCompanies.items.length},
+					storage.topOfCompanies.loading = true;
+					resources.topOfCompanies.get({level: resources.topOfCompanies.level, limit: limit ? limit : 10, offset: storage.topOfCompanies.items.length},
 						function(data){
-							storage.topOfCompanies.items=storage.topOfCompanies.items.concat(data.items);
-							storage.topOfCompanies.loading  = false;
+							storage.topOfCompanies.items = storage.topOfCompanies.items.concat(data.items);
+							storage.topOfCompanies.loading = false;
 						});
 				}
 
@@ -52,10 +52,10 @@ define([
 			_callbacks = {
 				getTopOfCompanies: function(level, limit, cb){
 					storage.topOfCompanies = {loading: true, hasMore: true};
-					resources.topOfCompanies.get({level: level, limit: limit?limit:10, offset: 0},
+					resources.topOfCompanies.get({level: level, limit: limit ? limit : 10, offset: 0},
 						function(data){
 							angular.extend(storage.topOfCompanies, data);
-							storage.topOfCompanies.loading  = false;
+							storage.topOfCompanies.loading = false;
 							cb(storage.topOfCompanies);
 						});
 				}
