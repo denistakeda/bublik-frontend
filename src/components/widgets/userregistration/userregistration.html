@@ -1,1 +1,95 @@
-<div>user registration</div>
+<form name="registrationForm" novalidate ng-submit="registration()">
+	<fieldset>
+		<legend>{{"widget.userRegistration.mainHeader"|localize}}</legend>
+
+
+		<!--Email-->
+		<div class="row">
+			<div class="col-md-12">
+				<label>{{"widget.userRegistration.fields.login.label"|localize}}</label>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-11 col-sm-11 col-xs-11">
+				<input type="email"
+					   placeholder="{{'widget.userRegistration.fields.login.label'|localize}}"
+					   name="email"
+					   ng-model="email"
+					   class="form-control"
+					   glx-ensure-unique="username" required />
+			</div>
+			<div class="col-md-1 col-sm-1 col-xs-1">
+				<span class="glyphicon glyphicon-remove invalid-ico"
+					  ng-show="registrationForm.email.$dirty && registrationForm.email.$invalid"></span>
+				<span class="glyphicon glyphicon-ok valid-ico"
+					  ng-show="registrationForm.email.$dirty && registrationForm.email.$valid"></span>
+
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="error-container col-md-12 col-sm-12 col-xs-12"
+				 ng-show="registrationForm.email.$dirty && registrationForm.email.$invalid">
+				<span ng-show="registrationForm.email.$error.required">
+					Your email is required.
+				</span>
+				<span ng-show="registrationForm.email.$error.email">
+					That is not a valid email. Please input a valid email.
+				</span>
+				<span ng-show="registrationForm.email.$error.unique">
+					That username is taken, please try another
+				</span>
+			</div>
+		</div>
+
+		<!--First Name-->
+		<div class="row">
+			<div class="col-md-12">
+				<label>{{"widget.userRegistration.fields.firstName.label"|localize}}</label>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-11 col-sm-11 col-xs-11">
+				<input type="text"
+					   placeholder="{{'widget.userRegistration.fields.firstName.label'|localize}}"
+					   name="firstName"
+					   ng-model="firstName"
+					   ng-minlength=1
+					   ng-maxlength=50
+					   class="form-control" required />
+			</div>
+			<div class="col-md-1 col-sm-1 col-xs-1">
+				<span class="glyphicon glyphicon-remove invalid-ico"
+					  ng-show="registrationForm.firstName.$dirty && registrationForm.firstName.$invalid"></span>
+				<span class="glyphicon glyphicon-ok valid-ico"
+					  ng-show="registrationForm.firstName.$dirty && registrationForm.firstName.$valid"></span>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="error-container col-md-12 col-sm-12 col-xs-12"
+				 ng-show="registrationForm.firstName.$dirty && registrationForm.firstName.$invalid">
+				<span ng-show="registrationForm.firstName.$error.required">
+					{{"widget.userRegistration.fields.firstName.emptyFieldError"|localize}}
+				</span>
+				<span ng-show="registrationForm.firstName.$error.maxlength">
+					{{"widget.userRegistration.fields.firstName.tooLongError"|localize}}
+				</span>
+			</div>
+		</div>
+
+
+
+		<!--Submit button-->
+		<div class="row">
+			<div class="col-md-2">
+				<button type="submit" class="btn btn-default">
+					{{"widget.userRegistration.fields.submitButton.caption"|localize}}
+				</button>
+			</div>
+		</div>
+
+	</fieldset>
+</form>

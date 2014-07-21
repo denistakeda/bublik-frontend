@@ -1,6 +1,7 @@
 define([
 	'bublikApp',
 	'components/filters/translate',
+	'glx!userregistration-ensureunique',
 	'css!components/widgets/userregistration/userregistration.css'
 ], function(app){
 	"use strict";

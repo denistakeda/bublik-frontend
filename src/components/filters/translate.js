@@ -9,7 +9,7 @@ define([
 		return function(key, params){
 			var tstring = $parse(key)(dictionary);
 			if (!tstring)
-				return key;
+				return '';
 
 			angular.forEach(params, function(v, k){
 				tstring = tstring.replace("{" + k + "}", v);
