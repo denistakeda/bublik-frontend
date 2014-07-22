@@ -1,4 +1,5 @@
-<form name="registrationForm" novalidate ng-submit="registration()">
+<span ng-show="loading" us-spinner></span>
+<form name="registrationForm" novalidate ng-submit="registration()" ng-hide="loading">
 	<fieldset>
 		<legend>{{"widget.userRegistration.mainHeader"|localize}}</legend>
 

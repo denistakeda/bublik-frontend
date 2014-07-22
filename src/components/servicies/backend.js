@@ -68,6 +68,12 @@ define([
 							onError();
 						}
 					});
+				},
+
+				registration: function(regParam, cb){
+					resources.registration.update({}, {user: regParam}, function(data){
+						console.log(data);
+					});
 				}
 			};
 

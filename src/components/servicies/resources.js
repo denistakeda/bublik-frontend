@@ -13,7 +13,8 @@ define([
 			topOfCompanies: $resource('/api/widget/top?level=:level&limit=:limit&offset=:offset',
 				{level: "city", limit: 10, offset: 0},
 				{charge: {method: "GET"}}),
-			loginUnique: $resource('/api/user/login/check/:login')
+			loginUnique: $resource('/api/user/login/check/:login'),
+			registration: $resource('/api/user/new', {}, {'update':{method:'PUT'}})
 		};
 		return resources;
 	}
