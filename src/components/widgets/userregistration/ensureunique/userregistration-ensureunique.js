@@ -15,7 +15,6 @@ define([
 						c.$setValidity('unique', false);
 					});
 				});
-
 			}
 		}
 	}
