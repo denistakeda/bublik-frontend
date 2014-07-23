@@ -6,12 +6,21 @@ define([
 	var directive = function(){
 		return {
 			require: 'ngModel',
-			link: function(scope, elm, attrs, c){
+			scope: {pwCheck: "="},
+			link: function(scope, elm, attrs, ctrl){
 				//TODO not a best way for password check
-				scope.$watch(attrs.ngModel, function(newVal){
-					c.$setValidity('pwmatch', newVal===attrs.pwCheck);
+				/*scope.$watch(attrs.ngModel, function(newVal){
+				 c.$setValidity('pwmatch', newVal===attrs.pwCheck);
+				 });*/
+				ctrl.$parsers.unshift(function(viewValue){
+					if (viewValue === scope.pwCheck) {
+						ctrl.$setValidity('pwmatch', true);
+						return viewValue;
+					} else {
+						ctrl.$setValidity('pwmatch', false);
+						return undefined
+					}
 				});
-
 			}
 		}
 	};
