@@ -23,6 +23,15 @@ define([
 							backend.redirectTo("/user")
 					});
 				}
+
+				scope.fieldClass = function(dirty, valid){
+					if (!dirty) return '';
+					if (valid){
+						return 'has-success';
+					} else {
+						return 'has-error';
+					}
+				};
 			}
 		}
 	}

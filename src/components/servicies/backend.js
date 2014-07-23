@@ -62,7 +62,7 @@ define([
 
 				isEmailUnique: function(email, onSuccess, onError){
 					resources.loginUnique.get({login: email}, function(response){
-						if (response.status && response.status==="ok") {
+						if (response.status && response.status === "ok") {
 							onSuccess();
 						} else {
 							onError();

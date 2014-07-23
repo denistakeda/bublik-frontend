@@ -5,7 +5,34 @@
 
 
 		<!--Email-->
-		<div class="row">
+		<div class="form-group has-feedback" ng-class="fieldClass(registrationForm.email.$dirty, registrationForm.email.$valid)">
+			<label class="control-label" for="email">{{"widget.userRegistration.fields.login.label"|localize}}</label>
+			<input type="email"
+				   placeholder="{{'widget.userRegistration.fields.login.label'|localize}}"
+				   name="email"
+				   ng-model="email"
+				   class="form-control"
+				   ng-model-options="{ updateOn: 'default blur', debounce: { default: 500, blur: 0 } }"
+				   glx-ensure-unique required/>
+			<div ng-show="registrationForm.email.$dirty">
+				<span class="glyphicon glyphicon-ok form-control-feedback" ng-show="registrationForm.email.$valid"></span>
+				<span class="glyphicon glyphicon-remove form-control-feedback" ng-show="registrationForm.email.$invalid"></span>
+			</div>
+
+			<div class="help-block " ng-show="registrationForm.email.$dirty && registrationForm.email.$invalid">
+				<p ng-show="registrationForm.email.$error.required" class="text-danger">
+					{{"widget.userRegistration.fields.login.emptyFieldError"|localize}}
+				</p>
+				<p ng-show="registrationForm.email.$error.email" class="text-danger">
+					{{"widget.userRegistration.fields.login.incorrectEmailError"|localize}}
+				</p>
+				<p ng-show="registrationForm.email.$error.unique" class="text-danger">
+					{{"widget.userRegistration.fields.login.alreadyExistError"|localize}}
+				</p>
+			</div>
+		</div>
+
+		<!--<div class="row">
 			<div class="col-md-12">
 				<label>{{"widget.userRegistration.fields.login.label"|localize}}</label>
 			</div>
@@ -43,7 +70,7 @@
 			</div>
 		</div>
 
-		<!--First Name-->
+		&lt;!&ndash;First Name&ndash;&gt;
 		<div class="row">
 			<div class="col-md-12">
 				<label>{{"widget.userRegistration.fields.firstName.label"|localize}}</label>
@@ -78,9 +105,9 @@
 					{{"widget.userRegistration.fields.firstName.tooLongError"|localize}}
 				</span>
 			</div>
-		</div>
-
-		<!--Last Name-->
+		</div>-->
+<!--
+		&lt;!&ndash;Last Name&ndash;&gt;
 		<div class="row">
 			<div class="col-md-12">
 				<label>{{"widget.userRegistration.fields.lastName.label"|localize}}</label>
@@ -117,7 +144,7 @@
 			</div>
 		</div>
 
-		<!--Password-->
+		&lt;!&ndash;Password&ndash;&gt;
 		<div class="row">
 			<div class="col-md-12">
 				<label>{{"widget.userRegistration.fields.password.passwordLabel"|localize}}</label>
@@ -158,7 +185,7 @@
 			</div>
 		</div>
 
-		<!--Password confirmation-->
+		&lt;!&ndash;Password confirmation&ndash;&gt;
 		<div class="row">
 			<div class="col-md-12">
 				<label>{{"widget.userRegistration.fields.password.confirmLabel"|localize}}</label>
@@ -193,7 +220,7 @@
 			</div>
 		</div>
 
-		<hr>
+		<hr>-->
 
 		<!--Submit button-->
 		<div class="row">

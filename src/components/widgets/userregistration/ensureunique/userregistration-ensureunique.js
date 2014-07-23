@@ -6,14 +6,14 @@ define([
 	var directive = function(backend){
 		return {
 			require: 'ngModel',
-			link: function(scope, elm, attrs, c){
-				scope.$watch(attrs.ngModel, function(){
-					if (!attrs.glxEnsureUnique || !attrs.glxEnsureUnique === '') return;
-					backend.isEmailUnique(attrs.glxEnsureUnique, function(){
-						c.$setValidity('unique', true);
+			link: function(scope, elm, attrs, ctrl){
+				ctrl.$parsers.unshift(function(viewValue){
+					backend.isEmailUnique(viewValue, function(){
+						ctrl.$setValidity('unique', true);
 					}, function(){
-						c.$setValidity('unique', false);
+						ctrl.$setValidity('unique', false);
 					});
+					return viewValue;
 				});
 			}
 		}
