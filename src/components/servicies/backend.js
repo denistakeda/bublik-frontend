@@ -22,14 +22,19 @@ define([
 		}
 	};
 
-	var service = function(resources, storage){
+	var service = function(resources, storage, $cookieStore, $location){
 
 		var _setters = {
 				clearStorage: function(){
 					storage = {};
+				},
+
+				redirectTo: function(path){
+					$location.path(path);
 				}
 			},
 
+			/**
 			/**
 			 * GET data methods, should be private as well
 			 */
@@ -70,17 +75,24 @@ define([
 					});
 				},
 
+				login: function(accessToken, cb){
+					$cookieStore.put("ACCESS_TOKEN", accessToken);
+					cb();
+				},
+
 				registration: function(regParam, cb){
-					resources.registration.update({}, {user: regParam}, function(data){
-						console.log(data);
+					resources.registration.update({}, regParam, function(regData){
+						if (regData.status==="created" && regData.data.access_token) _callbacks.login(regData.data.access_token, cb);
 					});
 				}
+
+
 			};
 
 
 		return angular.extend({}, _setters, _getters, _callbacks);
 	}
-	service.$inject = ['resources', 'storage' ];
+	service.$inject = ['resources', 'storage', '$cookieStore', '$location' ];
 	app.factory("backend", service);
 	return service;
 })

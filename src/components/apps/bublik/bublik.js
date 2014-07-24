@@ -1,7 +1,7 @@
 define([
 	'bublikApp',
 	'components/apps/bublik/router',
-	'css!libs/bootstrap/dist/css/bootstrap.min.css',
+	//User widgets
 	'glx!topmenu',
 	'glx!header',
 	'glx!rigthmenu',
