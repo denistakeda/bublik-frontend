@@ -204,8 +204,8 @@ if (cluster.isMaster) { // master
         if (/\/api\//.test(req.url)) {
             return proxy.web(req, res, {
                 target: {
-                    host: 'galaxias.co',
-                    port: 3057
+                    host: 'backend.galaxias.co',
+                    port: 80
                 }
             });
         } else {
