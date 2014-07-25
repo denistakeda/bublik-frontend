@@ -1,5 +1,33 @@
 @import "../../../libs/bootstrap/less/variables";
+@import "../../../styles/colors";
 
 .glx-topmenu {
 	font-size: @font-size-base * 0.9;
+	margin-bottom: 30px;
+	background-color: @topmenuColor;
+
+	a {
+		color: @body-bg;
+	}
+	.nav{
+		> li{
+			> a{
+				&:hover,
+				&:focus {
+					background-color: @topmenuColor;
+					color: @body-bg;
+				}
+			}
+		}
+	}
+	.navbar-brand{
+		&:hover,
+		&:focus{
+			color: @body-bg;
+		}
+	}
+	.glyphicon{
+		top:0;
+		font-size: 15px;
+	}
 }
