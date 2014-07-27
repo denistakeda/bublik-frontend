@@ -17,6 +17,10 @@ define([
 					template: '<div class="glx-user-registration"></div>',
 					controller: 'ClearStorageCtrl'
 				}).
+				when('/user/login', {
+					template: '<div class="glx-login"></div>',
+					controller: 'ClearStorageCtrl'
+				}).
 				when('/user', {
 					template: '<div class="glx-user"></div>'
 				}).

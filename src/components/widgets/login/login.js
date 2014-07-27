@@ -1,27 +1,25 @@
 define([
 	'bublikApp',
 	'components/filters/translate',
-	'glx!userregistration-ensureunique',
-	'glx!userregistration-pwcheck',
-	'css!components/widgets/userregistration/userregistration.css'
+	'css!components/widgets/login/login.css'
 ], function(app){
 	"use strict";
 
 	var directive = function(backend){
 		return {
 			restrict: "C",
-			templateUrl: '../components/widgets/userregistration/userregistration.html',
+			templateUrl: '../components/widgets/login/login.html',
 			link: function(scope, elm, attrs){
 				scope.registration = function(){
 					scope.loading = true;
 					backend.registration(
 						{login: scope.email,
-						password: scope.password,
-						first_name: scope.firstName,
-						last_name: scope.lastName},
+							password: scope.password,
+							first_name: scope.firstName,
+							last_name: scope.lastName},
 						function(){
 							backend.redirectTo("/user")
-					});
+						});
 				}
 
 				scope.fieldClass = function(dirty, valid){
@@ -32,11 +30,9 @@ define([
 						return 'has-error';
 					}
 				};
-
-				backend.alreadyLoaded();
 			}
 		}
 	}
 	directive.$inject = ["backend"];
-	app.directive('glxUserRegistration', directive)
+	app.directive('glxLogin', directive)
 });

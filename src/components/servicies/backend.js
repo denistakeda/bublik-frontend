@@ -22,11 +22,15 @@ define([
 		}
 	};
 
-	var service = function(resources, storage, $cookieStore, $location){
+	var service = function(resources, storage, $cookieStore, $location, $rootScope){
 
 		var _setters = {
 				clearStorage: function(){
 					storage = {};
+					$rootScope.loading = true;
+				},
+				alreadyLoaded: function(){
+					$rootScope.loading = false;
 				},
 
 				redirectTo: function(path){
@@ -92,7 +96,7 @@ define([
 
 		return angular.extend({}, _setters, _getters, _callbacks);
 	}
-	service.$inject = ['resources', 'storage', '$cookieStore', '$location' ];
+	service.$inject = ['resources', 'storage', '$cookieStore', '$location', '$rootScope' ];
 	app.factory("backend", service);
 	return service;
 })

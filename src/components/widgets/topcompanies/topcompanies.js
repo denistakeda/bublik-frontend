@@ -18,6 +18,7 @@ define([
 				scope.changeTopLevel = function(){
 					backend.getTopOfCompanies(scope.topLevel, 27, function(topOfCompanies){
 						scope.topOfCompanies = topOfCompanies;
+						backend.alreadyLoaded();
 					});
 				};
 				scope.changeTopLevel();

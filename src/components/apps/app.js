@@ -37,6 +37,10 @@ define([
 //	}]);
 	app.run(["$rootScope", function($rootScope){
 		$rootScope.applicationReady = true;
+		$rootScope.localizationLoading = true;
+		$rootScope.isResourceLoading = function(){
+			return $rootScope.loading || $rootScope.localizationLoading;
+		}
 	}]);
 //
 //	// Prevent the backspace key from navigating back.
