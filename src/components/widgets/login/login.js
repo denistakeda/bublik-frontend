@@ -1,7 +1,7 @@
 define([
 	'bublikApp',
-	'components/filters/translate'
-	//'css!components/widgets/setAccessToken/setAccessToken.css'
+	'components/filters/translate',
+	'css!components/widgets/login/login.css'
 ], function(app){
 	"use strict";
 
@@ -12,7 +12,7 @@ define([
 			link: function(scope, elm, attrs){
 				scope.login = function(){
 					scope.waitResponse = true;
-					backend.login({login: scope.email, password: scope.password}, function(){
+					backend.login({login: scope.email, password: scope.password, remember_me: scope.rememberMe}, function(){
 						scope.waitResponse = false;
 						backend.redirectTo("#/user")
 					}, function(){

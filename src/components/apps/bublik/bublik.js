@@ -1,8 +1,7 @@
 define([
 	'bublikApp',
 	'components/apps/bublik/router',
-	//custom styles
-	'css!styles/callouts.css',
+
 	//User widgets
 	'glx!topmenu',
 	'glx!header',
