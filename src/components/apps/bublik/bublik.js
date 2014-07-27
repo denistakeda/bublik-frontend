@@ -1,6 +1,8 @@
 define([
 	'bublikApp',
 	'components/apps/bublik/router',
+	//custom styles
+	'css!styles/callouts.css',
 	//User widgets
 	'glx!topmenu',
 	'glx!header',
@@ -9,7 +11,8 @@ define([
 
 	//List of main widgets
 	'glx!topcompanies',
-	'glx!userregistration'
+	'glx!userregistration',
+	'glx!login'
 
 ], function(app){
 	"use strict";

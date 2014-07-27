@@ -35,6 +35,11 @@ define([
 
 				redirectTo: function(path){
 					$location.path(path);
+				},
+
+				setAccessToken: function(accessToken, cb){
+					$cookieStore.put("ACCESS_TOKEN", accessToken);
+					cb();
 				}
 			},
 
@@ -79,14 +84,21 @@ define([
 					});
 				},
 
-				login: function(accessToken, cb){
-					$cookieStore.put("ACCESS_TOKEN", accessToken);
-					cb();
-				},
-
 				registration: function(regParam, cb){
 					resources.registration.update({}, regParam, function(regData){
-						if (regData.status==="created" && regData.data.access_token) _callbacks.login(regData.data.access_token, cb);
+						if (regData.status==="created" && regData.data.access_token) _setters.setAccessToken(regData.data.access_token, cb);
+					});
+				},
+
+				login: function(loginParam, cb, onError){
+					resources.login.update({}, loginParam, function(response){
+						if (response.status && response.status === 'ok') {
+							_setters.setAccessToken(response.data.access_token, cb);
+						} else {
+							onError();
+						}
+					}, function(){
+						onError();
 					});
 				}
 

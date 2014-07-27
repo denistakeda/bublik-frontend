@@ -1,7 +1,7 @@
 define([
 	'bublikApp',
-	'components/filters/translate',
-	'css!components/widgets/login/login.css'
+	'components/filters/translate'
+	//'css!components/widgets/setAccessToken/setAccessToken.css'
 ], function(app){
 	"use strict";
 
@@ -10,17 +10,16 @@ define([
 			restrict: "C",
 			templateUrl: '../components/widgets/login/login.html',
 			link: function(scope, elm, attrs){
-				scope.registration = function(){
-					scope.loading = true;
-					backend.registration(
-						{login: scope.email,
-							password: scope.password,
-							first_name: scope.firstName,
-							last_name: scope.lastName},
-						function(){
-							backend.redirectTo("/user")
-						});
-				}
+				scope.login = function(){
+					scope.waitResponse = true;
+					backend.login({login: scope.email, password: scope.password}, function(){
+						scope.waitResponse = false;
+						backend.redirectTo("#/user")
+					}, function(){
+						scope.invalidLogin = true;
+						scope.waitResponse = false;
+					})
+				};
 
 				scope.fieldClass = function(dirty, valid){
 					if (!dirty) return '';
@@ -30,6 +29,8 @@ define([
 						return 'has-error';
 					}
 				};
+
+				backend.alreadyLoaded();
 			}
 		}
 	}

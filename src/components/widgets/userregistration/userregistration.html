@@ -1,13 +1,12 @@
-<span ng-show="loading" us-spinner></span>
 <form name="registrationForm" novalidate ng-submit="registration()" ng-hide="loading">
 	<legend>{{"widget.userRegistration.mainHeader"|localize}}</legend>
 
 
 	<!--Email-->
 	<div class="form-group has-feedback" ng-class="fieldClass(registrationForm.email.$dirty, registrationForm.email.$valid)">
-		<label class="control-label" for="email">{{"widget.userRegistration.fields.login.label"|localize}}</label>
+		<label class="control-label" for="email">{{"widget.userRegistration.fields.setAccessToken.label"|localize}}</label>
 		<input type="email"
-			   placeholder="{{'widget.userRegistration.fields.login.label'|localize}}"
+			   placeholder="{{'widget.userRegistration.fields.setAccessToken.label'|localize}}"
 			   name="email"
 			   ng-model="email"
 			   class="form-control"
@@ -21,15 +20,15 @@
 
 		<div class="help-block " ng-show="registrationForm.email.$dirty && registrationForm.email.$invalid">
 			<p ng-show="registrationForm.email.$error.required" class="text-danger">
-				{{"widget.userRegistration.fields.login.emptyFieldError"|localize}}
+				{{"widget.userRegistration.fields.setAccessToken.emptyFieldError"|localize}}
 			</p>
 
 			<p ng-show="registrationForm.email.$error.email" class="text-danger">
-				{{"widget.userRegistration.fields.login.incorrectEmailError"|localize}}
+				{{"widget.userRegistration.fields.setAccessToken.incorrectEmailError"|localize}}
 			</p>
 
 			<p ng-show="registrationForm.email.$error.unique" class="text-danger">
-				{{"widget.userRegistration.fields.login.alreadyExistError"|localize}}
+				{{"widget.userRegistration.fields.setAccessToken.alreadyExistError"|localize}}
 			</p>
 		</div>
 	</div>
