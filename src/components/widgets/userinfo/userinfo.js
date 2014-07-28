@@ -5,16 +5,20 @@ define([
 ], function(app){
 	"use strict";
 
-	var directive = function(backend, storage){
+	var directive = function($routeParams, backend, storage){
 		return {
 			restrict: "C",
 			templateUrl: '../components/widgets/userinfo/userinfo.html',
 			link: function(scope, elm, attrs){
-				backend.alreadyLoaded();
+				scope.userInfo = storage.userInfo;
+
+				backend.getUserInfo($routeParams.userInfo, function(){
+					backend.alreadyLoaded();
+				});
 			}
 		}
 	}
-	directive.$inject = ["backend", "storage"];
+	directive.$inject = ["$routeParams","backend", "storage"];
 	app.directive('glxUserInfo', directive)
 });
 

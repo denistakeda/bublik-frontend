@@ -74,6 +74,15 @@ define([
 						});
 				},
 
+				getUserInfo: function(userId, onSuccess, onError){
+					resources.userInfo.get({userId: userId}, function(response){
+						storage.userInfo = response.data;
+						onSuccess && onSuccess(data);
+					}, function(data){
+						onError && onError(data);
+					})
+				},
+
 				isEmailUnique: function(email, onSuccess, onError){
 					resources.loginUnique.get({login: email}, function(response){
 						if (response.status && response.status === "ok") {

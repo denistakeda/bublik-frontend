@@ -10,7 +10,8 @@ define([
 	var service = function($resource){
 		var resources = {
 			localization: $resource('/api/localization'),
-			currentUser: $resource('/api/user'),
+			userInfo: $resource('/api/user/:userId',
+				{userId:'@id'}),
 			topOfCompanies: $resource('/api/widget/top?level=:level&limit=:limit&offset=:offset',
 				{level: "city", limit: 10, offset: 0},
 				{charge: {method: "GET"}}),

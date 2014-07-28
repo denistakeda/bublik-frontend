@@ -26,6 +26,10 @@ define([
 					template: paths.userInfo.template,
 					controller: paths.userInfo.controller
 				}).
+				when(paths.currentUserInfo.path, {
+					template: paths.currentUserInfo.template,
+					controller: paths.currentUserInfo.controller
+				}).
 				otherwise({
 					redirectTo: paths.defaultWidget.path
 				});
