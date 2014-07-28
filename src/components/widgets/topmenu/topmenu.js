@@ -1,11 +1,12 @@
 define([
 	'bublikApp',
 	'components/filters/translate',
+	'components/servicies/currentuser',
 	'css!components/widgets/topmenu/topmenu.css'
 ], function(app){
 	"use strict";
 
-	var directive = function(){
+	var directive = function(currentUser){
 		return {
 			restrict: "C",
 			templateUrl: '../components/widgets/topmenu/topmenu.html',
@@ -13,6 +14,6 @@ define([
 			}
 		}
 	}
-	//directive.$inject = ["ibxStorage", "Request", "ibxBackend", "ibxConfig"];
+	directive.$inject = ["currentUser"];
 	app.directive('glxTopmenu', directive)
 });

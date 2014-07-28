@@ -22,7 +22,7 @@ define([
 		}
 	};
 
-	var service = function(resources, storage, $cookieStore, $location, $rootScope){
+	var service = function(resources, storage, $cookies, $location, $rootScope){
 
 		var _setters = {
 				clearStorage: function(){
@@ -38,7 +38,7 @@ define([
 				},
 
 				setAccessToken: function(accessToken, cb){
-					$cookieStore.put("ACCESS_TOKEN", accessToken);
+					$cookies["ACCESS_TOKEN"] = accessToken;
 					cb();
 				}
 			},
@@ -108,7 +108,7 @@ define([
 
 		return angular.extend({}, _setters, _getters, _callbacks);
 	}
-	service.$inject = ['resources', 'storage', '$cookieStore', '$location', '$rootScope' ];
+	service.$inject = ['resources', 'storage', '$cookies', '$location', '$rootScope' ];
 	app.factory("backend", service);
 	return service;
 })
