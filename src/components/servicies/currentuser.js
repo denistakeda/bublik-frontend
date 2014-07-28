@@ -6,11 +6,11 @@ define([
 	"use strict";
 	var service = function($interval, resources, config){
 		var user = {};
-		$interval(function(){
+		/*$interval(function(){
 			resources.currentUser.get({}, function(response){
 				angular.extend(user, response);
 			});
-		}, config.userPingTimeout);
+		}, config.userPingTimeout);*/
 
 		return user;
 	};
