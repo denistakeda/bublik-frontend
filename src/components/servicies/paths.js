@@ -26,7 +26,7 @@ define([
 		},
 		userInfo: {
 			path: "/user/info",
-			template: "<div class='glx-user'></div>",
+			template: "<div class='glx-user-info'></div>",
 			controller: "ClearStorageCtrl"
 		}
 

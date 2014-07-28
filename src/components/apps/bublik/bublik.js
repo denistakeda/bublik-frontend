@@ -2,6 +2,10 @@ define([
 	'bublikApp',
 	'components/apps/bublik/router',
 
+	//Servicies
+	'components/servicies/dictionary',
+	'components/servicies/backend',
+
 	//User widgets
 	'glx!topmenu',
 	'glx!header',
@@ -11,12 +15,13 @@ define([
 	//List of main widgets
 	'glx!topcompanies',
 	'glx!userregistration',
-	'glx!login'
+	'glx!login',
+	'glx!userinfo'
 
 ], function(app){
 	"use strict";
 
-	var directive = function(/*storage, Request, backend, config*/){
+	var directive = function(dictionary){
 		return {
 			restrict: "C",
 			templateUrl: '../components/apps/bublik/bublik.html',
@@ -24,5 +29,6 @@ define([
 			}
 		}
 	};
+	directive.$inject = ["dictionary"];
 	app.directive('glxBublik', directive)
 });
