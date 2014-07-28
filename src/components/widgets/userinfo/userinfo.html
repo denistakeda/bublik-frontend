@@ -1,1 +1,16 @@
-{{userInfo}}
+<div class="row">
+	<div class="col-md-3 col-sm-3 col-xs-3">
+		<img src="imgs/bublik.jpg" class="img-responsive" alt="Responsive image">
+	</div>
+	<div class="col-md-8 col-sm-8 col-xs-8">
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<h3 class="editable-field" ng-hide="userInfo.first_name.editableMode" ng-click="userInfo.first_name.editableMode=true;">{{userInfo.first_name}}</h3>
+				<input ng-model="userInfo.first_name" ng-show="userInfo.first_name.editableMode"/>
+			</div>
+		</div>
+		{{userInfo}}
+	</div>
+</div>
+
+
