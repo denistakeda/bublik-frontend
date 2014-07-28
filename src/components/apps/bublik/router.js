@@ -1,31 +1,33 @@
 define([
-	'bublikApp'
+	'bublikApp',
+	'components/servicies/paths'
 ], function(app){
 	"use strict";
 	app.controller('ClearStorageCtrl', ['backend', function(backend){
 		backend.clearStorage();
 	}]);
 
-	app.config(['$routeProvider',
-		function($routeProvider){
+	app.config(['$routeProvider','glxPaths',
+		function($routeProvider, paths){
 			$routeProvider.
-				when('/top', {
-					template: '<div class="glx-topcompanies"></div>',
-					controller: 'ClearStorageCtrl'
+				when(paths.widgetTop.path, {
+					template: paths.widgetTop.template,
+					controller: paths.widgetTop.controller
 				}).
-				when('/user/registration', {
-					template: '<div class="glx-user-registration"></div>',
-					controller: 'ClearStorageCtrl'
+				when(paths.userRegistration.path, {
+					template: paths.userRegistration.template,
+					controller: paths.userRegistration.controller
 				}).
-				when('/user/login', {
-					template: '<div class="glx-login"></div>',
-					controller: 'ClearStorageCtrl'
+				when(paths.userLogin.path, {
+					template: paths.userLogin.template,
+					controller: paths.userLogin.controller
 				}).
-				when('/user', {
-					template: '<div class="glx-user"></div>'
+				when(paths.userInfo.path, {
+					template: paths.userInfo.template,
+					controller: paths.userInfo.controller
 				}).
 				otherwise({
-					redirectTo: '/top'
+					redirectTo: paths.defaultWidget.path
 				});
 		}]);
 });
