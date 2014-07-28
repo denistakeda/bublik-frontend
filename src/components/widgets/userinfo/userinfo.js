@@ -10,14 +10,15 @@ define([
 			restrict: "C",
 			templateUrl: '../components/widgets/userinfo/userinfo.html',
 			link: function(scope, elm, attrs){
-				scope.userInfo = storage.userInfo;
 
 				backend.getUserInfo($routeParams.userInfo, function(){
+					scope.userInfo = storage.userInfo;
 					backend.alreadyLoaded();
 				});
+
 			}
 		}
-	}
+	};
 	directive.$inject = ["$routeParams","backend", "storage"];
 	app.directive('glxUserInfo', directive)
 });

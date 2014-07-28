@@ -10,23 +10,13 @@ define([
 ], function(app, angular){
 	"use strict";
 
-	var properties = {
-		load: {
-			results: 0,
-			table: 0,
-			history: 0,
-			categories: 0,
-			tags: 0,
-			resultCount: 0,
-			facet: 0
-		}
-	};
-
 	var service = function(resources, storage, $cookies, $location, $rootScope){
 
 		var _setters = {
 				clearStorage: function(){
-					storage = {};
+					angular.forEach(storage, function(deletedElm){
+						delete storage[deletedElm];
+					});
 					$rootScope.loading = true;
 				},
 				alreadyLoaded: function(){
@@ -39,7 +29,7 @@ define([
 
 				setAccessToken: function(accessToken, cb){
 					$cookies["ACCESS_TOKEN"] = accessToken;
-					cb();
+					cb && cb();
 				}
 			},
 
@@ -77,9 +67,9 @@ define([
 				getUserInfo: function(userId, onSuccess, onError){
 					resources.userInfo.get({userId: userId}, function(response){
 						storage.userInfo = response.data;
-						onSuccess && onSuccess(data);
-					}, function(data){
-						onError && onError(data);
+						onSuccess && onSuccess(response.data);
+					}, function(response){
+						onError && onError(response.data);
 					})
 				},
 
@@ -95,16 +85,16 @@ define([
 
 				registration: function(regParam, cb){
 					resources.registration.update({}, regParam, function(regData){
-						if (regData.status==="created" && regData.data.access_token) _setters.setAccessToken(regData.data.access_token, cb);
+						if (regData.data.access_token) _setters.setAccessToken(regData.data.access_token, cb);
 					});
 				},
 
 				login: function(loginParam, cb, onError){
 					resources.login.update({}, loginParam, function(response){
-						if (response.status && response.status === 'ok') {
+						if (response.data.access_token) {
 							_setters.setAccessToken(response.data.access_token, cb);
 						} else {
-							onError();
+							onError && onError();
 						}
 					}, function(){
 						onError();

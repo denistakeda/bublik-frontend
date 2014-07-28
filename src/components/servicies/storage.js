@@ -6,10 +6,6 @@ define([
 	var service = function(){
 
 		var _public = {
-			/**
-			 * @property results {Array} snippets related with current conditions
-			 */
-			topOfCompanies: {loading: true, hasMore: true}
 		};
 
 
