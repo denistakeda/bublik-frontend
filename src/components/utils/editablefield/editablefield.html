@@ -1,0 +1,11 @@
+<span ng-click="edit()"
+	  ng-class="{'edit-me': glxEditable}"
+	  ng-hide="editableMode">
+	{{glxModel}}
+</span>
+<input ng-model="glxModel"
+	   class="edit-field"
+	   ng-show="editableMode"
+	   ng-blur="cancel()"
+	   ui-keydown="{'enter': 'apply()', 'esc': 'cancel()'}"
+	   autofocus/>

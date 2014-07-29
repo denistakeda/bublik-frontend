@@ -5,8 +5,7 @@
 	<div class="col-md-8 col-sm-8 col-xs-8">
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-xs-12">
-				<h3 class="editable-field" ng-hide="userInfo.first_name.editableMode" ng-click="userInfo.first_name.editableMode=true;">{{userInfo.first_name}}</h3>
-				<input ng-model="userInfo.first_name" ng-show="userInfo.first_name.editableMode"/>
+				<div class="glx-editable-field" glx-model="userInfo.first_name" glx-on-change="showAlert(userInfo.last_name)" glx-editable="true"></div>
 			</div>
 		</div>
 		{{userInfo}}
