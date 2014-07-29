@@ -1,14 +1,15 @@
 define([
 	'bublikApp',
 	'angular',
-	'css!components/widgets/editablefield/editablefield.css'
+	'css!components/utils/editablefield/editablefield.css'
 ], function(app){
 	"use strict";
 
 	var directive = function(){
 		return {
 			restrict: "C",
-			templateUrl: '../components/widgets/editablefield/editablefield.html',
+			templateUrl: '../components/utils/editablefield/editablefield.html',
+			required: "glxModel",
 			scope:{
 				glxModel: "=",
 				glxOnChange: "="

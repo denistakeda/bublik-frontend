@@ -1,6 +1,7 @@
 define([
 	'bublikApp',
 	'angular',
+	'glx-utils!editablefield',
 	'css!components/widgets/userinfo/userinfo.css'
 ], function(app){
 	"use strict";
