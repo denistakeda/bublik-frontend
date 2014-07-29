@@ -21,12 +21,12 @@ define([
 				scope.edit = function(){
 					if (!scope.glxEditable) return;
 					initVal = scope.glxModel;
+					scope.inputWidth = elm.find(".editable-block").width()+12+'px';
 					scope.editableMode = true;
 					//TODO: Not a best way
 					$timeout(function(){
 						elm.find(".edit-field").select();
 					}, 10);
-
 				};
 
 				scope.cancel = function(){
