@@ -64,6 +64,7 @@ define([
 						});
 				},
 
+				//User info
 				getUserInfo: function(userId, onSuccess, onError){
 					resources.userInfo.get({userId: userId}, function(response){
 						storage.userInfo = response.data;
@@ -71,6 +72,18 @@ define([
 					}, function(response){
 						onError && onError(response.data);
 					})
+				},
+
+				updateUserFirstName: function(newFirstName, onSuccess, onError){
+					onSuccess = onSuccess || function(){return true;};
+					onError = onError || function(){return true;};
+					resources.userInfo.save({}, {first_name: newFirstName}, onSuccess, onError);
+				},
+
+				updateUserLastName: function(newFirstName, onSuccess, onError){
+					onSuccess = onSuccess || function(){return true;};
+					onError = onError || function(){return true;};
+					resources.userInfo.save({}, {last_name: newFirstName}, onSuccess, onError);
 				},
 
 				isEmailUnique: function(email, onSuccess, onError){

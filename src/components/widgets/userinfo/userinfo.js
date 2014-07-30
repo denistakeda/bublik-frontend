@@ -11,9 +11,13 @@ define([
 			restrict: "C",
 			templateUrl: '../components/widgets/userinfo/userinfo.html',
 			link: function(scope, elm, attrs){
-				scope.showAlert = function(message){
-					console.log(message);
-				}
+				scope.updateFirstName = function(){
+					backend.updateUserFirstName(scope.userInfo.first_name);
+				};
+
+				scope.updateLastName = function(){
+					backend.updateUserLastName(scope.userInfo.last_name);
+				};
 
 				backend.getUserInfo($routeParams.userInfo, function(){
 					scope.userInfo = storage.userInfo;
