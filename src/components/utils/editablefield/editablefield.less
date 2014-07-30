@@ -1,1 +1,23 @@
-.abc{color:black;}
+@import "../../../styles/prefixes";
+@import "../../../styles/colors";
+
+.glx-editable-field{
+	margin: 4px;
+	.edit-me{
+		padding: 5px;
+		border: 1px groove transparent;
+		.border-radius(3px);
+		.transition(300ms linear border-color);
+		display: inline-block;
+
+		&:hover{
+			border-color: @blackColor;
+		}
+	}
+	.edit-field{
+		display: inline-block;
+		padding: 5px;
+		border: 1px groove @blackColor;
+		.border-radius(3px);
+	}
+}

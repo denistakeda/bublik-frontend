@@ -11,6 +11,9 @@ define([
 			restrict: "C",
 			templateUrl: '../components/widgets/userinfo/userinfo.html',
 			link: function(scope, elm, attrs){
+				scope.showAlert = function(message){
+					console.log(message);
+				}
 
 				backend.getUserInfo($routeParams.userInfo, function(){
 					scope.userInfo = storage.userInfo;

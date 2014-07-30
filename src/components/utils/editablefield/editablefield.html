@@ -1,1 +1,13 @@
-<div class="abc">{{glxModel}}</div>
+<div  class="editable-block"
+	  ng-click="edit()"
+	  ng-class="{'edit-me': glxEditable}"
+	  ng-hide="editableMode">
+	{{glxModel}}
+</div>
+<input type="text"
+	   ng-model="glxModel"
+	   class="edit-field"
+	   ng-show="editableMode"
+	   ng-blur="cancel()"
+	   ng-style="{width: inputWidth}"
+	   ui-keydown="{'enter': 'apply()', 'esc': 'cancel()'}" />
