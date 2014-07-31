@@ -21,7 +21,7 @@ define([
 				scope.edit = function(){
 					if (!scope.glxEditable) return;
 					initVal = scope.glxModel;
-					scope.inputWidth = elm.find(".editable-block").width()+12+'px';
+					scope.inputWidth = elm.find(".edit-me").width()+12+'px';
 					scope.editableMode = true;
 					//TODO: Not a best way
 					$timeout(function(){

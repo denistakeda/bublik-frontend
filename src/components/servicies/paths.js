@@ -31,7 +31,7 @@ define([
 		},
 		currentUserInfo: {
 			path: "/user",
-			template: "<div class='glx-user-info'></div>",
+			template: "<div class='glx-user-info' is-my-page='true'></div>",
 			controller: "ClearStorageCtrl"
 		}
 

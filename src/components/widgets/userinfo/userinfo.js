@@ -9,6 +9,9 @@ define([
 	var directive = function($routeParams, backend, storage){
 		return {
 			restrict: "C",
+			scope: {
+				isMyPage: "="
+			},
 			templateUrl: '../components/widgets/userinfo/userinfo.html',
 			link: function(scope, elm, attrs){
 				scope.updateFirstName = function(){
