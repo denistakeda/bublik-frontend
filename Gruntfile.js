@@ -222,6 +222,11 @@ module.exports = function(grunt) {
 					cwd:    "",
 					src:    "target/runtime/components/widgets/**/*.less",
 					ext:    ".css"
+				},{
+					expand: true,
+					cwd:    "",
+					src:    "target/runtime/components/utils/**/*.less",
+					ext:    ".css"
 				}]
 			}
 		}
