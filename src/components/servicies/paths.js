@@ -6,22 +6,22 @@ define([
 
 	// service
 	var config = {
-		defaultWidget:{
+		defaultWidget: {
 			path: "/top"
 		},
 		userRegistration: {
 			path: "/user/registration",
-			template:"<div class='glx-user-registration'></div>",
+			template: "<div class='glx-user-registration'></div>",
 			controller: "ClearStorageCtrl"
 		},
 		widgetTop: {
 			path: "/top",
-			template:"<div class='glx-topcompanies'></div>",
+			template: "<div class='glx-topcompanies'></div>",
 			controller: "ClearStorageCtrl"
 		},
 		userLogin: {
 			path: "/user/login",
-			template:"<div class='glx-login'></div>",
+			template: "<div class='glx-login'></div>",
 			controller: "ClearStorageCtrl"
 		},
 		userInfo: {

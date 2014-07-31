@@ -16,17 +16,17 @@ define([
 					scope.loading = true;
 					backend.registration(
 						{login: scope.email,
-						password: scope.password,
-						first_name: scope.firstName,
-						last_name: scope.lastName},
+							password: scope.password,
+							first_name: scope.firstName,
+							last_name: scope.lastName},
 						function(){
 							backend.redirectTo("/user")
-					});
+						});
 				}
 
 				scope.fieldClass = function(dirty, valid){
 					if (!dirty) return '';
-					if (valid){
+					if (valid) {
 						return 'has-success';
 					} else {
 						return 'has-error';

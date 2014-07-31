@@ -7,10 +7,10 @@ define([
 	var service = function($interval, resources, config){
 		var user = {};
 		/*$interval(function(){
-			resources.currentUser.get({}, function(response){
-				angular.extend(user, response);
-			});
-		}, config.userPingTimeout);*/
+		 resources.currentUser.get({}, function(response){
+		 angular.extend(user, response);
+		 });
+		 }, config.userPingTimeout);*/
 
 		return user;
 	};

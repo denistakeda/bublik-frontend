@@ -7,7 +7,7 @@ define([
 		backend.clearStorage();
 	}]);
 
-	app.config(['$routeProvider','glxPaths',
+	app.config(['$routeProvider', 'glxPaths',
 		function($routeProvider, paths){
 			$routeProvider.
 				when(paths.widgetTop.path, {

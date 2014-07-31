@@ -34,7 +34,7 @@ define([
 			},
 
 			/**
-			/**
+			 /**
 			 * GET data methods, should be private as well
 			 */
 			_getters = {
@@ -75,14 +75,22 @@ define([
 				},
 
 				updateUserFirstName: function(newFirstName, onSuccess, onError){
-					onSuccess = onSuccess || function(){return true;};
-					onError = onError || function(){return true;};
+					onSuccess = onSuccess || function(){
+						return true;
+					};
+					onError = onError || function(){
+						return true;
+					};
 					resources.userInfo.save({}, {first_name: newFirstName}, onSuccess, onError);
 				},
 
 				updateUserLastName: function(newFirstName, onSuccess, onError){
-					onSuccess = onSuccess || function(){return true;};
-					onError = onError || function(){return true;};
+					onSuccess = onSuccess || function(){
+						return true;
+					};
+					onError = onError || function(){
+						return true;
+					};
 					resources.userInfo.save({}, {last_name: newFirstName}, onSuccess, onError);
 				},
 

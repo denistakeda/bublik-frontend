@@ -1,6 +1,6 @@
-<div  ng-click="edit()"
-	  ng-class="{'edit-me': glxEditable}"
-	  ng-hide="editableMode">
+<div ng-click="edit()"
+	 ng-class="{'edit-me': glxEditable}"
+	 ng-hide="editableMode">
 	{{glxModel}}
 </div>
 <input type="text"
@@ -9,4 +9,4 @@
 	   ng-show="editableMode"
 	   ng-blur="cancel()"
 	   ng-style="{width: inputWidth}"
-	   ui-keydown="{'enter': 'apply()', 'esc': 'cancel()'}" />
+	   ui-keydown="{'enter': 'apply()', 'esc': 'cancel()'}"/>

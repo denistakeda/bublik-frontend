@@ -30,7 +30,7 @@ define([
 			}
 		}
 	};
-	directive.$inject = ["$routeParams","backend", "storage"];
+	directive.$inject = ["$routeParams", "backend", "storage"];
 	app.directive('glxUserInfo', directive)
 });
 

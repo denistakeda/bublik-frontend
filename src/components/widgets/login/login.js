@@ -23,7 +23,7 @@ define([
 
 				scope.fieldClass = function(dirty, valid){
 					if (!dirty) return '';
-					if (valid){
+					if (valid) {
 						return 'has-success';
 					} else {
 						return 'has-error';
