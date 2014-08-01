@@ -9,9 +9,6 @@ define([
 			scope: {pwCheck: "="},
 			link: function(scope, elm, attrs, ctrl){
 				//TODO not a best way for password check
-				/*scope.$watch(attrs.ngModel, function(newVal){
-				 c.$setValidity('pwmatch', newVal===attrs.pwCheck);
-				 });*/
 				ctrl.$parsers.unshift(function(viewValue){
 					if (viewValue === scope.pwCheck) {
 						ctrl.$setValidity('pwmatch', true);
