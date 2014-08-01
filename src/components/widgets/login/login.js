@@ -14,7 +14,7 @@ define([
 					scope.waitResponse = true;
 					backend.login({login: scope.email, password: scope.password, remember_me: scope.rememberMe}, function(){
 						scope.waitResponse = false;
-						backend.redirectTo("#/user")
+						backend.redirectTo("/user")
 					}, function(){
 						scope.invalidLogin = true;
 						scope.waitResponse = false;

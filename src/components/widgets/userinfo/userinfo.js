@@ -19,7 +19,7 @@ define([
 					backend.updateUserLastName(scope.userInfo.last_name);
 				};
 
-				backend.getUserInfo($routeParams.userInfo, function(){
+				backend.getUserInfo($routeParams.userId, function(){
 					scope.userInfo = storage.userInfo;
 					backend.alreadyLoaded();
 				});
