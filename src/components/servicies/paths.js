@@ -4,6 +4,10 @@ define([
 ], function(app, angular){
 	"use strict";
 
+	app.controller('ClearStorageCtrl', ['backend', function(backend){
+		backend.clearStorage();
+	}]);
+
 	var config = {
 		defaultRouting: {
 			path: "/top"

@@ -4,9 +4,6 @@ define([
 	'components/servicies/paths'
 ], function(app, angular){
 	"use strict";
-	app.controller('ClearStorageCtrl', ['backend', function(backend){
-		backend.clearStorage();
-	}]);
 
 	app.config(['$routeProvider', 'glxPaths',
 		function($routeProvider, paths){
