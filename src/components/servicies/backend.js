@@ -113,7 +113,8 @@ define([
 				login: function(loginParam, cb, onError){
 					resources.login.update({}, loginParam, function(response){
 						if (response.data.access_token) {
-							_setters.setAccessToken(response.data.access_token, cb);
+							_setters.setAccessToken(response.data.access_token);
+							cb(response.data);
 						} else {
 							onError && onError();
 						}

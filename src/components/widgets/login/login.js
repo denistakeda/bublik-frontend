@@ -12,9 +12,9 @@ define([
 			link: function(scope, elm, attrs){
 				scope.login = function(){
 					scope.waitResponse = true;
-					backend.login({login: scope.email, password: scope.password, remember_me: scope.rememberMe}, function(){
+					backend.login({login: scope.email, password: scope.password, remember_me: scope.rememberMe}, function(response){
 						scope.waitResponse = false;
-						backend.redirectTo("/user")
+						backend.redirectTo("/user/"+response.id);
 					}, function(){
 						scope.invalidLogin = true;
 						scope.waitResponse = false;
