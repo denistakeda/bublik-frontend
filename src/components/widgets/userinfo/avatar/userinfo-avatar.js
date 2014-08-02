@@ -1,22 +1,16 @@
 define([
 	'bublikApp',
-	'components/filters/translate',
-	'css!components/widgets/userinfo/avatar/userinfo-avatar.css'
+	'angular',
+	'glx-utils!editablefield',
+	'css!components/widgets/userinfo/userinfo.css'
 ], function(app){
-	"use strict";
 
-	var directive = function(backend, $modalInstanse){
-		return {
-			restrict: "C",
-			templateUrl: '../components/widgets/userinfo/avatar/userinfo-avatar.html',
-			link: function(scope, elm, attrs){
-				scope.ok = function(){
-					console.log("ok");
-					$modalInstance.close();
-				}
-			}
+	var factory =function(){return function($scope, $modalInstance){
+		$scope.ok = function(){
+			$modalInstance.close();
 		}
-	}
-	directive.$inject = ["backend", "$modalInstanse"];
-	app.directive('glxUserAvatar', directive)
+	}};
+
+	app.factory('userInfoAvatarCtrl', factory);
+
 });

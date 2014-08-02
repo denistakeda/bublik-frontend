@@ -7,14 +7,15 @@ define([
 ], function(app){
 	"use strict";
 
-	var directive = function($routeParams, backend, storage, $modal){
+	var directive = function($routeParams, backend, storage, $modal, userInfoAvatarCtrl){
 		return {
 			restrict: "C",
 			templateUrl: '../components/widgets/userinfo/userinfo.html',
 			link: function(scope, elm, attrs){
 				scope.changeAvatar = function(){
 					var avatarModalInstanse = $modal.open({
-						template: "<div class='glx-user-avatar'></div>"
+						templateUrl: "../components/widgets/userinfo/avatar/userinfo-avatar.html",
+						controller: userInfoAvatarCtrl
 					});
 				};
 
@@ -34,7 +35,7 @@ define([
 			}
 		}
 	};
-	directive.$inject = ["$routeParams", "backend", "storage", "$modal"];
+	directive.$inject = ["$routeParams", "backend", "storage", "$modal", "userInfoAvatarCtrl"];
 	app.directive('glxUserInfo', directive)
 });
 
