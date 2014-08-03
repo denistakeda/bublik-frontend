@@ -2,15 +2,23 @@ define([
 	'bublikApp',
 	'angular',
 	'glx-utils!editablefield',
+	'glx!userinfo-avatar',
 	'css!components/widgets/userinfo/userinfo.css'
 ], function(app){
 	"use strict";
 
-	var directive = function($routeParams, backend, storage){
+	var directive = function($routeParams, backend, storage, $modal, userInfoAvatarCtrl){
 		return {
 			restrict: "C",
 			templateUrl: '../components/widgets/userinfo/userinfo.html',
 			link: function(scope, elm, attrs){
+				scope.changeAvatar = function(){
+					var avatarModalInstanse = $modal.open({
+						templateUrl: "../components/widgets/userinfo/avatar/userinfo-avatar.html",
+						controller: userInfoAvatarCtrl
+					});
+				};
+
 				scope.updateFirstName = function(){
 					backend.updateUserFirstName(scope.userInfo.first_name);
 				};
@@ -27,7 +35,7 @@ define([
 			}
 		}
 	};
-	directive.$inject = ["$routeParams", "backend", "storage"];
+	directive.$inject = ["$routeParams", "backend", "storage", "$modal", "userInfoAvatarCtrl"];
 	app.directive('glxUserInfo', directive)
 });
 

@@ -10,7 +10,7 @@ define([
 ], function(app, angular){
 	"use strict";
 
-	var service = function(resources, storage, $cookies, $location, $rootScope){
+	var service = function(resources, storage, $cookies, $location, $rootScope, $routeParams){
 
 		var _setters = {
 				clearStorage: function(){
@@ -81,7 +81,7 @@ define([
 					onError = onError || function(){
 						return true;
 					};
-					resources.userInfo.save({}, {first_name: newFirstName}, onSuccess, onError);
+					resources.userInfo.save({userId: $routeParams.userId}, {first_name: newFirstName}, onSuccess, onError);
 				},
 
 				updateUserLastName: function(newFirstName, onSuccess, onError){
@@ -91,7 +91,26 @@ define([
 					onError = onError || function(){
 						return true;
 					};
-					resources.userInfo.save({}, {last_name: newFirstName}, onSuccess, onError);
+					resources.userInfo.save({userId: $routeParams.userId}, {last_name: newFirstName}, onSuccess, onError);
+				},
+
+				updateUserAvatar: function(avatar, onSuccess, onError){
+					onSuccess = onSuccess || function(){
+						return true;
+					};
+					onError = onError || function(){
+						return true;
+					};
+					resources.userInfo.save({userId: $routeParams.userId},
+						{avatar: {
+							data: avatar.data,
+							crop: {
+								x: avatar.x,
+								y: avatar.y,
+								l: avatar.l
+							}
+						}
+						}, onSuccess, onError)
 				},
 
 				isEmailUnique: function(email, onSuccess, onError){
@@ -129,7 +148,7 @@ define([
 
 		return angular.extend({}, _setters, _getters, _callbacks);
 	}
-	service.$inject = ['resources', 'storage', '$cookies', '$location', '$rootScope' ];
+	service.$inject = ['resources', 'storage', '$cookies', '$location', '$rootScope', '$routeParams' ];
 	app.factory("backend", service);
 	return service;
 })
