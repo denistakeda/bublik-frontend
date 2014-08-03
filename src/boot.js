@@ -7,6 +7,7 @@ require.config({
 		"ui-utils": "libs/ui-utils-0.1.1/ui-utils.min",
 		"ui-date": "libs/ui-date/src/date",
 		jquery: 'libs/jquery/jquery.min',
+		jcrop: 'libs/jcrop/0.9.12/jquery.Jcrop.min',
 		jQueryUI: 'libs/jquery/jquery-ui.min',
 		'bootstrap':'libs/bootstrap/dist/js/bootstrap.min',
 		'spin': 'libs/spin.min',
@@ -36,6 +37,7 @@ require.config({
 			deps: ["angular", "jQueryUI"]
 		},
 		'jquery': { exports: '$'},
+		'jcrop': {deps: ['jquery', 'css!libs/jcrop/0.9.12/jquery.Jcrop.min.css']},
 		'jQueryUI': { deps: ['jquery', 'css!libs/jquery/smoothness/jquery-ui.css', 'css!libs/jquery/smoothness/jquery-ui-dd.min.css'], exports: '$.ui'},
 		'angular': {deps: ['jquery', 'jQueryUI'], exports: 'angular'},
 		'bootstrap': {deps: ['jquery','css!libs/bootstrap/dist/css/bootstrap.min.css']}
