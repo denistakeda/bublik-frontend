@@ -5,32 +5,32 @@ define([
 	'css!components/widgets/userinfo/avatar/userinfo-avatar.css'
 ], function(app){
 
-	var factory = function(backend){
-		return function($scope, $modalInstance){
+	var controller = function(backend,scope, $modalInstance){
+		//return function(scope, $modalInstance){
 			var avatar = {};
-			$scope.ok = function(){
+			scope.ok = function(){
 				backend.updateUserAvatar(avatar);
 				avatar = {};
 				$modalInstance.close();
 			};
 
-			$scope.cancel = function(){
+			scope.cancel = function(){
 				$modalInstance.close();
 			};
 
-			$scope.onLoadImage = function(imgData){
+			scope.onLoadImage = function(imgData){
 				avatar.data = imgData;
 			};
 
-			$scope.onCropImage = function(x, y, l){
+			scope.onCropImage = function(x, y, l){
 				avatar.x = x;
 				avatar.y = y;
 				avatar.l = l;
 			}
-		}
+		//}
 	};
 
-	factory.$inject = ["backend"];
-	app.factory('userInfoAvatarCtrl', factory);
+	//controller.$inject = ["backend","$scope", "$modalInstance"];
+	app.controller('userInfoAvatarCtrl', ["backend","$scope", "$modalInstance",controller]);
 
 });
