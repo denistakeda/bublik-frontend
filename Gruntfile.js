@@ -12,6 +12,7 @@ module.exports = function(grunt) {
 					paths: {
 						angular: 'empty:',
 						jquery: 'empty:',
+						jcrop: 'empty:',
 						"ui-utils": "empty:",
 						"ui-date": "empty:",
 						jQueryUI: 'empty:',
@@ -37,6 +38,7 @@ module.exports = function(grunt) {
 						'angular-cookies': { deps: ['angular']},
 
 						'jquery': { exports: '$'},
+						'jcrop': {deps: ['jquery', 'css!libs/jcrop/0.9.12/jquery.Jcrop.min.css']},
 						'jQueryUI': { deps: ['jquery', 'css!libs/jquery/smoothness/jquery-ui.css', 'css!libs/jquery/smoothness/jquery-ui-dd.min.css'], exports: '$.ui'},
 						"ui-utils": { deps: ["angular"] },
 						"ui-date": { deps: ["angular", "jQueryUI"] },

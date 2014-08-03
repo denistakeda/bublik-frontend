@@ -12,7 +12,7 @@ define([
 			};
 
 			$scope.onLoadImage = function(imgData){
-				console.log(imgData);
+				//console.log(imgData);
 			}
 		}
 	};
