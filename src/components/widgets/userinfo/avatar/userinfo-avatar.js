@@ -12,7 +12,9 @@ define([
 			};
 
 			$scope.onLoadImage = function(imgData){
-				//console.log(imgData);
+			}
+
+			$scope.onCropImage = function(x, y, w){
 			}
 		}
 	};

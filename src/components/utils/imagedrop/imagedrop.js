@@ -10,16 +10,20 @@ define([
 		return {
 			restrict: "C",
 			scope: {
-				onLoadImage: "="
+				onLoadImage: "=",
+				onCropImage: "="
 			},
 			templateUrl: "../components/utils/imagedrop/imagedrop.html",
 			link: function(scope, element, attrs){
+
+
 				var imgSelect = function(selection){
-					console.log(selection);
+					scope.onCropImage &&
+					angular.isFunction(scope.onCropImage) &&
+					scope.onCropImage(selection.x, selection.y, selection.w);
 				};
 
 				var loadFile = function(file){
-					console.log(file);
 					scope.imgSrc = file.target.result;
 					scope.$apply();
 					scope.onLoadImage &&
@@ -27,16 +31,14 @@ define([
 					scope.onLoadImage(scope.imgSrc);
 				};
 
-				var onDragEnd = function(e){
-					e.preventDefault();
-				};
 				var jcropApi;
 				var crop = function(){
-					var containerWidth = element.width();
 					var imgElement = element.find("img.loaded-img");
+					var containerWidth = element.width();
 					imgElement.Jcrop({
 						bgColor: 'black',
 						bgOpacity: .6,
+						minSize: [100, 100],
 						setSelect: [0, 0, 100, 100],
 						aspectRatio: 1,
 						onSelect: imgSelect,
@@ -45,14 +47,16 @@ define([
 					}, function(){
 						jcropApi = this;
 					});
+				};
 
+				var onDragEnd = function(e){
+					e.preventDefault();
 				};
 
 				element.bind("dragover", onDragEnd)
 					.bind("dragleave", onDragEnd)
 					.bind("drop", function(e){
 						onDragEnd(e);
-						console.log(e.originalEvent.dataTransfer.files[0]);
 						var reader = new FileReader();
 						reader.onload = function(file){
 							jcropApi && jcropApi.destroy();
