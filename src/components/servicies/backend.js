@@ -102,15 +102,13 @@ define([
 						return true;
 					};
 					resources.userInfo.save({userId: $routeParams.userId},
-						{avatar: {
+						{
 							data: avatar.data,
-							crop: {
-								x: avatar.x,
-								y: avatar.y,
-								l: avatar.l
-							}
-						}
-						}, onSuccess, onError)
+							content_type: avatar.contentType,
+							crop_x: avatar.x,
+							crop_y: avatar.y,
+							crop_l: avatar.l
+						}, onSuccess, onError);
 				},
 
 				isEmailUnique: function(email, onSuccess, onError){

@@ -17,8 +17,9 @@ define([
 				$modalInstance.close();
 			};
 
-			scope.onLoadImage = function(imgData){
+			scope.onLoadImage = function(imgData, fileType){
 				avatar.data = imgData;
+				avatar.contentType = fileType;
 			};
 
 			scope.onCropImage = function(x, y, l){

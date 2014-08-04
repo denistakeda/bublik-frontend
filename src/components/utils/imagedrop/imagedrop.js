@@ -23,12 +23,12 @@ define([
 					scope.onCropImage(selection.x, selection.y, selection.w);
 				};
 
-				var loadFile = function(file){
+				var loadFile = function(file, fileType){
 					scope.imgSrc = file.target.result;
 					scope.$apply();
 					scope.onLoadImage &&
 					angular.isFunction(scope.onLoadImage) &&
-					scope.onLoadImage(scope.imgSrc);
+					scope.onLoadImage(scope.imgSrc, fileType);
 				};
 
 				var jcropApi;
@@ -58,11 +58,13 @@ define([
 					.bind("drop", function(e){
 						onDragEnd(e);
 						var reader = new FileReader();
-						reader.onload = function(file){
+						var fileType = e.originalEvent.dataTransfer.files[0].type;
+						reader.onload = function(file, type){
 							jcropApi && jcropApi.destroy();
-							loadFile(file);
+							loadFile(file, fileType);
 							crop();
 						};
+
 						reader.readAsDataURL(e.originalEvent.dataTransfer.files[0]);
 					});
 
