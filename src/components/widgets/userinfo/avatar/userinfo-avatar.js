@@ -6,7 +6,6 @@ define([
 ], function(app){
 
 	var controller = function(backend,scope, $modalInstance){
-		//return function(scope, $modalInstance){
 			var avatar = {};
 			scope.ok = function(){
 				backend.updateUserAvatar(avatar);
@@ -23,14 +22,12 @@ define([
 			};
 
 			scope.onCropImage = function(x, y, l){
-				avatar.x = x;
-				avatar.y = y;
-				avatar.l = l;
-			}
-		//}
+				avatar.x = Math.round(x);
+				avatar.y = Math.round(y);
+				avatar.l = Math.round(l);
+			};
 	};
 
-	//controller.$inject = ["backend","$scope", "$modalInstance"];
 	app.controller('userInfoAvatarCtrl', ["backend","$scope", "$modalInstance",controller]);
 
 });
