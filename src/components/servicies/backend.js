@@ -101,7 +101,7 @@ define([
 					onError = onError || function(){
 						return true;
 					};
-					resources.userInfo.save({userId: $routeParams.userId},
+					resources.userAvatar.save({userId: $routeParams.userId},
 						{
 							data: avatar.data,
 							content_type: avatar.contentType,
