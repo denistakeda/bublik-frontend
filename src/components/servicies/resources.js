@@ -12,6 +12,8 @@ define([
 			localization: $resource('/api/localization'),
 			userInfo: $resource('/api/user/:userId',
 				{userId: '@id'}),
+			userAvatar: $resource('/api/user/:userId/avatar',
+				{userId: '@id'}),
 			topOfCompanies: $resource('/api/widget/top?level=:level&limit=:limit&offset=:offset',
 				{level: "city", limit: 10, offset: 0},
 				{charge: {method: "GET"}}),
