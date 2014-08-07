@@ -1,3 +1,7 @@
-<div class="alert alert-success" role="alert">
-	Всё хорошо! Солнышко светит, птички поют! Тра-ля-ля!
+<div class="alert glx-alert" ng-repeat="alert in alerts"
+	 ng-class="{'alert-success': alert.successAlert,
+	  			'alert-error': alert.errorAlert,
+	  			 'invisible-alert': alert.hideAlert}"
+	 ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+	<b>{{alert.header}}</b> {{alert.body}}
 </div>

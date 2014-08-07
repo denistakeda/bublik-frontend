@@ -7,6 +7,7 @@ define([
 	'angular-spinner',
 	'angular-ui',
 	'angular-cookies',
+	//'angular-animate',
 	'ui-utils'
 	//'ui-utils',
 	//'ui-date',
@@ -14,7 +15,7 @@ define([
 ], function(angular){
 	"use strict";
 
-	var app = angular.module('Application', ['ngResource', 'ngRoute', 'infinite-scroll', 'angularSpinner', 'ui.bootstrap', 'ngCookies', 'ui.utils']);
+	var app = angular.module('Application', ['ngResource', 'ngRoute', 'infinite-scroll', 'angularSpinner', 'ui.bootstrap', 'ngCookies', 'ui.utils'/*, 'ngAnimate'*/]);
 //	var app = angular.module('Application', ["ui.utils", "ngSanitize", "ui.date"]).value("$anchorScroll",angular.noop);
 //	app.config( ['$httpProvider', function($httpProvider) {
 //		var addXSRFcookie = function(){

@@ -12,7 +12,7 @@ define([
 				$timeout(function(){
 					alert.hideAlert = true;
 					$timeout(function(){
-						_public.alerts.splice(_public.alert.indexOf(alert), 1);
+						_public.alerts.splice(_public.alerts.indexOf(alert), 1);
 					}, config.deleteAlertTimeout)
 				}, config.showAlertTimeout)
 			}
@@ -20,10 +20,10 @@ define([
 		var _public = {
 			alerts: [],
 			showSuccessAlert: function(header, body){
-				_private.showAlert({header: header, body: body, type: "successAlert"});
+				_private.showAlert({header: header, body: body, successAlert: true});
 			},
 			showErrorAlert: function(header, body){
-				_private.showAlert({header: header, body: body, type: "errorAlert"});
+				_private.showAlert({header: header, body: body, errorAlert: true});
 			}
 		};
 

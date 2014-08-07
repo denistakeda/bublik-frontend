@@ -4,7 +4,6 @@ define([
 ], function(app, angular){
 	"use strict";
 
-	// service
 	var config = {
 		userPingTimeout: 10000,
 		showAlertTimeout: 5000,
