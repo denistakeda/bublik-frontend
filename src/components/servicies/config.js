@@ -6,7 +6,9 @@ define([
 
 	// service
 	var config = {
-		userPingTimeout: 10000
+		userPingTimeout: 10000,
+		showAlertTimeout: 5000,
+		deleteAlertTimeout: 3000
 	};
 
 	app.constant("glxConfig", config);
