@@ -15,22 +15,28 @@ require.config({
 		"ui-utils": "libs/ui-utils-0.1.1/ui-utils.min",
 		"ui-date": "libs/ui-date/src/date",
 		jquery: 'libs/jquery/jquery.min',
+		jcrop: 'libs/jcrop/0.9.12/jquery.Jcrop.min',
 		jQueryUI: 'libs/jquery/jquery-ui.min',
-		'bootstrap': 'libs/bootstrap/dist/js/bootstrap.min',
+		'bootstrap':'libs/bootstrap/dist/js/bootstrap.min',
+		'spin': 'libs/spin.min',
 
-		'angular-sanitize': 'libs/angular/1.2.13/angular-sanitize.min',
 		'angular-resource': 'libs/angular/1.2.13/angular-resource.min',
 		'angular-animate': 'libs/angular/1.2.13/angular-animate.min',
-		'angular-touch': 'libs/angular/1.2.13/angular-touch.min',
-
-		'components/templates': "../target/runtime/components/templates"
+		'angular-infinite-scroll': 'libs/angular/1.2.13/ng-infinite-scroll.min',
+		'angular-route': 'libs/angular/1.2.13/angular-route.min',
+		'angular-spinner':'libs/angular/1.2.13/angular-spinner.min',
+		'angular-ui': 'libs/angular/1.2.13/ui-bootstrap-tpls.min',
+		'angular-cookies': 'libs/angular/1.2.13/angular-cookies.min'
 	},
 	baseUrl: '/base/src',
 	shim: {
-		'angular-sanitize': { deps: ['angular']},
 		'angular-resource': { deps: ['angular']},
 		'angular-animate': { deps: ['angular']},
-		'angular-touch': { deps: ['angular']},
+		'angular-infinite-scroll': { deps: ['angular']},
+		'angular-route': { deps: ['angular']},
+		'angular-spinner': { deps: ['angular', 'spin']},
+		'angular-ui': {deps: ['angular', 'bootstrap']},
+		'angular-cookies': { deps: ['angular']},
 
 		"ui-utils": {
 			deps: ["angular"]
@@ -39,12 +45,10 @@ require.config({
 			deps: ["angular", "jQueryUI"]
 		},
 		'jquery': { exports: '$'},
-		'jQueryUI': { deps: ['jquery'], exports: '$.ui'},
+		'jcrop': {deps: ['jquery', 'css!libs/jcrop/0.9.12/jquery.Jcrop.min.css']},
+		'jQueryUI': { deps: ['jquery', 'css!libs/jquery/smoothness/jquery-ui.css', 'css!libs/jquery/smoothness/jquery-ui-dd.min.css'], exports: '$.ui'},
 		'angular': {deps: ['jquery', 'jQueryUI'], exports: 'angular'},
-		'bootstrap': {deps: ['jquery',
-			"css!//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
-//			'css!libs/bootstrap/dist/css/bootstrap.min.css'
-		]},
+		'bootstrap': {deps: ['jquery','css!libs/bootstrap/dist/css/bootstrap.min.css']},
 		'angularMocks': {
 			deps:['angular'],
 			'exports':'angular.mock'
@@ -56,6 +60,6 @@ require.config({
 	isBuild: true
 });
 
-define('ibxApp', ["components/apps/app"], function(){
+define('glxApp', ["components/apps/app"], function(){
 	return require("components/apps/app");
 });

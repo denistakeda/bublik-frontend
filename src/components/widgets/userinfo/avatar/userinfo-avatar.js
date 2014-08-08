@@ -2,7 +2,7 @@ define([
 	'bublikApp',
 	'angular',
 	'glx-utils!imagedrop',
-	'components/servicies/messager',
+	'components/servicies/messager/messager',
 	'css!components/widgets/userinfo/avatar/userinfo-avatar.css'
 ], function(app){
 
