@@ -1,7 +1,6 @@
 define([
 	'bublikApp',
 	'angular',
-	'components/filters/translate',
 	'components/servicies/messager/messager',
 	'css!components/widgets/useralerts/useralerts.css'
 ], function(app, angular){
@@ -14,7 +13,6 @@ define([
 			link: function(scope, elm, attrs){
 				scope.identity = angular.identity;
 				scope.alerts = messager.alerts;
-
 			}
 		}
 	};

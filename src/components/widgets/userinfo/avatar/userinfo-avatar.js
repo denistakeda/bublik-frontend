@@ -6,16 +6,18 @@ define([
 	'css!components/widgets/userinfo/avatar/userinfo-avatar.css'
 ], function(app){
 
-	var factory = function(backend){
-		return function($scope, $modalInstance, messager){
+	var factory = function(backend, messager){
+		return function($scope, $modalInstance){
 			var avatar = {};
 			$scope.ok = function(){
-				backend.updateUserAvatar(avatar, function(){
-					messager.showSuccessAlert("Ахренеть!", "Тут даже аватарку можно прокропить!!!");
-				}, function(){
-					messager.showErrorAlert("Блять!", "Нихрена не работает! Уходим отсюда!");
-				});
-				avatar = {};
+				if (avatar.data) {
+					backend.updateUserAvatar(avatar, function(){
+						messager.showSuccessAlert("widget.userAvatar.alert.successAvatarChanged");
+					}, function(){
+						messager.showErrorAlert("widget.userAvatar.alert.errorAvatarChanged");
+					});
+					avatar = {};
+				}
 				$modalInstance.close();
 			};
 

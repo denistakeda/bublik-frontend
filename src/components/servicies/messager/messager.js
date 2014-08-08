@@ -1,6 +1,7 @@
 define([
 	"bublikApp",
 	"angular",
+	'components/filters/translate',
 	"components/servicies/config"
 ], function(app){
 	"use strict";
@@ -13,7 +14,7 @@ define([
 	 * 5) Wait second timeout
 	 * 6) Delete alert
 	 */
-	var glxMessager = function($timeout, config){
+	var glxMessager = function($timeout, config, $filter){
 		var _private = {
 			showAlert: function(alert, bootstrapClass){
 				_public.alerts.push(alert);
@@ -32,17 +33,17 @@ define([
 		var _public = {
 			alerts: [],
 			showSuccessAlert: function(header, body){
-				_private.showAlert({header: header, body: body}, "alert alert-success");
+				_private.showAlert({header: $filter('localize')(header), body: $filter('localize')(body)}, "alert alert-success");
 			},
 			showErrorAlert: function(header, body){
-				_private.showAlert({header: header, body: body}, "alert alert-error");
+				_private.showAlert({header: $filter('localize')(header), body: $filter('localize')(body)}, "alert alert-error");
 			}
 		};
 
 		return angular.extend({}, _public);
 	};
 
-	glxMessager.$inject = ["$timeout", "glxConfig"];
+	glxMessager.$inject = ["$timeout", "glxConfig", "$filter"];
 	app.factory("glxMessager", glxMessager);
 
 });

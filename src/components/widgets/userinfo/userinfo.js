@@ -22,17 +22,17 @@ define([
 
 				scope.updateFirstName = function(){
 					backend.updateUserFirstName(scope.userInfo.first_name, function(){
-						messager.showSuccessAlert("Успех!", "Ваше имя успешно обновлено!");
+						messager.showSuccessAlert("widget.userinfo.alert.firstNameChange.success");
 					}, function(){
-						messager.showErrorAlert("Антиуспех!", "Что-то пошло не так! Пока неясно что!");
+						messager.showErrorAlert("widget.userinfo.alert.firstNameChange.error");
 					});
 				};
 
 				scope.updateLastName = function(){
 					backend.updateUserLastName(scope.userInfo.last_name, function(){
-						messager.showSuccessAlert("Успех!", "Ваша фамилия успешно обновлена!");
+						messager.showSuccessAlert("widget.userinfo.alert.secondNameChange.success");
 					}, function(){
-						messager.showErrorAlert("Антиуспех!", "Что-то пошло не так! Пока неясно что!");
+						messager.showErrorAlert("widget.userinfo.alert.secondNameChange.error");
 					});
 				};
 
