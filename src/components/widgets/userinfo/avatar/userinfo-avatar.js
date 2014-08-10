@@ -2,15 +2,22 @@ define([
 	'bublikApp',
 	'angular',
 	'glx-utils!imagedrop',
+	'components/servicies/messager/messager',
 	'css!components/widgets/userinfo/avatar/userinfo-avatar.css'
 ], function(app){
 
-	var factory = function(backend){
+	var factory = function(backend, messager){
 		return function($scope, $modalInstance){
 			var avatar = {};
 			$scope.ok = function(){
-				backend.updateUserAvatar(avatar);
-				avatar = {};
+				if (avatar.data) {
+					backend.updateUserAvatar(avatar, function(){
+						messager.showSuccessAlert("widget.userAvatar.alert.successAvatarChanged");
+					}, function(){
+						messager.showErrorAlert("widget.userAvatar.alert.errorAvatarChanged");
+					});
+					avatar = {};
+				}
 				$modalInstance.close();
 			};
 
@@ -30,7 +37,7 @@ define([
 		}
 	};
 
-	factory.$inject = ["backend"];
+	factory.$inject = ["backend", "glxMessager"];
 	app.factory('userInfoAvatarCtrl', factory);
 
 });

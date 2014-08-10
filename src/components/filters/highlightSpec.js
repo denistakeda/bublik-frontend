@@ -1,8 +1,8 @@
 define([
 	'angular',
-	'angularMocks',
-	'ibxApp',
-	'/base/src/js/filters/highlight.js'
+	'angularMocks'
+	//'ibxApp',
+	//'/base/src/js/filters/highlight.js'
 ], function(angular, mocks, app){
 	'use strict';
 
