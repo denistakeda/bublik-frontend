@@ -4,9 +4,9 @@ define([
 ], function(app, angular){
 	"use strict";
 
-	// service
 	var config = {
-		userPingTimeout: 10000
+		userPingTimeout: 10000,
+		showAlertTimeout: 5000
 	};
 
 	app.constant("glxConfig", config);

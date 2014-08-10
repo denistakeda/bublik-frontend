@@ -2,33 +2,42 @@ define([
 	'bublikApp',
 	'angular',
 	'glx-utils!imagedrop',
+	'components/servicies/messager/messager',
 	'css!components/widgets/userinfo/avatar/userinfo-avatar.css'
 ], function(app){
 
-	var controller = function(backend,scope, $modalInstance){
+	var factory = function(backend, messager){
+		return function($scope, $modalInstance){
 			var avatar = {};
-			scope.ok = function(){
-				backend.updateUserAvatar(avatar);
-				avatar = {};
+			$scope.ok = function(){
+				if (avatar.data) {
+					backend.updateUserAvatar(avatar, function(){
+						messager.showSuccessAlert("widget.userAvatar.alert.successAvatarChanged");
+					}, function(){
+						messager.showErrorAlert("widget.userAvatar.alert.errorAvatarChanged");
+					});
+					avatar = {};
+				}
 				$modalInstance.close();
 			};
 
-			scope.cancel = function(){
+			$scope.cancel = function(){
 				$modalInstance.close();
 			};
 
-			scope.onLoadImage = function(imgData, fileType){
+			$scope.onLoadImage = function(imgData){
 				avatar.data = imgData;
-				avatar.contentType = fileType;
 			};
 
-			scope.onCropImage = function(x, y, l){
-				avatar.x = Math.round(x);
-				avatar.y = Math.round(y);
-				avatar.l = Math.round(l);
-			};
+			$scope.onCropImage = function(x, y, l){
+				avatar.x = x;
+				avatar.y = y;
+				avatar.l = l;
+			}
+		}
 	};
 
-	app.controller('userInfoAvatarCtrl', ["backend","$scope", "$modalInstance",controller]);
+	factory.$inject = ["backend", "glxMessager"];
+	app.factory('userInfoAvatarCtrl', factory);
 
 });

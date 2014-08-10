@@ -1,5 +1,5 @@
 define([
-	'ibxApp',
+	'bublikApp',
 	'angular',
 	'components/filters/stringFilters',
 	'components/factories/QueryFilter',

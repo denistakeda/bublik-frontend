@@ -11,6 +11,8 @@ define([
 	'glx!header',
 	'glx!rigthmenu',
 
+	//Special widgets
+	'glx!useralerts',
 
 	//List of main widgets
 	'glx!topcompanies',
