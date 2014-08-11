@@ -1,16 +1,16 @@
 define([
 	"bublikApp",
 	"angular",
-	'components/servicies/resources'
+	'components/servicies/backends/common/commonResource'
 
 ], function(app, angular){
 	"use strict";
 
-	var service = function(resources, $rootScope){
-		return resources.localization.get({}, function(){
+	var service = function(commonResource, $rootScope){
+		return commonResource.localization.get({}, function(){
 			$rootScope.localizationLoading = false;
 		});
 	}
-	service.$inject = ['resources', '$rootScope' ];
+	service.$inject = ['commonResource', '$rootScope' ];
 	app.factory("dictionary", service);
 })

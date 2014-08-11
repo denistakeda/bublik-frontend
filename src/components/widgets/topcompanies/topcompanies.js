@@ -6,16 +6,16 @@ define([
 ], function(app){
 	"use strict";
 
-	var directive = function(backend, storage){
+	var directive = function(commonBackend, userBackend, storage){
 		return {
 			restrict: "C",
 			templateUrl: '../components/widgets/topcompanies/topcompanies.html',
 			link: function(scope, elm, attrs){
 				scope.topLevel = 'city';
 				scope.changeTopLevel = function(){
-					backend.getTopOfCompanies(scope.topLevel, 27, function(topOfCompanies){
+					userBackend.getTopOfCompanies(scope.topLevel, 27, function(topOfCompanies){
 						scope.topOfCompanies = topOfCompanies;
-						backend.alreadyLoaded();
+						commonBackend.alreadyLoaded();
 					});
 				};
 				scope.changeTopLevel();
@@ -23,11 +23,11 @@ define([
 
 
 				scope.puging = function(){
-					backend.loadNextTopOfCompanies(9);
+					userBackend.loadNextTopOfCompanies(9);
 				};
 			}
 		}
 	};
-	directive.$inject = ["backend", "storage"];
+	directive.$inject = ["commonBackend", "userBackend", "storage"];
 	app.directive('glxTopcompanies', directive)
 });

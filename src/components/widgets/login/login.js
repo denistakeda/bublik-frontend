@@ -5,16 +5,16 @@ define([
 ], function(app){
 	"use strict";
 
-	var directive = function(backend){
+	var directive = function(userBackend, commonBackend){
 		return {
 			restrict: "C",
 			templateUrl: '../components/widgets/login/login.html',
 			link: function(scope, elm, attrs){
 				scope.login = function(){
 					scope.waitResponse = true;
-					backend.login({login: scope.email, password: scope.password, remember_me: scope.rememberMe}, function(response){
+					userBackend.login({login: scope.email, password: scope.password, remember_me: scope.rememberMe}, function(response){
 						scope.waitResponse = false;
-						backend.redirectTo("/user/"+response.id);
+						userBackend.redirectTo("/user/"+response.id);
 					}, function(){
 						scope.invalidLogin = true;
 						scope.waitResponse = false;
@@ -30,10 +30,10 @@ define([
 					}
 				};
 
-				backend.alreadyLoaded();
+				commonBackend.alreadyLoaded();
 			}
 		}
 	}
-	directive.$inject = ["backend"];
+	directive.$inject = ["userBackend", "commonBackend"];
 	app.directive('glxLogin', directive)
 });

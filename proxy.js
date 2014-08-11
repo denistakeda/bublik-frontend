@@ -201,7 +201,7 @@ if (cluster.isMaster) { // master
         /**
          * Bublik API
          */
-        if (/\/api\//.test(req.url) || /\/images\//.test(req.url)) {
+        if (/\/api\//.test(req.url) || /\/uploads\//.test(req.url)) {
             return proxy.web(req, res, {
                 target: {
                     host: 'backend.galaxias.co',

@@ -4,7 +4,8 @@ define([
 
 	//Servicies
 	'components/servicies/dictionary',
-	'components/servicies/backend',
+	'components/servicies/backends/common/commonBackend',
+	'components/servicies/backends/user/userBackend',
 
 	//User widgets
 	'glx!topmenu',

@@ -4,13 +4,13 @@ define([
 	'components/servicies/config'
 ], function(app){
 	"use strict";
-	var service = function($interval, resources, config){
+	var service = function($interval, config){
 		var user = {};
 
 		return user;
 	};
 
-	service.$inject = ["$interval", "resources", "glxConfig"];
+	service.$inject = ["$interval", "glxConfig"];
 	app.factory("currentUser", service);
 
 	return service;

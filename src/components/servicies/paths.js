@@ -1,11 +1,12 @@
 define([
 	'bublikApp',
-	'angular'
+	'angular',
+	'components/servicies/backends/common/commonBackend'
 ], function(app, angular){
 	"use strict";
 
-	app.controller('ClearStorageCtrl', ['backend', function(backend){
-		backend.clearStorage();
+	app.controller('ClearStorageCtrl', ['commonBackend', function(commonBackend){
+		commonBackend.clearStorage();
 	}]);
 
 	var config = {

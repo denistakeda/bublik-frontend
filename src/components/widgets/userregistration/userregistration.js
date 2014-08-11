@@ -7,20 +7,20 @@ define([
 ], function(app){
 	"use strict";
 
-	var directive = function(backend){
+	var directive = function(commonBackend, userBackend){
 		return {
 			restrict: "C",
 			templateUrl: '../components/widgets/userregistration/userregistration.html',
 			link: function(scope, elm, attrs){
 				scope.registration = function(){
 					scope.loading = true;
-					backend.registration(
+					userBackend.registration(
 						{login: scope.email,
 							password: scope.password,
 							first_name: scope.firstName,
 							last_name: scope.lastName},
 						function(){
-							backend.redirectTo("/user")
+							userBackend.redirectTo("/user")
 						});
 				}
 
@@ -33,10 +33,10 @@ define([
 					}
 				};
 
-				backend.alreadyLoaded();
+				commonBackend.alreadyLoaded();
 			}
 		}
 	}
-	directive.$inject = ["backend"];
+	directive.$inject = ["commonBackend","userBackend"];
 	app.directive('glxUserRegistration', directive)
 });

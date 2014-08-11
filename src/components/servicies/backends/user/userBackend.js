@@ -4,33 +4,15 @@
 define([
 	"bublikApp",
 	"angular",
-	'components/servicies/resources',
+	'components/servicies/backends/user/userResource',
 	'components/servicies/storage'
 
 ], function(app, angular){
 	"use strict";
 
-	var service = function(resources, storage, $cookies, $location, $rootScope, $routeParams){
+	var service = function(userResource, storage, $cookies, $location, $rootScope, $routeParams){
 
 		var _setters = {
-				clearStorage: function(){
-					angular.forEach(storage, function(deletedElm){
-						delete storage[deletedElm];
-					});
-					$rootScope.loading = true;
-				},
-				alreadyLoaded: function(){
-					$rootScope.loading = false;
-				},
-
-				redirectTo: function(path){
-					$location.path(path);
-				},
-
-				setAccessToken: function(accessToken, cb){
-					$cookies["ACCESS_TOKEN"] = accessToken;
-					cb && cb();
-				}
 			},
 
 			/**
@@ -41,7 +23,7 @@ define([
 
 				loadNextTopOfCompanies: function(limit){
 					storage.topOfCompanies.loading = true;
-					resources.topOfCompanies.get({level: resources.topOfCompanies.level, limit: limit ? limit : 10, offset: storage.topOfCompanies.items.length},
+					userResource.topOfCompanies.get({level: userResource.topOfCompanies.level, limit: limit ? limit : 10, offset: storage.topOfCompanies.items.length},
 						function(data){
 							storage.topOfCompanies.items = storage.topOfCompanies.items.concat(data.items);
 							storage.topOfCompanies.loading = false;
@@ -56,7 +38,7 @@ define([
 			_callbacks = {
 				getTopOfCompanies: function(level, limit, cb){
 					storage.topOfCompanies = {loading: true, hasMore: true};
-					resources.topOfCompanies.get({level: level, limit: limit ? limit : 10, offset: 0},
+					userResource.topOfCompanies.get({level: level, limit: limit ? limit : 10, offset: 0},
 						function(data){
 							angular.extend(storage.topOfCompanies, data);
 							storage.topOfCompanies.loading = false;
@@ -66,7 +48,7 @@ define([
 
 				//User info
 				getUserInfo: function(userId, onSuccess, onError){
-					resources.userInfo.get({userId: userId}, function(response){
+					userResource.userInfo.get({userId: userId}, function(response){
 						storage.userInfo = response.data;
 						onSuccess && onSuccess(response.data);
 					}, function(response){
@@ -81,7 +63,7 @@ define([
 					onError = onError || function(){
 						return true;
 					};
-					resources.userInfo.save({userId: $routeParams.userId}, {first_name: newFirstName}, onSuccess, onError);
+					userResource.userInfo.save({userId: $routeParams.userId}, {first_name: newFirstName}, onSuccess, onError);
 				},
 
 				updateUserLastName: function(newFirstName, onSuccess, onError){
@@ -91,7 +73,7 @@ define([
 					onError = onError || function(){
 						return true;
 					};
-					resources.userInfo.save({userId: $routeParams.userId}, {last_name: newFirstName}, onSuccess, onError);
+					userResource.userInfo.save({userId: $routeParams.userId}, {last_name: newFirstName}, onSuccess, onError);
 				},
 
 				updateUserAvatar: function(avatar, onSuccess, onError){
@@ -101,7 +83,7 @@ define([
 					onError = onError || function(){
 						return true;
 					};
-					resources.userAvatar.save({userId: $routeParams.userId},
+					userResource.userAvatar.save({userId: $routeParams.userId},
 						{
 							data: avatar.data,
 							content_type: avatar.contentType,
@@ -112,7 +94,7 @@ define([
 				},
 
 				isEmailUnique: function(email, onSuccess, onError){
-					resources.loginUnique.get({login: email}, function(response){
+					userResource.loginUnique.get({login: email}, function(response){
 						if (response.status && response.status === "ok") {
 							onSuccess();
 						} else {
@@ -122,13 +104,13 @@ define([
 				},
 
 				registration: function(regParam, cb){
-					resources.registration.update({}, regParam, function(regData){
+					userResource.registration.update({}, regParam, function(regData){
 						if (regData.data.access_token) _setters.setAccessToken(regData.data.access_token, cb);
 					});
 				},
 
 				login: function(loginParam, cb, onError){
-					resources.login.update({}, loginParam, function(response){
+					userResource.login.update({}, loginParam, function(response){
 						if (response.data.access_token) {
 							_setters.setAccessToken(response.data.access_token);
 							cb(response.data);
@@ -146,7 +128,7 @@ define([
 
 		return angular.extend({}, _setters, _getters, _callbacks);
 	}
-	service.$inject = ['resources', 'storage', '$cookies', '$location', '$rootScope', '$routeParams' ];
-	app.factory("backend", service);
+	service.$inject = ['userResource', 'storage', '$cookies', '$location', '$rootScope', '$routeParams' ];
+	app.factory("userBackend", service);
 	return service;
 })

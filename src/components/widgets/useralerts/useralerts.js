@@ -6,7 +6,7 @@ define([
 ], function(app, angular){
 	"use strict";
 
-	var directive = function(backend, messager){
+	var directive = function(messager){
 		return {
 			restrict: "C",
 			templateUrl: '../components/widgets/useralerts/useralerts.html',
@@ -16,6 +16,6 @@ define([
 			}
 		}
 	};
-	directive.$inject = ["backend", "glxMessager"];
+	directive.$inject = ["glxMessager"];
 	app.directive('glxUserAlerts', directive)
 });

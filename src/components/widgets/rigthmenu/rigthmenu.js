@@ -1,11 +1,10 @@
 define([
 	'bublikApp',
-	"components/servicies/backend",
 	'css!components/widgets/rigthmenu/rigthmenu.css'
 ], function(app){
 	"use strict";
 
-	var directive = function(backend){
+	var directive = function(){
 		return {
 			restrict: "C",
 			templateUrl: '../components/widgets/rigthmenu/rigthmenu.html',
@@ -13,6 +12,6 @@ define([
 			}
 		}
 	}
-	directive.$inject = ["backend"];
+	directive.$inject = [];
 	app.directive('glxRigthMenu', directive)
 });

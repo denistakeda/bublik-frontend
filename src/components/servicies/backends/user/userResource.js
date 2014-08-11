@@ -1,6 +1,3 @@
-/**
- * Ajax layer
- */
 define([
 	'bublikApp',
 	'angular'
@@ -9,7 +6,6 @@ define([
 
 	var service = function($resource){
 		var resources = {
-			localization: $resource('/api/localization'),
 			userInfo: $resource('/api/user/:userId',
 				{userId: '@id'}),
 			userAvatar: $resource('/api/user/:userId/avatar',
@@ -24,6 +20,6 @@ define([
 		return resources;
 	}
 	service.$inject = ["$resource"];
-	app.factory("resources", service);
+	app.factory("userResource", service);
 });
 
