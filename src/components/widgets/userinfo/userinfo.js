@@ -8,7 +8,7 @@ define([
 ], function(app){
 	"use strict";
 
-	var directive = function($routeParams, backend, storage, $modal, userInfoAvatarCtrl, messager){
+	var directive = function($routeParams, backend, storage, $modal, messager){
 		return {
 			restrict: "C",
 			templateUrl: '../components/widgets/userinfo/userinfo.html',
@@ -16,23 +16,23 @@ define([
 				scope.changeAvatar = function(){
 					var avatarModalInstanse = $modal.open({
 						templateUrl: "../components/widgets/userinfo/avatar/userinfo-avatar.html",
-						controller: userInfoAvatarCtrl
+						controller: 'userInfoAvatarCtrl'
 					});
 				};
 
 				scope.updateFirstName = function(){
 					backend.updateUserFirstName(scope.userInfo.first_name, function(){
-						messager.showSuccessAlert("widget.userinfo.alert.firstNameChange.success");
+						messager.showSuccessAlert("widget.userInfo.alert.firstNameChange.success");
 					}, function(){
-						messager.showErrorAlert("widget.userinfo.alert.firstNameChange.error");
+						messager.showErrorAlert("widget.userInfo.alert.firstNameChange.error");
 					});
 				};
 
 				scope.updateLastName = function(){
 					backend.updateUserLastName(scope.userInfo.last_name, function(){
-						messager.showSuccessAlert("widget.userinfo.alert.secondNameChange.success");
+						messager.showSuccessAlert("widget.userInfo.alert.secondNameChange.success");
 					}, function(){
-						messager.showErrorAlert("widget.userinfo.alert.secondNameChange.error");
+						messager.showErrorAlert("widget.userInfo.alert.secondNameChange.error");
 					});
 				};
 
@@ -44,7 +44,7 @@ define([
 			}
 		}
 	};
-	directive.$inject = ["$routeParams", "backend", "storage", "$modal", "userInfoAvatarCtrl", "glxMessager"];
+	directive.$inject = ["$routeParams", "backend", "storage", "$modal", "glxMessager"];
 	app.directive('glxUserInfo', directive)
 });
 
