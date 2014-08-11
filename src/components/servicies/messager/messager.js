@@ -36,7 +36,7 @@ define([
 				_private.showAlert({header: $filter('localize')(header), body: $filter('localize')(body)}, "alert alert-success");
 			},
 			showErrorAlert: function(header, body){
-				_private.showAlert({header: $filter('localize')(header), body: $filter('localize')(body)}, "alert alert-error");
+				_private.showAlert({header: $filter('localize')(header), body: $filter('localize')(body)}, "alert alert-danger");
 			}
 		};
 
