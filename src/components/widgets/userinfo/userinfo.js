@@ -4,6 +4,7 @@ define([
 	'components/servicies/messager/messager',
 	'components/servicies/backends/user/userBackend',
 	'glx-utils!editablefield',
+	'glx-utils!tags',
 	'glx!userinfo-avatar',
 	'css!components/widgets/userinfo/userinfo.css'
 ], function(app){
