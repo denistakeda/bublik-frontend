@@ -9,7 +9,7 @@ define([
 		return {
 			restrict: "C",
 			templateUrl: '../components/utils/tags/tags.html',
-			require: glxModel,
+			require: "glxModel",
 			scope: {
 				glxModel: "="
 			},
