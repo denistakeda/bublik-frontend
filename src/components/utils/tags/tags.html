@@ -1,1 +1,4 @@
-<div class="abc" ng-repeat="tag in glxModel"></div>
+<div class="glx-tag" ng-repeat="tag in glxModel">
+	<span>{{tag}}</span>
+	<div class="remove-tag-button" ng-if="allowControl">!!!</div>
+</div>

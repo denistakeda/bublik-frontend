@@ -15,7 +15,7 @@ define([
 		var tagsArray = ["tag1", "tag2"];
 
 		beforeEach(mocks.inject(function($rootScope, $compile) {
-			elm = angular.element('<div class="glx-tags" glx-model="tagsArray">');
+			elm = angular.element('<div class="glx-tags" glx-model="tagsArray" allow-control="true">');
 			scope = $rootScope.$new();
 			scope.tagsArray = tagsArray;
 			$compile(elm)(scope);
@@ -23,22 +23,19 @@ define([
 		}));
 
 		it('tags count should be as the glxModel length', function(){
-			expect(elm.find('.abc').size()).toBe(tagsArray.length);
+			expect(elm.find('.glx-tag').size()).toBe(tagsArray.length);
 		});
 
-		/*it('should have all the tags', function(){
-			expect(elm.find('.tagitem').size()).toBe(tagCount);
+		it('should display control button only if allowControl is true', function(){
+			//console.log(elm.find('.remove-tag-button'));
+			scope.allowControl = true;
+			//console.log(elm.find('.remove-tag-button').size());
+			expect(elm.find('.remove-tag-button').size()).toBe(tagsArray.length);
+			scope.allowControl = false;
+			scope.$digest();
+			expect(elm.find('.remove-tag-button').size()).toBe(0);
 		});
 
-		it('should sort by label', function(){
-			expect(elm.find('.tagitem:eq(0)').text()).toBe(tagA.label);
-			expect(elm.find('.tagitem:eq(1)').text()).toBe(tagZ.label);
-		});
-
-		it('should zoom labels', function(){
-			expect(elm.find('.tagitem:contains("' + tagZ.label + '")').css('font-size')).toBe('1.85em');
-			expect(elm.find('.tagitem:contains("' + tagA.label + '")').css('font-size')).toBe('1em');
-		});*/
 	});
 });
 

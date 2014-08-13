@@ -10,7 +10,8 @@ define([
 			restrict: "C",
 			templateUrl: '../components/utils/tags/tags.html',
 			scope: {
-				glxModel: "="
+				glxModel: "=",
+				allowControl: "="
 			},
 			link: function(scope, elm, attrs){
 			}
