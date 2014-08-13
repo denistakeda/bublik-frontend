@@ -11,7 +11,6 @@ module.exports = function(config) {
 			{pattern: 'src/libs/**/*.js', included: false},
 			{pattern: 'src/components/filters/**/*.js', included: false},
 			{pattern: 'src/components/**/*.js', included: false},
-			{pattern: 'src/**/*.html', included: true},
 			{pattern: 'target/runtime/components/templates.js', included: false},
 			// needs to be last http://karma-runner.github.io/0.10/plus/requirejs.html
 			'main-test.js'

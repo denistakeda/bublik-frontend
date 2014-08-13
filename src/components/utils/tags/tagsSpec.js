@@ -9,12 +9,9 @@ define([
 
 	describe('cloud-tag', function() {
 
-		//beforeEach(mocks.module('foo'));
 		beforeEach(mocks.module('Application'));
 
-
 		var elm, scope;
-
 		var tagsArray = ["tag1", "tag2"];
 
 		beforeEach(mocks.inject(function($rootScope, $compile) {
@@ -25,9 +22,8 @@ define([
 			scope.$digest();
 		}));
 
-		it('should get tags', function(){
-			console.log(elm);
-			//expect(elm.find('.abc').size()).toBe(tagsArray.length);
+		it('tags count should be as the glxModel length', function(){
+			expect(elm.find('.abc').size()).toBe(tagsArray.length);
 		});
 
 		/*it('should have all the tags', function(){

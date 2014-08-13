@@ -10,8 +10,8 @@ for (var file in window.__karma__.files) {
 
 require.config({
 	paths: {
-		angular: 'libs/angular/1.2.13/angular.min',
 		angularMocks: 'libs/angular/1.2.13/angular-mocks',
+		angular: 'libs/angular/1.2.13/angular.min',
 		"ui-utils": "libs/ui-utils-0.1.1/ui-utils.min",
 		"ui-date": "libs/ui-date/src/date",
 		jquery: 'libs/jquery/jquery.min',
