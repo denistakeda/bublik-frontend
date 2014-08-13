@@ -1,4 +1,24 @@
-<div class="glx-tag" ng-repeat="tag in glxModel">
-	<span>{{tag}}</span>
-	<div class="remove-tag-button" ng-if="allowControl">!!!</div>
+<div class="tags-head section-head">
+	{{"widget.tags.mainHeader"|localize}}
+</div>
+<div class="without-interests"  ng-if="glxModel.length==0">
+	<span>{{"widget.tags.userHaveNoInterestsCaption"|localize}}</span>
+</div>
+<div class="tags-list" ng-if="glxModel.length>0">
+	<div class="glx-tag" ng-repeat="tag in glxModel">
+		<span>{{tag}}</span>
+		<div class="remove-tag-button" ng-if="allowControl">!!!</div>
+	</div>
+</div>
+<div class="editable" ng-if="allowControl">
+	<!--<a href ng-show="addedMode" ng-click="addedMode=!addedMode">{{"widget.tags.activateAddedModeCaption"|localize}}</a>-->
+	<a href ng-hide="addedMode" ng-click="addedMode=!addedMode">{{"widget.tags.deactivateAddedModeCaption"|localize}}</a>
+	<div class="add-tag-control" ng-show="addedMode">
+		<a href class="glyphicon glyphicon-chevron-up" ng-click="addedMode=!addedMode"></a>
+		<input type="text" ng-model="newTag" />
+		<button type="button" class="btn btn-default btn-md">
+			<span class="glyphicon glyphicon-plus"></span>
+		</button>
+
+	</div>
 </div>
