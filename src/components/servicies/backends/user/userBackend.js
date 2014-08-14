@@ -76,6 +76,16 @@ define([
 					userResource.userInfo.save({userId: $routeParams.userId}, {last_name: newFirstName}, onSuccess, onError);
 				},
 
+				addInterest: function(interest, onSuccess, onError){
+					onSuccess = onSuccess || function(){
+						return true;
+					};
+					onError = onError || function(){
+						return true;
+					};
+					userResource.userInterests.insert({userId: $routeParams.userId}, {interests: [interest]}, onSuccess, onError);
+				},
+
 				updateUserAvatar: function(avatar, onSuccess, onError){
 					onSuccess = onSuccess || function(){
 						return true;

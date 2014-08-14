@@ -1,24 +1,22 @@
-<div class="tags-head section-head">
+<header class="tags-head section-head">
 	{{"widget.tags.mainHeader"|localize}}
-</div>
-<div class="without-interests"  ng-if="glxModel.length==0">
+</header>
+<div class="empty-content"  ng-if="glxModel.length==0">
 	<span>{{"widget.tags.userHaveNoInterestsCaption"|localize}}</span>
 </div>
-<div class="tags-list" ng-if="glxModel.length>0">
+<div class="tags-list clearfix" ng-if="glxModel.length>0">
 	<div class="glx-tag" ng-repeat="tag in glxModel">
 		<span>{{tag}}</span>
-		<div class="remove-tag-button" ng-if="allowControl">!!!</div>
+		<span class="remove-tag-button" ng-if="allowControl"></span>
 	</div>
 </div>
 <div class="editable" ng-if="allowControl">
-	<!--<a href ng-show="addedMode" ng-click="addedMode=!addedMode">{{"widget.tags.activateAddedModeCaption"|localize}}</a>-->
-	<a href ng-hide="addedMode" ng-click="addedMode=!addedMode">{{"widget.tags.deactivateAddedModeCaption"|localize}}</a>
+	<a href ng-hide="addedMode" ng-click="activateAddedMode()">{{"widget.tags.activateAddedModeCaption"|localize}}</a>
 	<div class="add-tag-control" ng-show="addedMode">
-		<a href class="glyphicon glyphicon-chevron-up" ng-click="addedMode=!addedMode"></a>
-		<input type="text" ng-model="newTag" />
-		<button type="button" class="btn btn-default btn-md">
+		<a href class="glyphicon glyphicon-chevron-up" ng-click="deactivateAddedMode()"></a>{{tagNew}}
+		<input class="add-tag-input" type="text" ng-model="tagNew" ui-keydown="{'enter': 'addTag(tagNew)', 'esc': 'deactivateAddedMode()'}"/>
+		<button type="button" class="btn btn-default btn-md" ng-click="addTag(tagNew);clearInput();">
 			<span class="glyphicon glyphicon-plus"></span>
 		</button>
-
 	</div>
 </div>

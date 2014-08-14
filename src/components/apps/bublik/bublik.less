@@ -1,5 +1,6 @@
-@import "../../../styles/colors";
 @import "../../../libs/bootstrap/less/variables";
+@import "../../../styles/colors";
+@import "../../../styles/prefixes";
 
 .glx-bublik {
 	.user-name {
@@ -8,7 +9,18 @@
 
 	.section-head{
 		font-size: @font-size-h4;
-		padding-left: 7px;
+		padding:5px;
 		font-weight: bold;
+	}
+	.empty-content{
+		background-color: darken(@gray-lighter, 10%);
+		color: @gray;
+		height: 50px;
+		line-height: 50px;
+		text-align: center;
+		.border-radius(5px);
+		border: 2px dashed @gray;
+		margin-top: 5px;
+		margin-bottom:5px;
 	}
 }

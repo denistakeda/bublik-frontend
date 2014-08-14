@@ -38,6 +38,18 @@ define([
 					});
 				};
 
+				scope.addTag = function(tag){
+					console.log(tag);
+					userBackend.addInterest(tag, function(){
+						scope.userInfo.interests.push(tag);
+					}, function(){
+						messager.showErrorAlert("widget.userInfo.alert.addInterest.error");
+					})
+				};
+				scope.removeTag = function(tag){
+					console.log("remove tag");
+				};
+
 				userBackend.getUserInfo($routeParams.userId, function(){
 					scope.userInfo = storage.userInfo;
 					commonBackend.alreadyLoaded();

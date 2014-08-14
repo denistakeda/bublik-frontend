@@ -10,6 +10,7 @@ define([
 				{userId: '@id'}),
 			userAvatar: $resource('/api/user/:userId/avatar',
 				{userId: '@id'}),
+			userInterests: $resource('/api/user/:userId/interests', {}, {'insert': {method: 'PUT'}}),
 			topOfCompanies: $resource('/api/widget/top?level=:level&limit=:limit&offset=:offset',
 				{level: "city", limit: 10, offset: 0},
 				{charge: {method: "GET"}}),
