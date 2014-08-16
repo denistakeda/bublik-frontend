@@ -39,15 +39,14 @@ define([
 				};
 
 				scope.addTag = function(tag){
-					console.log(tag);
-					userBackend.addInterest(tag, function(){
-						scope.userInfo.interests.push(tag);
-					}, function(){
+					userBackend.addInterest(tag, undefined, function(){
 						messager.showErrorAlert("widget.userInfo.alert.addInterest.error");
 					})
 				};
 				scope.removeTag = function(tag){
-					console.log("remove tag");
+					userBackend.removeInterest(tag, undefined, function(){
+						messager.showErrorAlert("widget.userInfo.alert.removeInterest.error");
+					})
 				};
 
 				userBackend.getUserInfo($routeParams.userId, function(){

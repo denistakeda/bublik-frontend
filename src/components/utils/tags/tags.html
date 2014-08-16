@@ -7,7 +7,7 @@
 <div class="tags-list clearfix" ng-if="glxModel.length>0">
 	<div class="glx-tag" ng-repeat="tag in glxModel">
 		<span>{{tag}}</span>
-		<span class="remove-tag-button glyphicon glyphicon-remove" ng-show="allowControl"></span>
+		<span class="remove-tag-button glyphicon glyphicon-remove" ng-show="allowControl" ng-click="removeTag(tag)"></span>
 	</div>
 </div>
 <div class="editable" ng-show="allowControl">

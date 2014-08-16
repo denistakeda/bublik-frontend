@@ -83,7 +83,26 @@ define([
 					onError = onError || function(){
 						return true;
 					};
-					userResource.userInterests.insert({userId: $routeParams.userId}, {interests: [interest]}, onSuccess, onError);
+					userResource.userInterests.insert({userId: $routeParams.userId}, {interests: [interest]}, function(response){
+						storage.userInfo.interests.push(interest);
+						onSuccess(response);
+					},function(response){
+						onError(response);
+					});
+				},
+				removeInterest: function(interest, onSuccess, onError){
+					onSuccess = onSuccess || function(){
+						return true;
+					};
+					onError = onError || function(){
+						return true;
+					};
+					userResource.userInterests.delete({userId: $routeParams.userId}, {interests: [interest]}, function(response){
+						storage.userInfo.interests.splice(storage.userInfo.interests.indexOf(interest), 1);
+						onSuccess(response);
+					},function(response){
+						onError(response);
+					});
 				},
 
 				updateUserAvatar: function(avatar, onSuccess, onError){

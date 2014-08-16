@@ -35,6 +35,9 @@ define([
 					$timeout(function(){
 						elm.find('input.add-tag-input').focus();
 					}, 50);
+				};
+				scope.removeTag = function(tag){
+					scope.removeTagFunction(tag);
 				}
 			}
 		}
