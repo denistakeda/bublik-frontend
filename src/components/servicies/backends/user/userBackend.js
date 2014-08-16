@@ -10,7 +10,7 @@ define([
 ], function(app, angular){
 	"use strict";
 
-	var service = function(userResource, storage, $cookies, $location, $rootScope, $routeParams){
+	var service = function(userResource,commonBackend, storage, $cookies, $location, $rootScope, $routeParams){
 
 		var _setters = {
 			},
@@ -112,7 +112,7 @@ define([
 				login: function(loginParam, cb, onError){
 					userResource.login.update({}, loginParam, function(response){
 						if (response.data.access_token) {
-							_setters.setAccessToken(response.data.access_token);
+							commonBackend.setAccessToken(response.data.access_token);
 							cb(response.data);
 						} else {
 							onError && onError();
@@ -128,7 +128,7 @@ define([
 
 		return angular.extend({}, _setters, _getters, _callbacks);
 	}
-	service.$inject = ['userResource', 'storage', '$cookies', '$location', '$rootScope', '$routeParams' ];
+	service.$inject = ['userResource', 'commonBackend', 'storage', '$cookies', '$location', '$rootScope', '$routeParams' ];
 	app.factory("userBackend", service);
 	return service;
 })
