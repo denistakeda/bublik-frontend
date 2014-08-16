@@ -85,7 +85,7 @@ define([
 					};
 					userResource.userAvatar.save({userId: $routeParams.userId},
 						{
-							data: avatar.data,
+							image_data: avatar.data,
 							content_type: avatar.contentType,
 							crop_x: avatar.x,
 							crop_y: avatar.y,
