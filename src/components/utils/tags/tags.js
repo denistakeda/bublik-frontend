@@ -13,7 +13,10 @@ define([
 				glxModel: "=",
 				allowControl: "=",
 				addTagFunction: "=",
-				removeTagFunction: "="
+				removeTagFunction: "=",
+				emptyListCaption: "@",
+				headCaption: "@",
+				addTagCaption: "@"
 			},
 			link: function(scope, elm, attrs){
 				scope.addedMode = false;
@@ -26,13 +29,8 @@ define([
 				scope.deactivateAddedMode = function(){
 					scope.addedMode = false;
 				};
-				scope.clearInput = function(){
-					/*scope.tagNew = '';
-					scope.$apply("tagNew=''");*/
-				};
-				scope.addTag = function(tag){
-					console.log(scope);
-					scope.addTagFunction(tag);
+				scope.addTag = function(){
+					scope.addTagFunction(scope.tagNew);
 					scope.tagNew = "";
 					$timeout(function(){
 						elm.find('input.add-tag-input').focus();

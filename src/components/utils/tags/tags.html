@@ -1,21 +1,21 @@
 <header class="tags-head section-head">
-	{{"widget.tags.mainHeader"|localize}}
+	{{headCaption}}
 </header>
 <div class="empty-content"  ng-if="glxModel.length==0">
-	<span>{{"widget.tags.userHaveNoInterestsCaption"|localize}}</span>
+	<span>{{emptyListCaption}}</span>
 </div>
 <div class="tags-list clearfix" ng-if="glxModel.length>0">
 	<div class="glx-tag" ng-repeat="tag in glxModel">
 		<span>{{tag}}</span>
-		<span class="remove-tag-button" ng-if="allowControl"></span>
+		<span class="remove-tag-button glyphicon glyphicon-remove" ng-show="allowControl"></span>
 	</div>
 </div>
-<div class="editable" ng-if="allowControl">
-	<a href ng-hide="addedMode" ng-click="activateAddedMode()">{{"widget.tags.activateAddedModeCaption"|localize}}</a>
+<div class="editable" ng-show="allowControl">
+	<a href ng-hide="addedMode" ng-click="activateAddedMode()">{{addTagCaption}}</a>
 	<div class="add-tag-control" ng-show="addedMode">
-		<a href class="glyphicon glyphicon-chevron-up" ng-click="deactivateAddedMode()"></a>{{tagNew}}
-		<input class="add-tag-input" type="text" ng-model="tagNew" ui-keydown="{'enter': 'addTag(tagNew)', 'esc': 'deactivateAddedMode()'}"/>
-		<button type="button" class="btn btn-default btn-md" ng-click="addTag(tagNew);clearInput();">
+		<a href class="glyphicon glyphicon-chevron-up" ng-click="deactivateAddedMode()"></a>
+		<input class="add-tag-input" type="text" ng-model="tagNew" ui-keydown="{'enter': 'addTag()', 'esc': 'deactivateAddedMode()'}"/>
+		<button type="button" class="btn btn-default btn-md" ng-click="addTag();">
 			<span class="glyphicon glyphicon-plus"></span>
 		</button>
 	</div>
