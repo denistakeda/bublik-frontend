@@ -13,8 +13,9 @@ define([
 				userBackend.getMenu();
 
 				scope.logout = function(){
-					userBackend.logout();
-					userBackend.getMenu();
+					userBackend.logout(function(data){
+						userBackend.getMenu();
+					});
 				};
 
 				scope.$watch(function(){
