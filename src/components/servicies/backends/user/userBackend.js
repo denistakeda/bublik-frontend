@@ -52,7 +52,7 @@ define([
 						storage.currentUser = response.data;
 						onSuccess && onSuccess(response.data);
 					}, function(response){
-						onError && onError(response.data);
+						onError && onError(response);
 					})
 				},
 
@@ -174,7 +174,7 @@ define([
 						commonBackend.clearAccessToken();
 						onSuccess && onSuccess(response.data);
 					}, function(response){
-						onError && onError(response.data);
+						onError && onError(response);
 					});
 				}
 
