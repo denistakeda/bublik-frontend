@@ -5,7 +5,7 @@ define([
 ], function(app){
 	"use strict";
 
-	var directive = function(userBackend, commonBackend, storage, $location){
+	var directive = function(userBackend, commonBackend, storage){
 		return {
 			restrict: "C",
 			templateUrl: '../components/widgets/topmenu/topmenu.html',
@@ -27,6 +27,6 @@ define([
 			}
 		}
 	}
-	directive.$inject = ['userBackend', 'commonBackend', 'storage', '$location'];
+	directive.$inject = ['userBackend', 'commonBackend', 'storage'];
 	app.directive('glxTopmenu', directive)
 });
