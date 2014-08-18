@@ -8,17 +8,17 @@
 				<div class="glx-editable-field"
 					 glx-model="userInfo.first_name"
 					 glx-on-change="updateFirstName()"
-					 glx-editable="true"></div>
+					 glx-editable="userInfo.actions.update"></div>
 				<div class="glx-editable-field"
 					 glx-model="userInfo.last_name"
 					 glx-on-change="updateLastName()"
-					 glx-editable="true"></div>
+					 glx-editable="userInfo.actions.update"></div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="glx-tags" glx-model="userInfo.interests"
-						allow-control="true"
+						allow-control="userInfo.actions.update"
 						add-tag-function="addTag"
 						remove-tag-function="removeTag"
 						empty-list-caption="{{'widget.userInfo.emptyInterestsCaption'|localize}}"
