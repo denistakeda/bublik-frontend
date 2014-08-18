@@ -88,45 +88,20 @@ module.exports = function(grunt) {
 					'components/factories/**/*.htm*',
 					'components/services/**/*.htm*',
 					'components/widgets/**/*.htm*',
+					'components/utils/**/*.htm*',
 					'components/filters/**/*.htm*',
 					'templates/**/*.htm*'
 				],
 				dest: 'target/runtime/components/templates.js',
 				options: {
 					bootstrap: function(module, script) {
-						return 'define(["glxApp"], function(app) { app.run(["$templateCache", function($templateCache) { ' + script + ' }])});';
+						return 'define(["bublikApp"], function(app) { app.run(["$templateCache", function($templateCache) { ' + script + ' }])});';
 					},
 					htmlmin:  {
 						collapseWhitespace: true,
 						collapseBooleanAttributes: true
 					},
 					prefix: "../"
-				}
-			},
-			test: {
-				cwd: 'src',
-				src: ['components/apps/**/*.htm*',
-					'components/directives/**/*.htm*',
-					'components/factories/**/*.htm*',
-					'components/services/**/*.htm*',
-					'components/widgets/**/*.htm*',
-					'components/filters/**/*.htm*',
-					'templates/**/*.htm*'
-				],
-				dest: 'target/runtime/components/templates.js',
-				options: {
-					bootstrap: function(module, script) {
-						return 'define(["app"], function(app) { app.run(["$templateCache", function($templateCache) { ' + script + ' }])});';
-					},
-					htmlmin:  {
-						collapseWhitespace: true,
-						collapseBooleanAttributes: true
-					},
-					url: function(url){
-						var requireBaseUrl = '/base/src/';
-						// To know about version look at the 'replace' task
-						return requireBaseUrl+url;
-					}
 				}
 			}
 		},
@@ -147,7 +122,7 @@ module.exports = function(grunt) {
 					}
 				},
 				files: [
-					{expand: true, flatten: true, src: ['target/runtime/boot.js'], dest: 'target/runtime/'}
+					{expand: true, flatten: true, src: ['target/runtime/bublik/boot.js'], dest: 'target/runtime/bublik'}
 				]
 			}
 		},
@@ -252,12 +227,12 @@ module.exports = function(grunt) {
 	});
 
 	// this would be run by typing "grunt test" on the command line
-	grunt.registerTask('test', ['jshint'/*, 'ngtemplates:test', 'force:on', 'karma:build', 'force:off'*/]); // there is no one test
+	grunt.registerTask('test', ['ngtemplates', 'karma:build']);
 
 	// this would be run by typing "grunt build" on the command line
-	grunt.registerTask('build', ['clean:build', 'copy', 'less', 'ngtemplates:app', 'replace', 'requirejs', 'clean:runtime']);   // TODO run requrejs in runtime, copy widgets js, libs and images to build folder
+	grunt.registerTask('build', ['clean:build', 'copy', 'less', 'ngtemplates', 'replace', 'requirejs', 'clean:runtime']);   // TODO run requrejs in runtime, copy widgets js, libs and images to build folder
 
 	// Default task(s).
-	grunt.registerTask('default', ['test', 'build']);
+	grunt.registerTask('default', ['test', 'build:prod']);
 
 };

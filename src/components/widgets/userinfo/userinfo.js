@@ -4,6 +4,7 @@ define([
 	'components/servicies/messager/messager',
 	'components/servicies/backends/user/userBackend',
 	'glx-utils!editablefield',
+	'glx-utils!tags',
 	'glx!userinfo-avatar',
 	'css!components/widgets/userinfo/userinfo.css'
 ], function(app){
@@ -35,6 +36,17 @@ define([
 					}, function(){
 						messager.showErrorAlert("widget.userInfo.alert.secondNameChange.error");
 					});
+				};
+
+				scope.addTag = function(tag){
+					userBackend.addInterest(tag, undefined, function(){
+						messager.showErrorAlert("widget.userInfo.alert.addInterest.error");
+					})
+				};
+				scope.removeTag = function(tag){
+					userBackend.removeInterest(tag, undefined, function(){
+						messager.showErrorAlert("widget.userInfo.alert.removeInterest.error");
+					})
 				};
 
 				userBackend.getUserInfo($routeParams.userId, function(){

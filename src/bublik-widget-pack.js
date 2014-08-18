@@ -26,7 +26,8 @@ define([
 	//'components/languageLoader',
 	//'components/services/config',
 	'glx',  // load module to prevent loading in production
-	'glx-utils'
+	'glx-utils',
+	'components/templates'
 	//'text', // load module to prevent loading in production
 	//'components/templates',
 	//'components/apps/unisearch/unisearch',

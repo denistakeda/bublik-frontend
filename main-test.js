@@ -10,8 +10,8 @@ for (var file in window.__karma__.files) {
 
 require.config({
 	paths: {
-		angular: 'libs/angular/1.2.13/angular.min',
 		angularMocks: 'libs/angular/1.2.13/angular-mocks',
+		angular: 'libs/angular/1.2.13/angular.min',
 		"ui-utils": "libs/ui-utils-0.1.1/ui-utils.min",
 		"ui-date": "libs/ui-date/src/date",
 		jquery: 'libs/jquery/jquery.min',
@@ -26,7 +26,9 @@ require.config({
 		'angular-route': 'libs/angular/1.2.13/angular-route.min',
 		'angular-spinner':'libs/angular/1.2.13/angular-spinner.min',
 		'angular-ui': 'libs/angular/1.2.13/ui-bootstrap-tpls.min',
-		'angular-cookies': 'libs/angular/1.2.13/angular-cookies.min'
+		'angular-cookies': 'libs/angular/1.2.13/angular-cookies.min',
+
+		'components/templates': "../target/runtime/components/templates"
 	},
 	baseUrl: '/base/src',
 	shim: {
@@ -60,6 +62,6 @@ require.config({
 	isBuild: true
 });
 
-define('glxApp', ["components/apps/app"], function(){
+define('bublikApp', ["components/apps/app"], function(){
 	return require("components/apps/app");
 });

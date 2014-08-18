@@ -5,12 +5,12 @@ define([
 	"bublikApp",
 	"angular",
 	'components/servicies/backends/user/userResource',
+	'components/servicies/config',
 	'components/servicies/storage'
-
 ], function(app, angular){
 	"use strict";
 
-	var service = function(userResource,commonBackend, storage, $cookies, $location, $rootScope, $routeParams){
+	var service = function(userResource,commonBackend, storage, $cookies, $location, $rootScope, $routeParams, config){
 
 		var _setters = {
 			},
@@ -76,6 +76,35 @@ define([
 					userResource.userInfo.save({userId: $routeParams.userId}, {last_name: newFirstName}, onSuccess, onError);
 				},
 
+				addInterest: function(interest, onSuccess, onError){
+					onSuccess = onSuccess || function(){
+						return true;
+					};
+					onError = onError || function(){
+						return true;
+					};
+					userResource.userInterests.insert({userId: $routeParams.userId}, {interests: [interest]}, function(response){
+						storage.userInfo.interests.push(interest);
+						onSuccess(response);
+					},function(response){
+						onError(response);
+					});
+				},
+				removeInterest: function(interest, onSuccess, onError){
+					onSuccess = onSuccess || function(){
+						return true;
+					};
+					onError = onError || function(){
+						return true;
+					};
+					userResource.userInterests.delete({userId: $routeParams.userId}, {interests: [interest]}, function(response){
+						storage.userInfo.interests.splice(storage.userInfo.interests.indexOf(interest), 1);
+						onSuccess(response);
+					},function(response){
+						onError(response);
+					});
+				},
+
 				updateUserAvatar: function(avatar, onSuccess, onError){
 					onSuccess = onSuccess || function(){
 						return true;
@@ -91,6 +120,14 @@ define([
 							crop_y: avatar.y,
 							crop_l: avatar.l
 						}, onSuccess, onError);
+				},
+
+				getTagsSuggestions: function(keyword,exclude, onSuccess, onError){
+					userResource.tagSuggestions.update({keyword: keyword, limit: config.tagSuggestionsLimit},{exclude: exclude}, function(response){
+						onSuccess && onSuccess(response.data);
+					}, function(response){
+						onError && onError(response);
+					})
 				},
 
 				isEmailUnique: function(email, onSuccess, onError){
@@ -128,7 +165,7 @@ define([
 
 		return angular.extend({}, _setters, _getters, _callbacks);
 	}
-	service.$inject = ['userResource', 'commonBackend', 'storage', '$cookies', '$location', '$rootScope', '$routeParams' ];
+	service.$inject = ['userResource', 'commonBackend', 'storage', '$cookies', '$location', '$rootScope', '$routeParams', 'glxConfig' ];
 	app.factory("userBackend", service);
 	return service;
 })
