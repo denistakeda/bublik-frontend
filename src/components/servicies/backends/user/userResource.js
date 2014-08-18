@@ -17,7 +17,8 @@ define([
 				{charge: {method: "GET"}}),
 			loginUnique: $resource('/api/user/login/check/:login'),
 			registration: $resource('/api/user/new', {}, {'update': {method: 'PUT'}}),
-			login: $resource('/api/user/login', {}, {'update': {method: 'PUT'}})
+			login: $resource('/api/user/login', {}, {'update': {method: 'PUT'}}),
+			tagSuggestions: $resource('/api/search/tag/:keyword', {keyword: '@keyword', limit:'limit'}, {'update': {method: 'POST'}})
 		};
 		return resources;
 	}

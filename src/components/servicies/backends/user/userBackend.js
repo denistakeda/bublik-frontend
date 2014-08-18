@@ -5,12 +5,12 @@ define([
 	"bublikApp",
 	"angular",
 	'components/servicies/backends/user/userResource',
+	'components/servicies/config',
 	'components/servicies/storage'
-
 ], function(app, angular){
 	"use strict";
 
-	var service = function(userResource,commonBackend, storage, $cookies, $location, $rootScope, $routeParams){
+	var service = function(userResource,commonBackend, storage, $cookies, $location, $rootScope, $routeParams, config){
 
 		var _setters = {
 			},
@@ -122,6 +122,14 @@ define([
 						}, onSuccess, onError);
 				},
 
+				getTagsSuggestions: function(keyword,exclude, onSuccess, onError){
+					userResource.tagSuggestions.update({keyword: keyword, limit: config.tagSuggestionsLimit},{exclude: exclude}, function(response){
+						onSuccess && onSuccess(response.data);
+					}, function(response){
+						onError && onError(response);
+					})
+				},
+
 				isEmailUnique: function(email, onSuccess, onError){
 					userResource.loginUnique.get({login: email}, function(response){
 						if (response.status && response.status === "ok") {
@@ -157,7 +165,7 @@ define([
 
 		return angular.extend({}, _setters, _getters, _callbacks);
 	}
-	service.$inject = ['userResource', 'commonBackend', 'storage', '$cookies', '$location', '$rootScope', '$routeParams' ];
+	service.$inject = ['userResource', 'commonBackend', 'storage', '$cookies', '$location', '$rootScope', '$routeParams', 'glxConfig' ];
 	app.factory("userBackend", service);
 	return service;
 })
