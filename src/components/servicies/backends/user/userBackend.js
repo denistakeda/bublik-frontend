@@ -169,8 +169,13 @@ define([
 					});
 				},
 
-				logout: function(){
-					commonBackend.clearAccessToken();
+				logout: function(onSuccess, onError){
+					userResource.logout.update(function(response){
+						commonBackend.clearAccessToken();
+						onSuccess && onSuccess(response.data);
+					}, function(response){
+						onError && onError(response.data);
+					});
 				}
 
 			};
