@@ -6,6 +6,7 @@ define([
 
 	var service = function($resource){
 		var resources = {
+			menu: $resource('/api/menu'),
 			userInfo: $resource('/api/user/:userId',
 				{userId: '@id'}),
 			userAvatar: $resource('/api/user/:userId/avatar',

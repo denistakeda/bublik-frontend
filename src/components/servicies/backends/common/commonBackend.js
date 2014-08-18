@@ -27,6 +27,11 @@ define([
 				setAccessToken: function(accessToken, cb){
 					$cookies["ACCESS_TOKEN"] = accessToken;
 					cb && cb();
+				},
+
+				clearAccessToken: function(cb){
+					delete $cookies["ACCESS_TOKEN"];
+					cb && cb();
 				}
 			},
 
