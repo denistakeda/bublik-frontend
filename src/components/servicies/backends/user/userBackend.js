@@ -46,6 +46,13 @@ define([
 						});
 				},
 
+				//User menu
+				getMenu: function(onSuccess, onError){
+					userResource.menu.get(function(response){
+						storage.menu = response.data;
+					})
+				},
+
 				//User info
 				getUserInfo: function(userId, onSuccess, onError){
 					userResource.userInfo.get({userId: userId}, function(response){
@@ -120,8 +127,11 @@ define([
 					}, function(){
 						onError();
 					});
-				}
+				},
 
+				logout: function(){
+					commonBackend.clearAccessToken();
+				}
 
 			};
 
