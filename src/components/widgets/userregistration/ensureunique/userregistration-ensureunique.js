@@ -3,12 +3,12 @@ define([
 ], function(app){
 	"use strict";
 
-	var directive = function(commonBackend){
+	var directive = function(userBackend){
 		return {
 			require: 'ngModel',
 			link: function(scope, elm, attrs, ctrl){
 				ctrl.$parsers.unshift(function(viewValue){
-					commonBackend.isEmailUnique(viewValue, function(){
+					userBackend.isEmailUnique(viewValue, function(){
 						ctrl.$setValidity('unique', true);
 					}, function(){
 						ctrl.$setValidity('unique', false);
@@ -18,6 +18,6 @@ define([
 			}
 		}
 	}
-	directive.$inject = ["commonBackend"];
+	directive.$inject = ["userBackend"];
 	app.directive('glxEnsureUnique', directive)
 });
