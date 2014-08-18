@@ -5,7 +5,7 @@ define([
 ], function(app){
 	"use strict";
 
-	var directive = function(userBackend, storage){
+	var directive = function(userBackend, commonBackend, storage, $location){
 		return {
 			restrict: "C",
 			templateUrl: '../components/widgets/topmenu/topmenu.html',
@@ -15,6 +15,7 @@ define([
 				scope.logout = function(){
 					userBackend.logout(function(data){
 						userBackend.getMenu();
+						commonBackend.redirectTo("user/login");
 					});
 				};
 
@@ -26,6 +27,6 @@ define([
 			}
 		}
 	}
-	directive.$inject = ['userBackend', 'storage'];
+	directive.$inject = ['userBackend', 'commonBackend', 'storage', '$location'];
 	app.directive('glxTopmenu', directive)
 });
