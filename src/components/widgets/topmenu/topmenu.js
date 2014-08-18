@@ -18,9 +18,9 @@ define([
 				};
 
 				scope.$watch(function(){
-					return storage.menu && storage.menu.user && storage.menu.user.id;
+					return storage.currentUser && storage.currentUser.user && storage.currentUser.user.id;
 				}, function(newValue, oldValue) {
-					if (newValue !== oldValue) scope.currentUser = storage.menu && storage.menu.user;
+					if (newValue !== oldValue) scope.currentUser = storage.currentUser && storage.currentUser.user;
 				});
 			}
 		}

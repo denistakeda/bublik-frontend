@@ -49,7 +49,10 @@ define([
 				//User menu
 				getMenu: function(onSuccess, onError){
 					userResource.menu.get(function(response){
-						storage.menu = response.data;
+						storage.currentUser = response.data;
+						onSuccess && onSuccess(response.data);
+					}, function(response){
+						onError && onError(response.data);
 					})
 				},
 
