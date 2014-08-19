@@ -9,15 +9,15 @@
 					<a href>{{'mainpage.topMenu.aboutUs'|localize}}</a>
 				</li>
 			</ul>
-			<ul class="nav navbar-nav navbar-right" ng-if="!currentUser.id">
+			<ul class="nav navbar-nav navbar-right" ng-if="!currentUser || !currentUser.menu || !currentUser.menu.user.id">
 				<li><a href="#/user/registration">{{'mainpage.topMenu.registration'|localize}}</a></li>
 				<li><a href="#/user/login">{{'mainpage.topMenu.login'|localize}}</a></li>
 			</ul>
-			<ul class="nav navbar-nav navbar-right" ng-if="currentUser.id">
+			<ul class="nav navbar-nav navbar-right" ng-if="currentUser.menu && currentUser.menu.user.id">
 				<li class="dropdown">
 					<div class="user-preview">
 						<div class="dropdown-toggle" data-toggle="dropdown">
-							<img class="user-preview-img img-rounded" ng-src="{{currentUser.avatar_preview_url}}"/><a class="caret"></a>
+							<img class="user-preview-img img-rounded" ng-src="{{currentUser.menu.user.avatar_preview_url}}"/><a class="caret"></a>
 						</div>
 					</div>
 					<ul class="dropdown-menu" role="menu">

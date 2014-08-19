@@ -6,11 +6,12 @@ define([
 	"angular",
 	'components/servicies/backends/user/userResource',
 	'components/servicies/config',
+	'components/servicies/currentUser',
 	'components/servicies/storage'
 ], function(app, angular){
 	"use strict";
 
-	var service = function(userResource,commonBackend, storage, $cookies, $location, $rootScope, $routeParams, config){
+	var service = function(userResource,commonBackend, storage, currentUser, $cookies, $location, $rootScope, $routeParams, config){
 
 		var _setters = {
 			},
@@ -49,7 +50,7 @@ define([
 				//User menu
 				getMenu: function(onSuccess, onError){
 					userResource.menu.get(function(response){
-						storage.currentUser = response.data;
+						currentUser.menu = response.data;
 						onSuccess && onSuccess(response.data);
 					}, function(response){
 						onError && onError(response);
@@ -183,7 +184,7 @@ define([
 
 		return angular.extend({}, _setters, _getters, _callbacks);
 	}
-	service.$inject = ['userResource', 'commonBackend', 'storage', '$cookies', '$location', '$rootScope', '$routeParams', 'glxConfig' ];
+	service.$inject = ['userResource', 'commonBackend', 'storage', 'currentUser', '$cookies', '$location', '$rootScope', '$routeParams', 'glxConfig' ];
 	app.factory("userBackend", service);
 	return service;
 })
