@@ -6,7 +6,7 @@ define([
 	"angular",
 	'components/servicies/backends/user/userResource',
 	'components/servicies/config',
-	'components/servicies/currentUser',
+	'components/servicies/currentuser',
 	'components/servicies/storage'
 ], function(app, angular){
 	"use strict";
