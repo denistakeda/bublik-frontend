@@ -1,30 +1,29 @@
 define([
 	'bublikApp',
 	'components/filters/translate',
+	'components/servicies/currentUser',
 	'css!components/widgets/topmenu/topmenu.css'
 ], function(app){
 	"use strict";
 
-	var directive = function(userBackend, storage){
+	var directive = function(userBackend, commonBackend, currentUser){
 		return {
 			restrict: "C",
 			templateUrl: '../components/widgets/topmenu/topmenu.html',
 			link: function(scope, elm, attrs){
 				userBackend.getMenu();
 
-				scope.logout = function(){
-					userBackend.logout();
-					userBackend.getMenu();
-				};
+				scope.currentUser = currentUser;
 
-				scope.$watch(function(){
-					return storage.currentUser && storage.currentUser.user && storage.currentUser.user.id;
-				}, function(newValue, oldValue) {
-					if (newValue !== oldValue) scope.currentUser = storage.currentUser && storage.currentUser.user;
-				});
+				scope.logout = function(){
+					userBackend.logout(function(data){
+						userBackend.getMenu();
+						commonBackend.redirectTo("user/login");
+					});
+				};
 			}
 		}
 	}
-	directive.$inject = ['userBackend', 'storage'];
+	directive.$inject = ['userBackend', 'commonBackend', 'currentUser'];
 	app.directive('glxTopmenu', directive)
 });
