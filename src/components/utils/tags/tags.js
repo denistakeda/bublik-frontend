@@ -37,7 +37,7 @@ define([
 							messager.showErrorAlert("widget.tags.alert.alreadyExists.error");
 							return;
 						}
-						if (tagName.length===0) return;
+						if (!tagName||tagName==="") return;
 						scope.addTagFunction(tagName);
 					} else {
 						scope.addTagFunction(scope.tagSuggestions[scope.selectedSuggestionIndex].name);
