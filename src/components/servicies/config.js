@@ -7,7 +7,8 @@ define([
 	var config = {
 		userPingTimeout: 10000,
 		showAlertTimeout: 5000,
-		tagSuggestionsLimit: 10
+		tagSuggestionsLimit: 10,
+		defaultAvatar: "imgs/bub_dark.png"
 	};
 
 	app.constant("glxConfig", config);
