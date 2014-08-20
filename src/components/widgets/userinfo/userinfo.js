@@ -6,6 +6,7 @@ define([
 	'glx-utils!editablefield',
 	'glx-utils!tags',
 	'glx!userinfo-avatar',
+	'glx!social',
 	'css!components/widgets/userinfo/userinfo.css'
 ], function(app){
 	"use strict";
