@@ -11,24 +11,24 @@ define([
 			restrict: "C",
 			templateUrl: '../components/widgets/social/follow/actions/social-follow-actions.html',
 			scope: {
-				actions: '='
+				glxActions: '='
 			},
 			link: function(scope, elm, attrs){
 				scope.follow = function(){
 					userBackend.followUser(function(){
-						scope.actions.follow = false;
-						scope.actions.unfollow = true;
+						scope.glxActions.follow = false;
+						scope.glxActions.unfollow = true;
 					}, function(){
-						messager.showErrorAlert('widget.userInfo.social.actions.followError');
+						messager.showErrorAlert('widget.userInfo.backenderror');
 					});
 				};
 
 				scope.unfollow = function(){
 					userBackend.unfollowUser(function(){
-						scope.actions.follow = true;
-						scope.actions.unfollow = false;
+						scope.glxActions.follow = true;
+						scope.glxActions.unfollow = false;
 					}, function(){
-						messager.showErrorAlert('widget.userInfo.social.actions.unfollowError');
+						messager.showErrorAlert('widget.userInfo.backenderror');
 					});
 				}
 			}

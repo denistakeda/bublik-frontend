@@ -10,12 +10,12 @@ define([
 			restrict: "C",
 			templateUrl: '../components/widgets/social/social.html',
 			scope: {
-				socialData: '='
+				glxSocialData: '='
 			},
 			link: function(scope, elm, attrs){
 				scope.showFollowActions = function(){
-					return scope.socialData && scope.socialData.actions
-							&& (scope.socialData.actions.follow || scope.socialData.actions.unfollow);
+					return scope.glxSocialData && scope.glxSocialData.actions
+							&& (scope.glxSocialData.actions.follow || scope.glxSocialData.actions.unfollow);
 				};
 			}
 		}
