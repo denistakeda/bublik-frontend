@@ -11,7 +11,7 @@ define([
 ], function(app){
 	"use strict";
 
-	var directive = function($routeParams, userBackend, commonBackend, storage, $modal, messager){
+	var directive = function($routeParams, userBackend, commonBackend, storage, $modal, messager, config){
 		return {
 			restrict: "C",
 			templateUrl: '../components/widgets/userinfo/userinfo.html',
@@ -22,6 +22,9 @@ define([
 						controller: "userInfoAvatarCtrl"
 					});
 				};
+				scope.getDefaultAvatar = function(){
+					return config.defaultAvatar;
+				}
 
 				scope.updateFirstName = function(){
 					userBackend.updateUserFirstName(scope.userInfo.first_name, function(){
@@ -58,7 +61,7 @@ define([
 			}
 		}
 	};
-	directive.$inject = ["$routeParams", "userBackend", "commonBackend", "storage", "$modal", "glxMessager"];
+	directive.$inject = ["$routeParams", "userBackend", "commonBackend", "storage", "$modal", "glxMessager", "glxConfig"];
 	app.directive('glxUserInfo', directive)
 });
 
