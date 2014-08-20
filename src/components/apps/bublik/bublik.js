@@ -9,7 +9,6 @@ define([
 
 	//User widgets
 	'glx!topmenu',
-	'glx!header',
 	'glx!rigthmenu',
 
 	//Special widgets
