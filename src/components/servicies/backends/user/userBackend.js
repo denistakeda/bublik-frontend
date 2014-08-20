@@ -177,6 +177,23 @@ define([
 					}, function(response){
 						onError && onError(response);
 					});
+				},
+
+				// Social block
+				followUser: function(onSuccess, onError){
+					userResource.followUser.update({userId: currentUser.menu.user.id, followedId: storage.userInfo.id}, function(response){
+						onSuccess && onSuccess(response.data);
+					}, function(response){
+						onError && onError(response);
+					});
+				},
+
+				unfollowUser: function(onSuccess, onError){
+					userResource.unfollowUser.update({userId: currentUser.menu.user.id, unfollowedId: storage.userInfo.id}, function(response){
+						onSuccess && onSuccess(response.data);
+					}, function(response){
+						onError && onError(response);
+					});
 				}
 
 			};

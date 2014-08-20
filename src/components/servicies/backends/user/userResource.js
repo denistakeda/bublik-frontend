@@ -20,7 +20,11 @@ define([
 			registration: $resource('/api/user/new', {}, {'update': {method: 'PUT'}}),
 			login: $resource('/api/user/login', {}, {'update': {method: 'PUT'}}),
 			logout: $resource('/api/user/logout', {}, {'update': {method: 'PUT'}}),
-			tagSuggestions: $resource('/api/search/tag/:keyword', {keyword: '@keyword', limit:'limit'}, {'update': {method: 'POST'}})
+			tagSuggestions: $resource('/api/search/tag/:keyword', {keyword: '@keyword', limit:'limit'}, {'update': {method: 'POST'}}),
+			followUser: $resource('/api/user/:userId/social/user/follow/:followedId',
+				{userId: '@userId', followedId: '@followedId'}, {'update': {method: 'POST'}}),
+			unfollowUser:$resource('/api/user/:userId/social/user/unfollow/:unfollowedId',
+				{userId: '@userId', unfollowedId: '@unfollowedId'}, {'update': {method: 'POST'}})
 		};
 		return resources;
 	}
