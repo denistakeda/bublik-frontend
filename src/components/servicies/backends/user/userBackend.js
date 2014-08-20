@@ -5,6 +5,7 @@ define([
 	"bublikApp",
 	"angular",
 	'components/servicies/backends/user/userResource',
+	'components/servicies/backends/common/commonBackend',
 	'components/servicies/config',
 	'components/servicies/currentuser',
 	'components/servicies/storage'

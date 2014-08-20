@@ -2,6 +2,7 @@ define([
 	'bublikApp',
 	'angular',
 	'components/servicies/messager/messager',
+	'components/servicies/backends/user/userBackend',
 	'css!components/utils/tags/tags.css'
 ], function(app){
 	"use strict";
