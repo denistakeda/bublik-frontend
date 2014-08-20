@@ -1,6 +1,6 @@
 define([
 	'bublikApp',
-	'glx!social-follow-actions',
+	'glx!social-actions',
 	'css!components/widgets/social/social.css'
 ], function(app){
 	"use strict";

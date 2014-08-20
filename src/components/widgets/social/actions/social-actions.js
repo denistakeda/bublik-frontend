@@ -2,14 +2,14 @@ define([
 	'bublikApp',
 	'components/servicies/messager/messager',
 	'components/servicies/backends/user/userBackend',
-	'css!components/widgets/social/follow/actions/social-follow-actions.css'
+	'css!components/widgets/social/actions/social-actions.css'
 ], function(app){
 	"use strict";
 
 	var directive = function(userBackend, messager){
 		return {
 			restrict: "C",
-			templateUrl: '../components/widgets/social/follow/actions/social-follow-actions.html',
+			templateUrl: '../components/widgets/social/actions/social-actions.html',
 			scope: {
 				glxActions: '='
 			},
@@ -35,5 +35,5 @@ define([
 		}
 	};
 	directive.$inject = ["userBackend", "glxMessager"];
-	app.directive('glxSocialFollowActions', directive)
+	app.directive('glxSocialActions', directive)
 });
