@@ -20,6 +20,7 @@ define([
 							first_name: scope.firstName,
 							last_name: scope.lastName},
 						function(){
+							userBackend.getMenu();
 							userBackend.redirectTo("/user")
 						});
 				}
