@@ -153,7 +153,8 @@ define([
 
 				registration: function(regParam, cb){
 					userResource.registration.update({}, regParam, function(regData){
-						if (regData.data.access_token) _setters.setAccessToken(regData.data.access_token, cb);
+						if (regData.data.access_token) commonBackend.setAccessToken(regData.data.access_token);
+						cb && cb(regData.data);
 					});
 				},
 
