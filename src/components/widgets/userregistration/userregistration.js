@@ -19,8 +19,8 @@ define([
 							password: scope.password,
 							first_name: scope.firstName,
 							last_name: scope.lastName},
-						function(){
-							userBackend.redirectTo("/user")
+						function(response){
+							commonBackend.redirectTo("user/"+response.id);
 						});
 				}
 
