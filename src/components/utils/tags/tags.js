@@ -33,7 +33,9 @@ define([
 					scope.addedMode = false;
 				};
 				scope.addTag = function(tagName){
-					if (scope.selectedSuggestionIndex===-1){
+					console.log("tagName", scope.tagNew);
+					scope.addTagFunction(tagName);
+					/*if (scope.selectedSuggestionIndex===-1){
 						if (scope.glxModel.indexOf(tagName)!==-1){
 							messager.showErrorAlert("widget.tags.alert.alreadyExists.error");
 							return;
@@ -47,7 +49,7 @@ define([
 					scope.isSuggestionsOpen = false;
 					$timeout(function(){
 						elm.find('input.add-tag-input').focus();
-					}, 50);
+					}, 50);*/
 				};
 				scope.removeTag = function(tag){
 					scope.removeTagFunction(tag);

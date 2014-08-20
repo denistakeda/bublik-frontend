@@ -11,7 +11,7 @@
 	</div>
 </div>
 <div class="editable" ng-show="allowControl">
-	<a href ng-hide="addedMode" ng-click="activateAddedMode()">{{addTagCaption}}</a>
+	<a href ng-hide="addedMode" ng-click="activateAddedMode()" class="edit-mode-link">{{addTagCaption}}</a>
 	<div class="add-tag-control" ng-show="addedMode">
 		<a href class="glyphicon glyphicon-chevron-up" ng-click="deactivateAddedMode()"></a>
 		<span class="dropdown" is-open="isSuggestionsOpen">
