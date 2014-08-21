@@ -1,12 +1,13 @@
 define([
 	'bublikApp',
+	'components/servicies/config',
 	'components/filters/translate',
 	'components/services/currentuser',
 	'css!components/widgets/topmenu/topmenu.css'
 ], function(app){
 	"use strict";
 
-	var directive = function(userBackend, commonBackend, currentUser){
+	var directive = function(userBackend, commonBackend, currentUser, config){
 		return {
 			restrict: "C",
 			templateUrl: '../components/widgets/topmenu/topmenu.html',
@@ -21,9 +22,13 @@ define([
 						commonBackend.redirectTo("user/login");
 					});
 				};
+
+				scope.getUserAvatar = function(){
+					return scope.currentUser.menu.user.avatar_preview_url || config.defaultAvatar;
+				}
 			}
 		}
 	}
-	directive.$inject = ['userBackend', 'commonBackend', 'currentUser'];
+	directive.$inject = ['userBackend', 'commonBackend', 'currentUser', 'glxConfig'];
 	app.directive('glxTopmenu', directive)
 });
