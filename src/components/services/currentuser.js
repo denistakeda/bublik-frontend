@@ -1,7 +1,7 @@
 define([
 	"bublikApp",
 	"angular",
-	'components/servicies/config'
+	'components/services/config'
 ], function(app){
 	"use strict";
 	var service = function($interval, config){

@@ -2,7 +2,7 @@ define([
 	"bublikApp",
 	"angular",
 	'components/filters/translate',
-	"components/servicies/config"
+	"components/services/config"
 ], function(app){
 	"use strict";
 	/**

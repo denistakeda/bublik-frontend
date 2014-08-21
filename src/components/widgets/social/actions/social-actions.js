@@ -1,8 +1,8 @@
 define([
 	'bublikApp',
-	'components/servicies/messager/messager',
-	'components/servicies/currentuser',
-	'components/servicies/backends/user/userBackend',
+	'components/services/messager/messager',
+	'components/services/currentuser',
+	'components/services/backends/user/userBackend',
 	'css!components/widgets/social/actions/social-actions.css'
 ], function(app){
 	"use strict";

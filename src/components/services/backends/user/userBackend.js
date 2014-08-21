@@ -4,10 +4,10 @@
 define([
 	"bublikApp",
 	"angular",
-	'components/servicies/backends/user/userResource',
-	'components/servicies/config',
-	'components/servicies/currentuser',
-	'components/servicies/storage'
+	'components/services/backends/user/userResource',
+	'components/services/config',
+	'components/services/currentuser',
+	'components/services/storage'
 ], function(app, angular){
 	"use strict";
 

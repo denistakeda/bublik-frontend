@@ -1,7 +1,7 @@
 define([
 	'bublikApp',
 	'angular',
-	'components/servicies/messager/messager',
+	'components/services/messager/messager',
 	'css!components/widgets/useralerts/useralerts.css'
 ], function(app, angular){
 	"use strict";

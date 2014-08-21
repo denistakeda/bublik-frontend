@@ -1,7 +1,7 @@
 define([
 	'bublikApp',
 	'angular',
-	'components/servicies/dictionary'
+	'components/services/dictionary'
 ], function(app, angular){
 	"use strict";
 

@@ -1,7 +1,7 @@
 define([
 	'bublikApp',
 	'angular',
-	'components/servicies/storage',
+	'components/services/storage',
 	'angular-infinite-scroll',
 	'css!components/widgets/topcompanies/topitem/topcompanies-topitem.css'
 ], function(app){

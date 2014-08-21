@@ -1,7 +1,7 @@
 define([
 	"bublikApp",
 	"angular",
-	'components/servicies/backends/common/commonResource'
+	'components/services/backends/common/commonResource'
 
 ], function(app, angular){
 	"use strict";

@@ -1,8 +1,8 @@
 define([
 	'bublikApp',
 	'angular',
-	'components/servicies/messager/messager',
-	'components/servicies/backends/user/userBackend',
+	'components/services/messager/messager',
+	'components/services/backends/user/userBackend',
 	'glx-utils!editablefield',
 	'glx-utils!tags',
 	'glx!userinfo-avatar',
