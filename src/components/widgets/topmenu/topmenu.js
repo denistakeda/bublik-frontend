@@ -1,6 +1,6 @@
 define([
 	'bublikApp',
-	'components/servicies/config',
+	'components/services/config',
 	'components/filters/translate',
 	'components/services/currentuser',
 	'css!components/widgets/topmenu/topmenu.css'
