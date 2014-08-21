@@ -11,6 +11,9 @@ define([
 	'glx!topmenu',
 	'glx!rigthmenu',
 
+	//Utils
+	'glx-utils!glxload',
+
 	//Special widgets
 	'glx!useralerts',
 
