@@ -4,8 +4,8 @@
 define([
 	"bublikApp",
 	"angular",
-	'components/servicies/backends/tags/tagsResource',
-	'components/servicies/storage'
+	'components/services/backends/tags/tagsResource',
+	'components/services/storage'
 
 ], function(app, angular){
 	"use strict";

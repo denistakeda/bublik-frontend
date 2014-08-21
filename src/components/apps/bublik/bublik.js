@@ -3,9 +3,9 @@ define([
 	'components/apps/bublik/router',
 
 	//Servicies
-	'components/servicies/dictionary',
-	'components/servicies/backends/common/commonBackend',
-	'components/servicies/backends/user/userBackend',
+	'components/services/dictionary',
+	'components/services/backends/common/commonBackend',
+	'components/services/backends/user/userBackend',
 
 	//User widgets
 	'glx!topmenu',
