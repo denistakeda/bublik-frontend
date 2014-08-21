@@ -37,15 +37,6 @@ define([
 			 * Handle data callbacks. Can be used if you need to emulate success callbacks with exist data.
 			 */
 			_callbacks = {
-				getTopOfCompanies: function(level, limit, cb){
-					storage.topOfCompanies = {loading: true, hasMore: true};
-					userResource.topOfCompanies.get({level: level, limit: limit ? limit : 10, offset: 0},
-						function(data){
-							angular.extend(storage.topOfCompanies, data);
-							storage.topOfCompanies.loading = false;
-							cb(storage.topOfCompanies);
-						});
-				},
 
 				//User menu
 				getMenu: function(onSuccess, onError){
@@ -63,66 +54,47 @@ define([
 						storage.userInfo = response.data;
 						onSuccess && onSuccess(response.data);
 					}, function(response){
-						onError && onError(response.data);
+						onError && onError(response);
 					})
 				},
 
 				updateUserFirstName: function(newFirstName, onSuccess, onError){
-					onSuccess = onSuccess || function(){
-						return true;
-					};
-					onError = onError || function(){
-						return true;
-					};
-					userResource.userInfo.save({userId: $routeParams.userId}, {first_name: newFirstName}, onSuccess, onError);
+					userResource.userInfo.save({userId: $routeParams.userId}, {first_name: newFirstName},
+						function(response){
+							onSuccess && onSuccess(response.data);
+						}, function(response){
+							onError && onError(response);
+						});
 				},
 
 				updateUserLastName: function(newFirstName, onSuccess, onError){
-					onSuccess = onSuccess || function(){
-						return true;
-					};
-					onError = onError || function(){
-						return true;
-					};
-					userResource.userInfo.save({userId: $routeParams.userId}, {last_name: newFirstName}, onSuccess, onError);
+					userResource.userInfo.save({userId: $routeParams.userId}, {last_name: newFirstName},
+						function(response){
+							onSuccess && onSuccess(response.data);
+						}, function(response){
+							onError && onError(response);
+						}
+					);
 				},
 
 				addInterest: function(interest, onSuccess, onError){
-					onSuccess = onSuccess || function(){
-						return true;
-					};
-					onError = onError || function(){
-						return true;
-					};
 					userResource.userInterests.insert({userId: $routeParams.userId}, {interests: [interest]}, function(response){
 						storage.userInfo.interests.push(interest);
-						onSuccess(response);
+						onSuccess && onSuccess(response.data);
 					},function(response){
-						onError(response);
+						onError && onError(response);
 					});
 				},
 				removeInterest: function(interest, onSuccess, onError){
-					onSuccess = onSuccess || function(){
-						return true;
-					};
-					onError = onError || function(){
-						return true;
-					};
 					userResource.userInterests.delete({userId: $routeParams.userId}, {interests: [interest]}, function(response){
 						storage.userInfo.interests.splice(storage.userInfo.interests.indexOf(interest), 1);
-						onSuccess(response);
+						onSuccess && onSuccess(response.data);
 					},function(response){
-						onError(response);
+						onError && onError(response);
 					});
 				},
 
 				updateUserAvatar: function(avatar, onSuccess, onError){
-					onSuccess = onSuccess || function(){
-						return true;
-					};
-					onError = onError || function(){
-						return true;
-					};
 					userResource.userAvatar.save({userId: $routeParams.userId},
 						{
 							image_data: avatar.data,
@@ -130,7 +102,13 @@ define([
 							crop_x: avatar.x,
 							crop_y: avatar.y,
 							crop_l: avatar.l
-						}, onSuccess, onError);
+						},
+						function(response){
+							onSuccess && onSuccess(response.data);
+						}, function(response){
+							onError && onError(response);
+						}
+					);
 				},
 
 				getTagsSuggestions: function(keyword,exclude, onSuccess, onError){
@@ -144,35 +122,35 @@ define([
 				isEmailUnique: function(email, onSuccess, onError){
 					userResource.loginUnique.get({login: email}, function(response){
 						if (response.status && response.status === "ok") {
-							onSuccess();
+							onSuccess(response.data);
 						} else {
-							onError();
+							onError(response);
 						}
 					});
 				},
 
 				registration: function(regParam, cb){
-					userResource.registration.update({}, regParam, function(regData){
+					userResource.registration.insert({}, regParam, function(regData){
 						if (regData.data.access_token) commonBackend.setAccessToken(regData.data.access_token);
 						cb && cb(regData.data);
 					});
 				},
 
-				login: function(loginParam, cb, onError){
-					userResource.login.update({}, loginParam, function(response){
+				login: function(loginParam, onSuccess, onError){
+					userResource.login.insert({}, loginParam, function(response){
 						if (response.data.access_token) {
 							commonBackend.setAccessToken(response.data.access_token);
-							cb(response.data);
+							onSuccess(response.data);
 						} else {
-							onError && onError();
+							onError && onError(response.data);
 						}
-					}, function(){
-						onError();
+					}, function(response){
+						onError(response);
 					});
 				},
 
 				logout: function(onSuccess, onError){
-					userResource.logout.update(function(response){
+					userResource.logout.insert(function(response){
 						commonBackend.clearAccessToken();
 						onSuccess && onSuccess(response.data);
 					}, function(response){
