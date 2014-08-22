@@ -12,7 +12,7 @@ define([
 ], function(app){
 	"use strict";
 
-	var directive = function($routeParams, userBackend, commonBackend, storage, $modal, messager, config, userEntity){
+	var directive = function($routeParams, userBackend, commonBackend, storage, $modal, messager, config, user){
 		return {
 			restrict: "C",
 			templateUrl: '../components/widgets/userinfo/userinfo.html',
@@ -54,10 +54,16 @@ define([
 					})
 				};
 
-				userBackend.getUserInfo($routeParams.userId, function(){
+				scope.userInfo = user.userInfo;
+
+				user.getUserInfo({userId: $routeParams.userId},
+					function(){commonBackend.alreadyLoaded();}
+				);
+
+				/*userBackend.getUserInfo($routeParams.userId, function(){
 					scope.userInfo = storage.userInfo;
 					commonBackend.alreadyLoaded();
-				});
+				});*/
 
 			}
 		}
