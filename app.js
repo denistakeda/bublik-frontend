@@ -1,31 +1,22 @@
-var express = require('express'),
-	app = express();
+angular.module('glxBublik', ['ui.bootstrap', 'ui.utils', 'ngRoute', 'ngAnimate', 'glxPages', 'glxUtils', 'glxEntities']);
 
-var lessMiddleware = require('less-middleware');
+angular.module('glxBublik').run(function($rootScope) {
 
-//
-// Create a node-static server instance to serve the './public' folder
-//
-if ( ~process.argv.slice(2).indexOf('--production') )	{
-	// production
-	console.log('production')
-	app.use('/',express.static( __dirname + "/target/build", { maxAge: 3600 }) );
-} else {
-	// development
-	console.log('development');
-	app.use(lessMiddleware({
-		src: __dirname + '/src',
-		dest: __dirname + "/src",
-		prefix: '/',
-		compress: true
-	}));
-    app.use('/',express.static(__dirname + "/src", { maxAge: false }));
-}
+    $rootScope.safeApply = function(fn) {
+        $rootScope.applicationReady = true;
+        $rootScope.localizationLoading = true;
+        $rootScope.isResourceLoading = function(){
+            return $rootScope.loading || $rootScope.localizationLoading;
+        };
 
-app.get(/\/steal.*/, function(req, res){
-	res.send("(function(){})();");
-})
-//require('./fixtures/wat')(app);	// WAT fixture
-//require('./fixtures/smartsearch')(app);	// smartsearch fixture
+        var phase = $rootScope.$$phase;
+        if (phase === '$apply' || phase === '$digest') {
+            if (fn && (typeof(fn) === 'function')) {
+                fn();
+            }
+        } else {
+            this.$apply(fn);
+        }
+    };
 
-require('http').createServer(app).listen(8282);
+});

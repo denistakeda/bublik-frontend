@@ -215,7 +215,7 @@ if (cluster.isMaster) { // master
             return proxy.web(req, res, {
                 target: {
                     host: process.env.TENANT + '-local.galaxias.co',
-                    port: 8282
+                    port: 9001
                 }
             });
         }

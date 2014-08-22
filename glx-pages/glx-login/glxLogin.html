@@ -1,0 +1,81 @@
+<form name="loginForm" novalidate ng-submit="login()" ng-hide="loading">
+    <legend>{{"widget.userLogin.mainHeader"|localize}}</legend>
+
+
+    <div class="glx-callout glx-callout-danger" ng-show="invalidLogin">
+        <h4>{{'widget.userLogin.fields.incorrectLoginError.label'|localize}}</h4>
+
+        <p>{{'widget.userLogin.fields.incorrectLoginError.messageText'|localize}}
+            <a href="#/user/registration">{{'widget.userLogin.fields.incorrectLoginError.registerText'|localize}}</a></p>
+    </div>
+    <!--Email-->
+    <div class="form-group has-feedback" ng-class="fieldClass(loginForm.email.$dirty, loginForm.email.$valid)">
+        <label class="control-label" for="email">{{"widget.userLogin.fields.login.label"|localize}}</label>
+        <input type="email"
+               placeholder="{{'widget.userLogin.fields.login.label'|localize}}"
+               name="email"
+               ng-model="email"
+               class="form-control"
+               ng-model-options="{ updateOn: 'default blur', debounce: { default: 300, blur: 0 } }"
+               required/>
+
+        <div ng-show="loginForm.email.$dirty">
+            <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="loginForm.email.$valid"></span>
+            <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="loginForm.email.$invalid"></span>
+        </div>
+
+        <div class="help-block " ng-show="loginForm.email.$dirty && loginForm.email.$invalid">
+            <p ng-show="loginForm.email.$error.required" class="text-danger">
+                {{"widget.userLogin.fields.login.requiredError"|localize}}
+            </p>
+
+            <p ng-show="loginForm.email.$error.email" class="text-danger">
+                {{"widget.userLogin.fields.login.incorrectEmailError"|localize}}
+            </p>
+        </div>
+    </div>
+
+    <!--Password-->
+    <div class="form-group has-feedback" ng-class="fieldClass(loginForm.password.$dirty, loginForm.password.$valid)">
+        <label class="control-label" for="password">{{'widget.userLogin.fields.password.label'|localize}}</label>
+        <input type="password"
+               placeholder="{{'widget.userLogin.fields.password.label'|localize}}"
+               name="password"
+               ng-model="password"
+               ng-maxlength=255
+               class="form-control"
+               ng-model-options="{ updateOn: 'default blur', debounce: { default: 300, blur: 0 } }"
+               required/>
+
+        <div ng-show="loginForm.password.$dirty">
+            <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="loginForm.password.$valid"></span>
+            <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="loginForm.password.$invalid"></span>
+        </div>
+
+        <div class="help-block " ng-show="loginForm.password.$dirty && loginForm.password.$invalid">
+            <p ng-show="loginForm.password.$error.required" class="text-danger">
+                {{"widget.userLogin.fields.password.requiredError"|localize}}
+            </p>
+
+            <p ng-show="loginForm.password.$error.maxlength" class="text-danger">
+                {{"widget.userLogin.fields.password.tooLongPassword"|localize}}
+            </p>
+        </div>
+    </div>
+
+    <!--Remember me-->
+    <div class="checkbox" ng-model="rememberMe">
+        <label>
+            <input type="checkbox"> {{"widget.userLogin.fields.rememberMe.label"|localize}}
+        </label>
+    </div>
+
+    <!--Submit button-->
+    <button type="submit" class="btn btn-default pull-right"
+            ng-disabled="loginForm.$invalid || waitResponse"
+            ng-class="loginForm.$valid?'btn-success':'btn-default'">
+        <span ng-show="waitResponse" us-spinner></span>
+        {{"widget.userLogin.fields.submitButton.label"|localize}}
+    </button>
+
+</form>

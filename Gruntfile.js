@@ -1,238 +1,237 @@
-module.exports = function(grunt) {
+/*jslint node: true */
+'use strict';
 
-	// Project configuration.
-	grunt.initConfig({
-		pkg: grunt.file.readJSON('package.json'),
+var pkg = require('./package.json');
 
-		requirejs: {
-			compile: {
-				options: {
-					baseUrl: './target/runtime',
-					dir: './target/build',
-					paths: {
-						angular: 'empty:',
-						jquery: 'empty:',
-						jcrop: 'empty:',
-						"ui-utils": "empty:",
-						"ui-date": "empty:",
-						jQueryUI: 'empty:',
-						spin: 'empty:',
+//Using exclusion patterns slows down Grunt significantly
+//instead of creating a set of patterns like '**/*.js' and '!**/node_modules/**'
+//this method is used to create a set of inclusive patterns for all subdirectories
+//skipping node_modules, bower_components, dist, and any .dirs
+//This enables users to create any directory structure they desire.
+var createFolderGlobs = function(fileTypePatterns) {
+  fileTypePatterns = Array.isArray(fileTypePatterns) ? fileTypePatterns : [fileTypePatterns];
+  var ignore = ['node_modules','bower_components','dist','temp'];
+  var fs = require('fs');
+  return fs.readdirSync(process.cwd())
+          .map(function(file){
+            if (ignore.indexOf(file) !== -1 ||
+                file.indexOf('.') === 0 ||
+                !fs.lstatSync(file).isDirectory()) {
+              return null;
+            } else {
+              return fileTypePatterns.map(function(pattern) {
+                return file + '/**/' + pattern;
+              });
+            }
+          })
+          .filter(function(patterns){
+            return patterns;
+          })
+          .concat(fileTypePatterns);
+};
 
-						'angular-resource': 'empty:',
-						'angular-animate': 'empty:',
-						'angular-route': 'empty:',
-						'angular-infinite-scroll': 'empty:',
-						'angular-spinner': 'empty:',
-						'angular-ui': 'empty:',
-						'angular-cookies': 'empty:',
+module.exports = function (grunt) {
 
-						'bootstrap':'libs/bootstrap/dist/js/bootstrap.min'
-					},
-					shim: {
-						'angular-resource': { deps: ['angular']},
-						'angular-animate': { deps: ['angular']},
-						'angular-infinite-scroll': { deps: ['angular']},
-						'angular-route': { deps: ['angular']},
-						'angular-spinner': { deps: ['angular', 'spin']},
-						'angular-ui': {deps: ['angular', 'bootstrap']},
-						'angular-cookies': { deps: ['angular']},
+  // load all grunt tasks
+  require('load-grunt-tasks')(grunt);
 
-						'jquery': { exports: '$'},
-						'jcrop': {deps: ['jquery', 'css!libs/jcrop/0.9.12/jquery.Jcrop.min.css']},
-						'jQueryUI': { deps: ['jquery', 'css!libs/jquery/smoothness/jquery-ui.css', 'css!libs/jquery/smoothness/jquery-ui-dd.min.css'], exports: '$.ui'},
-						"ui-utils": { deps: ["angular"] },
-						"ui-date": { deps: ["angular", "jQueryUI"] },
-						'angular': {deps: ['jquery', 'jQueryUI'], exports: 'angular'},
-						'bootstrap': {deps: ['jquery','css!libs/bootstrap/dist/css/bootstrap.min.css']}
-					},
-					optimize: "uglify2",            //|
-					generateSourceMaps: true,       //| comment it, if you want to see license information.
-					preserveLicenseComments: false, //|
-//					optimize: "none",
-//					findNestedDependencies: true,
-					skipDirOptimize: true,      // TODO add custom job 'compress' for all files except libs/ and boot.js
-					onBuildRead: function (moduleName, path, contents) {
-						// wrap jquery plugins
-						if(~contents.indexOf('jquery') && !~contents.indexOf('define(') && !~contents.indexOf('require(') ) {
-							return "define(['jquery'], function(jquery){"+contents+"});";
-						} else {
-							return contents;
-						}
-					},
+  // Project configuration.
+  grunt.initConfig({
+    connect: {
+      main: {
+        options: {
+          port: 9001
+        }
+      }
+    },
+    watch: {
+      main: {
+        options: {
+            livereload: true,
+            livereloadOnError: false,
+            spawn: false
+        },
+        files: [createFolderGlobs(['*.js','*.less','*.html']),'!_SpecRunner.html','!.grunt'],
+        tasks: [] //all the tasks are run dynamically during the watch event handler
+      }
+    },
+    jshint: {
+      main: {
+        options: {
+            jshintrc: '.jshintrc'
+        },
+        src: createFolderGlobs('*.js')
+      }
+    },
+    clean: {
+      before:{
+        src:['dist','temp']
+      },
+      after: {
+        src:['temp']
+      }
+    },
+    less: {
+      production: {
+        options: {
+        },
+        files: {
+          'temp/app.css': 'app.less'
+        }
+      }
+    },
+    ngtemplates: {
+      main: {
+        options: {
+            module: pkg.name,
+            htmlmin:'<%= htmlmin.main.options %>'
+        },
+        src: [createFolderGlobs('*.html'),'!index.html','!_SpecRunner.html'],
+        dest: 'temp/templates.js'
+      }
+    },
+    copy: {
+      main: {
+        files: [
+          {src: ['img/**'], dest: 'dist/'},
+          {src: ['bower_components/font-awesome/fonts/**'], dest: 'dist/',filter:'isFile',expand:true}
+          //{src: ['bower_components/angular-ui-utils/ui-utils-ieshiv.min.js'], dest: 'dist/'},
+          //{src: ['bower_components/select2/*.png','bower_components/select2/*.gif'], dest:'dist/css/',flatten:true,expand:true},
+          //{src: ['bower_components/angular-mocks/angular-mocks.js'], dest: 'dist/'}
+        ]
+      }
+    },
+    dom_munger:{
+      read: {
+        options: {
+          read:[
+            {selector:'script[data-concat!="false"]',attribute:'src',writeto:'appjs'},
+            {selector:'link[rel="stylesheet"][data-concat!="false"]',attribute:'href',writeto:'appcss'}
+          ]
+        },
+        src: 'index.html'
+      },
+      update: {
+        options: {
+          remove: ['script[data-remove!="false"]','link[data-remove!="false"]'],
+          append: [
+            {selector:'body',html:'<script src="app.full.min.js"></script>'},
+            {selector:'head',html:'<link rel="stylesheet" href="app.full.min.css">'}
+          ]
+        },
+        src:'index.html',
+        dest: 'dist/index.html'
+      }
+    },
+    cssmin: {
+      main: {
+        src:['temp/app.css','<%= dom_munger.data.appcss %>'],
+        dest:'dist/app.full.min.css'
+      }
+    },
+    concat: {
+      main: {
+        src: ['<%= dom_munger.data.appjs %>','<%= ngtemplates.main.dest %>'],
+        dest: 'temp/app.full.js'
+      }
+    },
+    ngmin: {
+      main: {
+        src:'temp/app.full.js',
+        dest: 'temp/app.full.js'
+      }
+    },
+    uglify: {
+      main: {
+        src: 'temp/app.full.js',
+        dest:'dist/app.full.min.js'
+      }
+    },
+    htmlmin: {
+      main: {
+        options: {
+          collapseBooleanAttributes: true,
+          collapseWhitespace: true,
+          removeAttributeQuotes: true,
+          removeComments: true,
+          removeEmptyAttributes: true,
+          removeScriptTypeAttributes: true,
+          removeStyleLinkTypeAttributes: true
+        },
+        files: {
+          'dist/index.html': 'dist/index.html'
+        }
+      }
+    },
+    imagemin: {
+      main:{
+        files: [{
+          expand: true, cwd:'dist/',
+          src:['**/{*.png,*.jpg}'],
+          dest: 'dist/'
+        }]
+      }
+    },
+    karma: {
+      options: {
+        frameworks: ['jasmine'],
+        files: [  //this files data is also updated in the watch handler, if updated change there too
+          '<%= dom_munger.data.appjs %>',
+          'bower_components/angular-mocks/angular-mocks.js',
+          createFolderGlobs('*-spec.js')
+        ],
+        logLevel:'ERROR',
+        reporters:['mocha'],
+        autoWatch: false, //watching is handled by grunt-contrib-watch
+        singleRun: true
+      },
+      all_tests: {
+        browsers: ['PhantomJS','Chrome','Firefox']
+      },
+      during_watch: {
+        browsers: ['PhantomJS']
+      },
+    }
+  });
 
-					onBuildWrite: function (moduleName, path, contents) {
-						return contents.replace(/css!(?!libs)(.*?.css)/ig, "$1");    // add moduleName
-					},
-					// license
-					wrap: {
-						startFile: "license.js"
-					},
-					modules: [{
-						name: "bublik-widget-pack",
-						exclude: [
-							"jquery",
-							"angular",
-							'bootstrap'
-						]
-					}]
-				}
-			}
-		},
+  grunt.registerTask('build',['jshint','clean:before','less','dom_munger','ngtemplates','cssmin','concat','ngmin','uglify','copy','htmlmin','imagemin','clean:after']);
+  grunt.registerTask('serve', ['dom_munger:read','jshint','connect', 'watch']);
+  grunt.registerTask('test',['dom_munger:read','karma:all_tests']);
 
+  grunt.event.on('watch', function(action, filepath) {
+    //https://github.com/gruntjs/grunt-contrib-watch/issues/156
 
-		ngtemplates: {
-			app: {
-				cwd: 'src',
-				src: ['components/apps/**/*.htm*',
-					'components/directives/**/*.htm*',
-					'components/factories/**/*.htm*',
-					'components/services/**/*.htm*',
-					'components/widgets/**/*.htm*',
-					'components/utils/**/*.htm*',
-					'components/filters/**/*.htm*',
-					'templates/**/*.htm*'
-				],
-				dest: 'target/runtime/components/templates.js',
-				options: {
-					bootstrap: function(module, script) {
-						return 'define(["bublikApp"], function(app) { app.run(["$templateCache", function($templateCache) { ' + script + ' }])});';
-					},
-					htmlmin:  {
-						collapseWhitespace: true,
-						collapseBooleanAttributes: true
-					},
-					prefix: "../"
-				}
-			}
-		},
+    var tasksToRun = [];
 
-		copy: {
-			main: {
-				files: [
-					{expand: true, cwd: 'src', src: ['**'], dest: 'target/runtime'}
-				]
-			}
-		},
+    if (filepath.lastIndexOf('.js') !== -1 && filepath.lastIndexOf('.js') === filepath.length - 3) {
 
-		replace: {
-			dist: {
-				options: {
-					variables: {
-						"version": 'v=<%= grunt.option("assembly") || pkg.version %>'
-					}
-				},
-				files: [
-					{expand: true, flatten: true, src: ['target/runtime/bublik/boot.js'], dest: 'target/runtime/bublik'}
-				]
-			}
-		},
+      //lint the changed js file
+      grunt.config('jshint.main.src', filepath);
+      tasksToRun.push('jshint');
 
-		clean: {
-			dev: [
-				"src/runtime/components/apps/**/*.css",
-				"src/runtime/components/directives/**/*.css",
-				"src/components/widgets/**/*.css"
-			],
-			all: [ 'target/build/', 'node_modules', 'src/test-output'],
-			build: [ 'target/runtime/', 'target/build/', 'src/test-output'],
-			runtime: [ 'target/runtime/' ]
-		},
+      //find the appropriate unit test for the changed file
+      var spec = filepath;
+      if (filepath.lastIndexOf('-spec.js') === -1 || filepath.lastIndexOf('-spec.js') !== filepath.length - 8) {
+        spec = filepath.substring(0,filepath.length - 3) + '-spec.js';
+      }
 
-		karma: {
-			build: {
-				configFile: 'karma.conf.js',
-				singleRun: true,
-				browsers: ['PhantomJS']
-			},
-			dev: {
-				configFile: 'karma.conf.js',
-				singleRun: true,
-				browsers: ['PhantomJS', 'Firefox',  'Chrome']
-			}
-		},
+      //if the spec exists then lets run it
+      if (grunt.file.exists(spec)) {
+        var files = [].concat(grunt.config('dom_munger.data.appjs'));
+        files.push('bower_components/angular-mocks/angular-mocks.js');
+        files.push(spec);
+        grunt.config('karma.options.files', files);
+        tasksToRun.push('karma:during_watch');
+      }
+    }
 
-		jshint: {
-			// define the files to lint
-			files: ['Gruntfile.js',
-				'src/components/**/*.js',
-				'test/**/*.js'
-			],
-			// configure JSHint (documented at http://www.jshint.com/docs/)
-			options: {
-				"asi": true,	// semicolons
-				"expr": true,	// Expected an assignment or function call and instead saw an expression
-				"evil": true,	// eval
-				// more options here if you want to override JSHint defaults
-				globals: {
-					$: true,
-					jquery: true,
-					angular: true,
-					console: true,
-					document: true,
-					window: true
-				}
-			}
-		},
-		watch: {
-			files: ['<%= jshint.files %>'],
-			tasks: ['jshint', 'karma:build']
-		},
-		less: {
-			production: {
-				options: {
-					paths: ["/target/runtime"],
-					prefix: '/',
-					compress: true
-				},
-				files: [{
-					expand: true,
-					cwd:    "",
-					src:    "target/runtime/components/apps/**/*.less",
-					ext:    ".css"
-				},{
-					expand: true,
-					cwd:    "",
-					src:    "target/runtime/components/directives/**/*.less",
-					ext:    ".css"
-				},{
-					expand: true,
-					cwd:    "",
-					src:    "target/runtime/components/widgets/**/*.less",
-					ext:    ".css"
-				},{
-					expand: true,
-					cwd:    "",
-					src:    "target/runtime/components/utils/**/*.less",
-					ext:    ".css"
-				}]
-			}
-		}
-	});
+    //if index.html changed, we need to reread the <script> tags so our next run of karma
+    //will have the correct environment
+    if (filepath === 'index.html') {
+      tasksToRun.push('dom_munger:read');
+    }
 
-	// Load the plugin
-	grunt.loadNpmTasks('grunt-contrib-requirejs');
-	grunt.loadNpmTasks('grunt-replace');
-	grunt.loadNpmTasks('grunt-contrib-jshint');
-	grunt.loadNpmTasks('grunt-contrib-qunit');
-	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-contrib-clean');
-	grunt.loadNpmTasks('grunt-contrib-copy');
-	grunt.loadNpmTasks('grunt-karma');
-	grunt.loadNpmTasks('grunt-contrib-less');
-	grunt.loadNpmTasks('grunt-angular-templates');
-	grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.config('watch.main.tasks',tasksToRun);
 
-	grunt.registerTask('force', 'force run', function(status){
-		grunt.option('force', status!=='off');
-	});
-
-	// this would be run by typing "grunt test" on the command line
-	grunt.registerTask('test', ['ngtemplates', 'karma:build']);
-
-	// this would be run by typing "grunt build" on the command line
-	grunt.registerTask('build', ['clean:build', 'copy', 'less', 'ngtemplates', 'replace', 'requirejs', 'clean:runtime']);   // TODO run requrejs in runtime, copy widgets js, libs and images to build folder
-
-	// Default task(s).
-	grunt.registerTask('default', ['test', 'build:prod']);
-
+  });
 };
