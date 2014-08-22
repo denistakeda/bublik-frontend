@@ -3,6 +3,7 @@ define([
 	'angular',
 	'components/services/messager/messager',
 	'components/services/backends/user/userBackend',
+	'components/entities/userEntity',
 	'glx-utils!editablefield',
 	'glx-utils!tags',
 	'glx!userinfo-avatar',
@@ -11,7 +12,7 @@ define([
 ], function(app){
 	"use strict";
 
-	var directive = function($routeParams, userBackend, commonBackend, storage, $modal, messager, config){
+	var directive = function($routeParams, userBackend, commonBackend, storage, $modal, messager, config, userEntity){
 		return {
 			restrict: "C",
 			templateUrl: '../components/widgets/userinfo/userinfo.html',
@@ -61,7 +62,7 @@ define([
 			}
 		}
 	};
-	directive.$inject = ["$routeParams", "userBackend", "commonBackend", "storage", "$modal", "glxMessager", "glxConfig"];
+	directive.$inject = ["$routeParams", "userBackend", "commonBackend", "storage", "$modal", "glxMessager", "glxConfig","glxUserEntity"];
 	app.directive('glxUserInfo', directive)
 });
 
