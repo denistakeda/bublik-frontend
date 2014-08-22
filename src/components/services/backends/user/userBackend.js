@@ -39,9 +39,10 @@ define([
 			_callbacks = {
 
 				//User menu
-				getMenu: function(onSuccess, onError){
-					userResource.menu.get(function(response){
-						currentUser.menu = response.data;
+				getCurrentUser: function(onSuccess, onError){
+					userResource.currentUser.get(function(response){
+						currentUser.info = response.data.info;
+						currentUser.menu = response.data.menu_items;
 						onSuccess && onSuccess(response.data);
 					}, function(response){
 						onError && onError(response);
@@ -160,7 +161,7 @@ define([
 
 				// Social block
 				followUser: function(onSuccess, onError){
-					userResource.followUser.update({userId: currentUser.menu.user.id, followedId: storage.userInfo.id}, function(response){
+					userResource.followUser.update({userId: currentUser.info.id, followedId: storage.userInfo.id}, function(response){
 						onSuccess && onSuccess(response.data);
 					}, function(response){
 						onError && onError(response);
@@ -168,7 +169,7 @@ define([
 				},
 
 				unfollowUser: function(onSuccess, onError){
-					userResource.unfollowUser.update({userId: currentUser.menu.user.id, unfollowedId: storage.userInfo.id}, function(response){
+					userResource.unfollowUser.update({userId: currentUser.info.id, unfollowedId: storage.userInfo.id}, function(response){
 						onSuccess && onSuccess(response.data);
 					}, function(response){
 						onError && onError(response);

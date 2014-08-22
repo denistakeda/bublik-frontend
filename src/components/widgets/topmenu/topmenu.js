@@ -12,19 +12,19 @@ define([
 			restrict: "C",
 			templateUrl: '../components/widgets/topmenu/topmenu.html',
 			link: function(scope, elm, attrs){
-				userBackend.getMenu();
+				userBackend.getCurrentUser();
 
 				scope.currentUser = currentUser;
 
 				scope.logout = function(){
 					userBackend.logout(function(data){
-						userBackend.getMenu();
+						userBackend.getCurrentUser();
 						commonBackend.redirectTo("user/login");
 					});
 				};
 
 				scope.getUserAvatar = function(){
-					return scope.currentUser.menu.user.avatar_preview_url || config.defaultAvatar;
+					return scope.currentUser.info.avatar_preview_url || config.defaultAvatar;
 				}
 			}
 		}

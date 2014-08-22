@@ -17,7 +17,7 @@ define([
 			},
 			link: function(scope, elm, attrs){
 				var addFollower = function(){
-					var current = currentUser.menu.user;
+					var current = currentUser.info;
 					scope.glxFollowers.push({
 						id: current.id,
 						title: current.full_name,
@@ -26,7 +26,7 @@ define([
 				};
 
 				var removeFollower = function(){
-					var current = currentUser.menu.user;
+					var current = currentUser.info;
 					angular.forEach(scope.glxFollowers, function(f, k){
 						if (f.id === current.id){
 							scope.glxFollowers.splice(k, 1);
