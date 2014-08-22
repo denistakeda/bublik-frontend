@@ -1,6 +1,3 @@
-/**
- * @global define sessionStorage
- */
 define([
 	"bublikApp",
 	"angular",

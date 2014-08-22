@@ -1,22 +1,30 @@
 define([
 	// Standard Libs
-	'angular',		// lib/angular/angular
+	'angular',
 	'angular-resource',
 	'angular-infinite-scroll',
 	'angular-route',
 	'angular-spinner',
 	'angular-ui',
 	'angular-cookies',
-	//'angular-animate',
-	'ui-utils'
-	//'ui-utils',
-	//'ui-date',
-	//'angular-sanitize'
+	'ui-utils',
+	//Galaxias modules
+	'components/modules/entities'
 ], function(angular){
 	"use strict";
 
-	var app = angular.module('Application', ['ngResource', 'ngRoute', 'infinite-scroll', 'angularSpinner', 'ui.bootstrap',
-											 'ngCookies', 'ui.utils']);
+
+	var app = angular.module('Application', [
+		'ngResource',
+		'ngRoute',
+		'infinite-scroll',
+		'angularSpinner',
+		'ui.bootstrap',
+		'ngCookies',
+		'ui.utils',
+
+		'bublikEntities'
+	]);
 	//Enable angular-animate only for element with class angular-animate
 
 	app.run(["$rootScope", function($rootScope){
