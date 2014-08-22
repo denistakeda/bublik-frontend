@@ -44,12 +44,12 @@ define([
 				};
 
 				scope.addTag = function(tag){
-					userBackend.addInterest(tag, undefined, function(){
+					user.addInterests({}, {interests: [tag]}, undefined, function(){
 						messager.showErrorAlert("widget.userInfo.alert.addInterest.error");
 					})
 				};
 				scope.removeTag = function(tag){
-					userBackend.removeInterest(tag, undefined, function(){
+					user.removeInterests({}, {interests: [tag]}, undefined, function(){
 						messager.showErrorAlert("widget.userInfo.alert.removeInterest.error");
 					})
 				};
