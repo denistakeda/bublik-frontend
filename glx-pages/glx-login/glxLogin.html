@@ -1,18 +1,21 @@
+
+
 <form name="loginForm" novalidate ng-submit="login()" ng-hide="loading">
-    <legend>{{"widget.userLogin.mainHeader"|localize}}</legend>
+    {{loginEntity}}
+    <legend>{{"widget.userLogin.mainHeader"|glxLocalize}}</legend>
 
 
     <div class="glx-callout glx-callout-danger" ng-show="invalidLogin">
-        <h4>{{'widget.userLogin.fields.incorrectLoginError.label'|localize}}</h4>
+        <h4>{{'widget.userLogin.fields.incorrectLoginError.label'|glxLocalize}}</h4>
 
-        <p>{{'widget.userLogin.fields.incorrectLoginError.messageText'|localize}}
-            <a href="#/user/registration">{{'widget.userLogin.fields.incorrectLoginError.registerText'|localize}}</a></p>
+        <p>{{'widget.userLogin.fields.incorrectLoginError.messageText'|glxLocalize}}
+            <a href="#/user/registration">{{'widget.userLogin.fields.incorrectLoginError.registerText'|glxLocalize}}</a></p>
     </div>
     <!--Email-->
     <div class="form-group has-feedback" ng-class="fieldClass(loginForm.email.$dirty, loginForm.email.$valid)">
-        <label class="control-label" for="email">{{"widget.userLogin.fields.login.label"|localize}}</label>
+        <label class="control-label" for="email">{{"widget.userLogin.fields.login.label"|glxLocalize}}</label>
         <input type="email"
-               placeholder="{{'widget.userLogin.fields.login.label'|localize}}"
+               placeholder="{{'widget.userLogin.fields.login.label'|glxLocalize}}"
                name="email"
                ng-model="email"
                class="form-control"
@@ -26,20 +29,20 @@
 
         <div class="help-block " ng-show="loginForm.email.$dirty && loginForm.email.$invalid">
             <p ng-show="loginForm.email.$error.required" class="text-danger">
-                {{"widget.userLogin.fields.login.requiredError"|localize}}
+                {{"widget.userLogin.fields.login.requiredError"|glxLocalize}}
             </p>
 
             <p ng-show="loginForm.email.$error.email" class="text-danger">
-                {{"widget.userLogin.fields.login.incorrectEmailError"|localize}}
+                {{"widget.userLogin.fields.login.incorrectEmailError"|glxLocalize}}
             </p>
         </div>
     </div>
 
     <!--Password-->
     <div class="form-group has-feedback" ng-class="fieldClass(loginForm.password.$dirty, loginForm.password.$valid)">
-        <label class="control-label" for="password">{{'widget.userLogin.fields.password.label'|localize}}</label>
+        <label class="control-label" for="password">{{'widget.userLogin.fields.password.label'|glxLocalize}}</label>
         <input type="password"
-               placeholder="{{'widget.userLogin.fields.password.label'|localize}}"
+               placeholder="{{'widget.userLogin.fields.password.label'|glxLocalize}}"
                name="password"
                ng-model="password"
                ng-maxlength=255
@@ -54,11 +57,11 @@
 
         <div class="help-block " ng-show="loginForm.password.$dirty && loginForm.password.$invalid">
             <p ng-show="loginForm.password.$error.required" class="text-danger">
-                {{"widget.userLogin.fields.password.requiredError"|localize}}
+                {{"widget.userLogin.fields.password.requiredError"|glxLocalize}}
             </p>
 
             <p ng-show="loginForm.password.$error.maxlength" class="text-danger">
-                {{"widget.userLogin.fields.password.tooLongPassword"|localize}}
+                {{"widget.userLogin.fields.password.tooLongPassword"|glxLocalize}}
             </p>
         </div>
     </div>
@@ -66,7 +69,7 @@
     <!--Remember me-->
     <div class="checkbox" ng-model="rememberMe">
         <label>
-            <input type="checkbox"> {{"widget.userLogin.fields.rememberMe.label"|localize}}
+            <input type="checkbox"> {{"widget.userLogin.fields.rememberMe.label"|glxLocalize}}
         </label>
     </div>
 
@@ -75,7 +78,7 @@
             ng-disabled="loginForm.$invalid || waitResponse"
             ng-class="loginForm.$valid?'btn-success':'btn-default'">
         <span ng-show="waitResponse" us-spinner></span>
-        {{"widget.userLogin.fields.submitButton.label"|localize}}
+        {{"widget.userLogin.fields.submitButton.label"|glxLocalize}}
     </button>
 
 </form>

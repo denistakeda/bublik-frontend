@@ -1,4 +1,4 @@
-angular.module('glxEntities', ['ui.bootstrap','ui.utils','ngRoute','ngAnimate']);
+angular.module('glxEntities', ['ui.bootstrap','ui.utils','ngRoute','ngAnimate', 'ngResource', 'ngCookies']);
 
 angular.module('glxEntities').config(function($routeProvider) {
 

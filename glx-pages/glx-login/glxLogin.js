@@ -1,5 +1,5 @@
 angular.module('glxPages').directive('glxLogin',
-    function () {
+    function (glxLoginEntity) {
         return {
             restrict: 'E',
             replace: true,
@@ -10,10 +10,10 @@ angular.module('glxPages').directive('glxLogin',
             link: function (scope, elm, attrs) {
                 scope.login = function () {
                     scope.waitResponse = true;
-                    userBackend.login({login: scope.email, password: scope.password, remember_me: scope.rememberMe}, function (response) {
+                    glxLoginEntity.login({login: scope.email, password: scope.password, remember_me: scope.rememberMe}, function (response) {
                         scope.waitResponse = false;
-                        userBackend.getMenu();
-                        commonBackend.redirectTo("/user/" + response.id);
+                        //userBackend.getMenu();
+                        //commonBackend.redirectTo("/user/" + response.id);
                     }, function () {
                         scope.invalidLogin = true;
                         scope.waitResponse = false;
@@ -29,7 +29,9 @@ angular.module('glxPages').directive('glxLogin',
                     }
                 };
 
-                commonBackend.alreadyLoaded();
+                //commonBackend.alreadyLoaded();
+
+                //$rootScope.loading = false;
             }
         };
     });
