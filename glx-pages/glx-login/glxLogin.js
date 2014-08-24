@@ -1,8 +1,7 @@
 angular.module('glxPages').directive('glxLogin',
-    function (glxLoginEntity) {
+    function (glxCurrentUserEntity) {
         return {
             restrict: 'E',
-            replace: true,
             scope: {
 
             },
@@ -10,10 +9,8 @@ angular.module('glxPages').directive('glxLogin',
             link: function (scope, elm, attrs) {
                 scope.login = function () {
                     scope.waitResponse = true;
-                    glxLoginEntity.login({login: scope.email, password: scope.password, remember_me: scope.rememberMe}, function (response) {
+                    glxCurrentUserEntity.login({login: scope.email, password: scope.password, remember_me: scope.rememberMe}, function (response) {
                         scope.waitResponse = false;
-                        //userBackend.getMenu();
-                        //commonBackend.redirectTo("/user/" + response.id);
                     }, function () {
                         scope.invalidLogin = true;
                         scope.waitResponse = false;

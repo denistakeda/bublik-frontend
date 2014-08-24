@@ -29,20 +29,22 @@
 
   <!-- Main App JS -->
   <script src="app.js"></script>
-  <script src="glx-utils/constants/glx-paths.js"></script>
+  <script src="glx-utils/constants/glx-paths/glxPaths.js"></script>
   <script src="glx-pages/glxPages.js"></script>
   <script src="glx-pages/glx-login/glxLogin.js"></script>
   <script src="glx-utils/glxUtils.js"></script>
   <script src="glx-entities/glxEntities.js"></script>
   <script src="glx-entities/service/glxTransformResponseCollection.js"></script>
-  <script src="glx-entities/service/glxLoginEntity.js"></script>
   <script src="glx-utils/filters/glxLocalize.js"></script>
   <script src="bower_components/spin.js/spin.js"></script>
   <script src="bower_components/angular-spinner/angular-spinner.js"></script>
+  <script src="glx-pages/glx-top-menu/glxTopMenu.js"></script>
+  <script src="glx-entities/service/glx-current-user-entity/glxCurrentUserEntity.js"></script>
+  <script src="glx-utils/constants/glx-config/glxConfig.js"></script>
   <!-- Add New Component JS Above -->
 
 
-  <div class="glx-topmenu"></div>
+  <glx-top-menu></glx-top-menu>
   <!--Content-->
   <div class="container bs-docs-container">
       <div class="row">
