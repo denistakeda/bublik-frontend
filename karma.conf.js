@@ -21,6 +21,10 @@ module.exports = function(config) {
 
 		browsers: ['PhantomJS', 'Firefox',  'Chrome'],
 
+		plugins: [
+			'karma-teamcity-reporter'
+		],
+
 		reporters: ['progress', 'junit'],
 		junitReporter: {
 			outputFile: 'src/test-output/unit.xml',
