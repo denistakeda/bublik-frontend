@@ -1,12 +1,12 @@
-angular.module('glxWidgets').controller('glxUserAvatar', function ($scope, $modalInstance, glxUserEntity) {
+angular.module('glxWidgets').controller('glxUserAvatar', function ($scope, $modalInstance, glxUserEntity, glxMessager) {
     var avatar = {};
     $scope.ok = function () {
         if (avatar.image_data) {
             glxUserEntity.changeAvatar({}, avatar, function () {
-                    //messager.showSuccessAlert("widget.userAvatar1.alert.successAvatarChanged");
+                    glxMessager.showSuccessAlert("widget.userAvatar1.alert.successAvatarChanged");
                 },
                 function () {
-                    //messager.showErrorAlert("widget.userAvatar1.alert.errorAvatarChanged");
+                    glxMessager.showErrorAlert("widget.userAvatar1.alert.errorAvatarChanged");
                 });
             avatar = {};
         }

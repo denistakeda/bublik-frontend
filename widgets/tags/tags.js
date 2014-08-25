@@ -1,4 +1,4 @@
-angular.module('glxWidgets').directive('glxTags', function ($timeout, glxSuggestionsEntity) {
+angular.module('glxWidgets').directive('glxTags', function ($timeout, glxSuggestionsEntity, glxMessager) {
     return {
         restrict: 'E',
         scope: {
@@ -26,7 +26,7 @@ angular.module('glxWidgets').directive('glxTags', function ($timeout, glxSuggest
             scope.addTag = function (tagName) {
                 if (scope.selectedSuggestionIndex === -1) {
                     if (scope.glxModel.indexOf(tagName) !== -1) {
-                        //messager.showErrorAlert("widget.tags.alert.alreadyExists.error");
+                        glxMessager.showErrorAlert("widget.tags.alert.alreadyExists.error");
                         return;
                     }
                     if (!tagName || tagName === "") return;
