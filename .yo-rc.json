@@ -33,7 +33,7 @@
       },
       {
         "name": "glxWidgets",
-        "file": "widgets/glxWidgets.js"
+        "file": "widgets/widgets.js"
       }
     ]
   }

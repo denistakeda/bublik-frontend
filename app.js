@@ -1,4 +1,4 @@
-angular.module('glxBublik', ['ui.bootstrap', 'ui.utils', 'ngRoute', 'ngAnimate', 'glxPages', 'glxUtils', 'glxEntities', 'glxWidgets']);
+angular.module('glxBublik', ['ui.bootstrap', 'ui.utils', 'ngRoute', 'glxPages', 'glxUtils', 'glxEntities', 'glxWidgets']);
 
 angular.module('glxBublik').config(function($routeProvider, glxPaths) {
 

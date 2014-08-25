@@ -6,14 +6,14 @@
     <div class="col-md-9 col-sm-9 col-xs-9">
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12 user-name">
-                <div class="glx-editable-field"
+                <glx-editable-field
                      glx-model="userInfo.first_name"
-                     glx-on-change="updateFirstName()"
-                     glx-editable="userInfo.actions.update"></div>
-                <div class="glx-editable-field"
+                     glx-on-change="updateUserName()"
+                     glx-editable="userInfo.actions.update"></glx-editable-field>
+                <glx-editable-field
                      glx-model="userInfo.last_name"
-                     glx-on-change="updateLastName()"
-                     glx-editable="userInfo.actions.update"></div>
+                     glx-on-change="updateUserName()"
+                     glx-editable="userInfo.actions.update"></glx-editable-field>
             </div>
         </div>
         <div class="row">

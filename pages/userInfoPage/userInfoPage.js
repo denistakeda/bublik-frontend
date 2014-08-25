@@ -16,21 +16,14 @@ angular.module('glxPages').directive('glxUserInfoPage', function ($modal, glxCon
                 return glxConfig.defaultAvatar;
             };
 
-            /*scope.updateFirstName = function () {
-                userBackend.updateUserFirstName(scope.userInfo.first_name, function () {
-                    messager.showSuccessAlert("widget.userInfo.alert.firstNameChange.success");
+            scope.updateUserName = function () {
+                glxUserEntity.changeUserName({first_name: scope.userInfo.first_name, second_name:  scope.userInfo.second_name},
+                function () {
+                    //messager.showSuccessAlert("widget.userInfo.alert.firstNameChange.success");
                 }, function () {
-                    messager.showErrorAlert("widget.userInfo.alert.firstNameChange.error");
+                    //messager.showErrorAlert("widget.userInfo.alert.firstNameChange.error");
                 });
-            };*/
-
-            /*scope.updateLastName = function () {
-                userBackend.updateUserLastName(scope.userInfo.last_name, function () {
-                    messager.showSuccessAlert("widget.userInfo.alert.secondNameChange.success");
-                }, function () {
-                    messager.showErrorAlert("widget.userInfo.alert.secondNameChange.error");
-                });
-            };*/
+            };
 
             scope.addTag = function (tag) {
                 glxUserEntity.addInterests({}, {interests: [tag]}, undefined, function () {

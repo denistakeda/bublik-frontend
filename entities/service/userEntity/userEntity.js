@@ -7,16 +7,21 @@ angular.module('glxEntities').factory('glxUserEntity', function ($resource, $rou
     };
     var _userInfoResource = $resource('/api/user/:userId',
         {userId: $routeParams.userId},
-        {'getUserInfo': {
-            method: 'GET',
-            transformResponse: [
-                glxTransformResponseCollection.fromJsonConverter,
-                glxTransformResponseCollection.extractData,
-                function (data) {
-                    angular.extend(_pubFields.userInfo, data);
-                }
-            ]
-        }}
+        {
+            'getUserInfo': {
+                method: 'GET',
+                transformResponse: [
+                    glxTransformResponseCollection.fromJsonConverter,
+                    glxTransformResponseCollection.extractData,
+                    function (data) {
+                        angular.extend(_pubFields.userInfo, data);
+                    }
+                ]
+            },
+            'changeUserName': {
+                method: 'POST'
+            }
+        }
     );
     var _userAvatarResource = $resource('/api/user/:userId/avatar',
         {userId: $routeParams.userId},
