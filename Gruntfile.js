@@ -45,7 +45,7 @@ module.exports = function (grunt) {
       },
       production: {
           options:{
-              port: 9001,
+              port: 9002,
               base: 'dist'
           }
       }
@@ -100,7 +100,8 @@ module.exports = function (grunt) {
       main: {
         files: [
           {src: ['imgs/**'], dest: 'dist/'},
-          {src: ['bower_components/font-awesome/fonts/**'], dest: 'dist/',filter:'isFile',expand:true}
+          {src: ['bower_components/font-awesome/fonts/**'], dest: 'dist/fonts',filter:'isFile',expand:true, flatten: true},
+          {src: ['bower_components/bootstrap/fonts/**'], dest: 'dist/fonts',filter:'isFile',expand:true, flatten: true}
           //{src: ['bower_components/angular-ui-utils/ui-utils-ieshiv.min.js'], dest: 'dist/'},
           //{src: ['bower_components/select2/*.png','bower_components/select2/*.gif'], dest:'dist/css/',flatten:true,expand:true},
           //{src: ['bower_components/angular-mocks/angular-mocks.js'], dest: 'dist/'}
@@ -202,7 +203,7 @@ module.exports = function (grunt) {
 
 
   grunt.registerTask('build',[/*'jshint',*/'clean:before','less','dom_munger','ngtemplates','cssmin','concat','ngmin','uglify','copy','htmlmin','imagemin','clean:after']);
-  grunt.registerTask('serve', ['dom_munger:read'/*,'jshint'*/,'connect', 'watch']);
+  grunt.registerTask('serve', ['dom_munger:read'/*,'jshint'*/,'connect:main', 'connect:production', 'watch']);
   grunt.registerTask('production', ['connect:production', 'watch']);
   grunt.registerTask('test',['dom_munger:read','karma:all_tests']);
 

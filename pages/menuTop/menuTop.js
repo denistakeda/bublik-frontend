@@ -1,9 +1,9 @@
-angular.module('glxPages').directive('glxTopMenu', function (glxCurrentUserEntity, glxConfig) {
+angular.module('glxPages').directive('glxMenuTop', function (glxCurrentUserEntity, glxConfig) {
     return {
         restrict: 'E',
         scope: {
         },
-        templateUrl: 'pages/topMenu/topMenu.html',
+        templateUrl: 'pages/menuTop/menuTop.html',
         link: function (scope, element, attrs, fn) {
 
             scope.currentUser = glxCurrentUserEntity.currentUser;

@@ -3,10 +3,10 @@ angular.module('glxWidgets').controller('glxUserAvatar', function ($scope, $moda
     $scope.ok = function () {
         if (avatar.image_data) {
             glxUserEntity.changeAvatar({}, avatar, function () {
-                    //messager.showSuccessAlert("widget.userAvatar.alert.successAvatarChanged");
+                    //messager.showSuccessAlert("widget.userAvatar1.alert.successAvatarChanged");
                 },
                 function () {
-                    //messager.showErrorAlert("widget.userAvatar.alert.errorAvatarChanged");
+                    //messager.showErrorAlert("widget.userAvatar1.alert.errorAvatarChanged");
                 });
             avatar = {};
         }

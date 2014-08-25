@@ -8,7 +8,7 @@ angular.module('glxPages').directive('glxUserInfoPage', function ($modal, glxCon
         link: function (scope, element, attrs, fn) {
             scope.changeAvatar = function () {
                 var avatarModalInstanse = $modal.open({
-                    templateUrl: "../../widgets/userAvatar/userAvatar.html",
+                    templateUrl: "widgets/userAvatar/userAvatar.html",
                     controller: 'glxUserAvatar'
                 });
             };

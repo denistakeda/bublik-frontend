@@ -1,4 +1,4 @@
-describe('glxTopMenu', function() {
+describe('glxMenuTop', function() {
 
   beforeEach(module('glxPages'));
 
@@ -11,7 +11,7 @@ describe('glxTopMenu', function() {
 
   it('should ...', function() {
 
-    /* 
+    /*
     To test your directive, you need to create some html that would use your directive,
     send that through compile() then compare the results.
 
