@@ -21,15 +21,15 @@
     "modules": [
       {
         "name": "glxPages",
-        "file": "glx-pages/glxPages.js"
+        "file": "pages/pages.js"
       },
       {
         "name": "glxUtils",
-        "file": "glx-utils/glxUtils.js"
+        "file": "utils/utils.js"
       },
       {
         "name": "glxEntities",
-        "file": "glx-entities/glxEntities.js"
+        "file": "entities/entities.js"
       }
     ]
   }

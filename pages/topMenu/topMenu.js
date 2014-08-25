@@ -3,7 +3,7 @@ angular.module('glxPages').directive('glxTopMenu', function (glxCurrentUserEntit
         restrict: 'E',
         scope: {
         },
-        templateUrl: 'glx-pages/glx-top-menu/glxTopMenu.html',
+        templateUrl: 'pages/topMenu/topMenu.html',
         link: function (scope, element, attrs, fn) {
 
             scope.currentUser = glxCurrentUserEntity.currentUser;

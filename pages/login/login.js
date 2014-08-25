@@ -5,7 +5,7 @@ angular.module('glxPages').directive('glxLogin',
             scope: {
 
             },
-            templateUrl: 'glx-pages/glx-login/glxLogin.html',
+            templateUrl: 'pages/login/login.html',
             link: function (scope, elm, attrs) {
                 scope.login = function () {
                     scope.waitResponse = true;
