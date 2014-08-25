@@ -30,6 +30,10 @@
       {
         "name": "glxEntities",
         "file": "entities/entities.js"
+      },
+      {
+        "name": "glxWidgets",
+        "file": "widgets/glxWidgets.js"
       }
     ]
   }

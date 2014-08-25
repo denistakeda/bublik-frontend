@@ -22,6 +22,7 @@
     "moment": "~2.5",
     "less.js": "~1.6",
     "font-awesome": "~4.0",
-    "angular-spinner": "~0.5.1"
+    "angular-spinner": "~0.5.1",
+    "jcrop": "~0.9.12"
   }
 }

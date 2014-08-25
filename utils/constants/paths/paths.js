@@ -19,7 +19,7 @@ angular.module('glxBublik').constant('glxPaths', {
         },
         userInfo: {
             path: "/user/:userId",
-            template: "<div class='glx-user-info'></div>",
+            template: "<glx-user-info-page></glx-user-info-page>",
             controller: "ClearStorageCtrl"
         }
     }
