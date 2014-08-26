@@ -1,7 +1,10 @@
 <div class="row">{{userEntity}}
     <div class="col-md-3 col-sm-3 col-xs-3">
         <img ng-src="{{userInfo.avatar.preview_url||getDefaultAvatar()}}" class="img-responsive img-rounded"  ng-click="userInfo.actions.update&&changeAvatar()">
-        <div class="glx-social col-md-12 col-sm-12 col-xs-12" glx-social-data="userInfo.social"></div>
+        <glx-follow-list class="col-md-12 col-sm-12 col-xs-12"
+                         glx-title="{{'widget.userInfo.social.followed_users'|glxLocalize}}">
+        </glx-follow-list>
+
     </div>
     <div class="col-md-9 col-sm-9 col-xs-9">
         <div class="row">
