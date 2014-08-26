@@ -37,19 +37,39 @@ module.exports = function (grunt) {
 
   // Project configuration.
   grunt.initConfig({
-    connect: {
-      main: {
-        options: {
-          port: 9001
-        }
-      },
-      production: {
-          options:{
-              port: 9002,
-              base: 'dist'
+      connect: {
+  /*        options: {
+              port: 9000,
+              hostname: 'localhost'
+          },*/
+          server: {
+              options: {
+                  port: 8001,
+                  base: './',
+                  logger: 'dev',
+                  hostname: 'localhost',
+                  middleware: function (connect, options) {
+                      var proxy = require('grunt-connect-proxy/lib/utils').proxyRequest;
+                      return [
+                          // Include the proxy first
+                          proxy,
+                          // Serve static files.
+                          connect.static(options.base),
+                          // Make empty directories browsable.
+                          connect.directory(options.base)
+                      ];
+                  }
+              },
+              proxies: [
+                  {
+                      context: ['/api', '/uploads'],
+                      host: 'bublik.galaxias.co',
+                      https: false
+                  }
+              ]
           }
-      }
-    },
+
+      },
     watch: {
       main: {
         options: {
@@ -203,7 +223,7 @@ module.exports = function (grunt) {
 
 
   grunt.registerTask('build',[/*'jshint',*/'clean:before','less','dom_munger','ngtemplates','cssmin','concat','ngmin','uglify','copy','htmlmin','imagemin','clean:after']);
-  grunt.registerTask('serve', ['dom_munger:read'/*,'jshint'*/,'connect:main', 'connect:production', 'watch']);
+  grunt.registerTask('serve', ['dom_munger:read'/*,'jshint'*/,'configureProxies:server', 'connect:server', 'watch']);
   grunt.registerTask('production', ['connect:production', 'watch']);
   grunt.registerTask('test',['dom_munger:read','karma:all_tests']);
 

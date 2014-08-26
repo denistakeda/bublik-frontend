@@ -1,8 +1,9 @@
-**/.idea/*
-*/target/*
-node_modules/*
+/.idea/*
+/node_modules/*
+/bower_components/*
+!/bower_components/bootstrap/
 */node_modules/*
-*/bootstrap/dist/*
-**.css
-dist/**
-*/dist/**
+bower_components/bootstrap/dist
+*.css
+/dist/*
+
