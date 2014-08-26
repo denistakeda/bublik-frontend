@@ -6,8 +6,11 @@ angular.module('glxWidgets').directive('glxFollowList', function () {
         },
         transclude: true,
         templateUrl: 'widgets/followList/followList.html',
-        link: function (scope, element, attrs, fn) {
-            scope.childCount = 1;
+        controller: function($scope){
+            $scope.childCount = 0;
+            this.addItem = function(){
+                $scope.childCount++;
+            };
         }
     };
 });
