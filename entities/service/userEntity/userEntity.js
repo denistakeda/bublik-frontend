@@ -1,6 +1,7 @@
 angular.module('glxEntities').factory('glxUserEntity', function ($resource, $routeParams, glxTransformResponseCollection) {
     var _pubFields = {
-        userInfo: {}
+        userInfo: {},
+        userFollowers: {}
     };
     var _privFields = {
         lastSendedInterest: []  //TODO do it without field
@@ -68,8 +69,23 @@ angular.module('glxEntities').factory('glxUserEntity', function ($resource, $rou
                 }
             }
         });
+    var _userFollowersResource = $resource('/api/user/:userId/social/user/followers',
+        {userId: $routeParams.userId},
+        {
+            'getFollowers': {
+                method: 'GET',
+                transformResponse: [
+                    glxTransformResponseCollection.fromJsonConverter,
+                    glxTransformResponseCollection.extractData,
+                    function (data) {
+                        angular.extend(_pubFields.userFollowers, data)
+                    }
+                ]
+            }
+        }
+    );
 
-    var glxUserEntity = angular.extend({}, _pubFields, _userInfoResource, _userAvatarResource,_userTagsResource);
+    var glxUserEntity = angular.extend({}, _pubFields, _userInfoResource, _userAvatarResource, _userTagsResource, _userFollowersResource);
 
     return glxUserEntity;
 });

@@ -21,6 +21,11 @@ angular.module('glxBublik').constant('glxPaths', {
             path: "/user/:userId",
             template: "<glx-user-info-page></glx-user-info-page>",
             controller: "ClearStorageCtrl"
+        },
+        userFollowers: {
+            path: "/user/:userId/followers",
+            template: "<glx-user-followers></glx-user-followers>",
+            controller: "ClearStorageCtrl"
         }
     }
 });
