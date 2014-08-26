@@ -5,6 +5,7 @@
     "express": "~3.3.4",
     "grunt": "~0.4",
     "grunt-angular-templates": "~0.5",
+    "grunt-autoprefixer": "~1.0.1",
     "grunt-browser-output": "0.1.0",
     "grunt-connect-proxy": "~0.1.11",
     "grunt-contrib-clean": "~0.5",

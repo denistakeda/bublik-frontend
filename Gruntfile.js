@@ -94,6 +94,11 @@ module.exports = function (grunt) {
           }
 
       },
+    autoprefixer: {
+        single_file: {
+            src: 'temp/app.css'
+        }
+    },
     watch: {
       main: {
         options: {
@@ -246,7 +251,7 @@ module.exports = function (grunt) {
   });
 
 
-  grunt.registerTask('build',[/*'jshint',*/'clean:before','less','dom_munger','ngtemplates','cssmin','concat','ngmin','uglify','copy','htmlmin','imagemin','clean:after']);
+  grunt.registerTask('build',[/*'jshint',*/'clean:before','less','dom_munger','ngtemplates','autoprefixer', 'cssmin','concat','ngmin','uglify','copy','htmlmin','imagemin','clean:after']);
   grunt.registerTask('serve', ['dom_munger:read'/*,'jshint'*/,'configureProxies:server', 'connect:develop','configureProxies:production', 'connect:production', 'watch']);
   grunt.registerTask('production', ['connect:production', 'watch']);
   grunt.registerTask('test',['dom_munger:read','karma:all_tests']);
