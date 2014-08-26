@@ -38,13 +38,9 @@ module.exports = function (grunt) {
   // Project configuration.
   grunt.initConfig({
       connect: {
-  /*        options: {
-              port: 9000,
-              hostname: 'localhost'
-          },*/
-          server: {
+          develop: {
               options: {
-                  port: 8001,
+                  port: grunt.option('port')||8001,
                   base: './',
                   logger: 'dev',
                   hostname: 'localhost',
@@ -63,7 +59,35 @@ module.exports = function (grunt) {
               proxies: [
                   {
                       context: ['/api', '/uploads'],
-                      host: 'bublik.galaxias.co',
+                      host: grunt.option('apiServer')||'bublik.galaxias.co',
+                      port: grunt.option('apiPort')||80,
+                      https: false
+                  }
+              ]
+          },
+          production: {
+              options: {
+                  port: grunt.option('productionPort')||8002,
+                  base: './dist',
+                  logger: 'dev',
+                  hostname: 'localhost',
+                  middleware: function (connect, options) {
+                      var proxy = require('grunt-connect-proxy/lib/utils').proxyRequest;
+                      return [
+                          // Include the proxy first
+                          proxy,
+                          // Serve static files.
+                          connect.static(options.base),
+                          // Make empty directories browsable.
+                          connect.directory(options.base)
+                      ];
+                  }
+              },
+              proxies: [
+                  {
+                      context: ['/api', '/uploads'],
+                      host: grunt.option('apiServer')||'bublik.galaxias.co',
+                      port: grunt.option('apiPort')||80,
                       https: false
                   }
               ]
@@ -223,7 +247,7 @@ module.exports = function (grunt) {
 
 
   grunt.registerTask('build',[/*'jshint',*/'clean:before','less','dom_munger','ngtemplates','cssmin','concat','ngmin','uglify','copy','htmlmin','imagemin','clean:after']);
-  grunt.registerTask('serve', ['dom_munger:read'/*,'jshint'*/,'configureProxies:server', 'connect:server', 'watch']);
+  grunt.registerTask('serve', ['dom_munger:read'/*,'jshint'*/,'configureProxies:server', 'connect:develop','configureProxies:production', 'connect:production', 'watch']);
   grunt.registerTask('production', ['connect:production', 'watch']);
   grunt.registerTask('test',['dom_munger:read','karma:all_tests']);
 
