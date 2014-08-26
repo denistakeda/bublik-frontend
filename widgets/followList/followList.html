@@ -1,6 +1,6 @@
 <div class="panel panel-glx" ng-show="childCount>0">
     <div class="panel-heading">
-        <h3 class="panel-title">{{glxTitle+' ('+childCount+')'}}</h3>
+        <h3 class="panel-title" ng-bind-template="{{glxTitle}}"></h3>
     </div>
     <div ng-transclude class="panel-body"></div>
 </div>

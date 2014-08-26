@@ -1,4 +1,4 @@
-angular.module('glxEntities').factory('glxUserEntity', function ($resource, $routeParams, glxTransformResponseCollection) {
+angular.module('glxEntities').factory('glxUserEntity', function ($resource, $routeParams, glxTransformResponseCollection, glxCurrentUserEntity) {
     var _pubFields = {
         userInfo: {}
     };
@@ -15,6 +15,7 @@ angular.module('glxEntities').factory('glxUserEntity', function ($resource, $rou
                     glxTransformResponseCollection.extractData,
                     function (data) {
                         angular.extend(_pubFields.userInfo, data);
+                        return data;
                     }
                 ]
             },
@@ -33,6 +34,7 @@ angular.module('glxEntities').factory('glxUserEntity', function ($resource, $rou
                     glxTransformResponseCollection.extractData,
                     function (data) {
                         _pubFields.userInfo.avatar = data;
+                        return data;
                     }
                 ]
             }
@@ -46,11 +48,10 @@ angular.module('glxEntities').factory('glxUserEntity', function ($resource, $rou
                     _privFields.lastSendedInterest = data.interests;
                     return angular.toJson(data);
                 },
-                transformResponse: function (data, headers) {
-                    if (/201*/.test(headers('Status')))
-                        _pubFields.userInfo.interests = _pubFields.userInfo.interests.concat(_privFields.lastSendedInterest);
+                transformResponse: glxTransformResponseCollection.onSuccessTransform(function(data){
+                    _pubFields.userInfo.interests = _pubFields.userInfo.interests.concat(_privFields.lastSendedInterest);
                     return data;
-                }
+                })
             },
             'removeInterests': {
                 method: 'POST', //because angular don't supported DELETE request with body
@@ -58,18 +59,49 @@ angular.module('glxEntities').factory('glxUserEntity', function ($resource, $rou
                     _privFields.lastRemovedInterests = data.interests;
                     return angular.toJson(data);
                 },
-                transformResponse: function (data, headers) {
-                    if (/201*/.test(headers('Status'))) {
-                        angular.forEach(_privFields.lastRemovedInterests, function (interest) {
-                            _pubFields.userInfo.interests.splice(_pubFields.userInfo.interests.indexOf(interest), 1);
-                        });
-                    }
+                transformResponse: glxTransformResponseCollection.onSuccessTransform(function(data){
+                    angular.forEach(_privFields.lastRemovedInterests, function (interest) {
+                        _pubFields.userInfo.interests.splice(_pubFields.userInfo.interests.indexOf(interest), 1);
+                    });
                     return data;
-                }
+                })
             }
         });
+    var _followUserResource = $resource('/api/user/:userId/social/user/follow/:followedId',
+        {userId: '@userId', followedId: '@followedId'},
+        {
+            'followUser': {
+                method: 'POST',
+                transformResponse: [
+                    glxTransformResponseCollection.fromJsonConverter,
+                    glxTransformResponseCollection.extractData,
+                    glxTransformResponseCollection.onSuccessTransform(function(data){
+                        _userInfoResource.getUserInfo();
+                        return data;
+                    })
+                ]
+            }
+        }
+    );
+    var _unfollowUserResource = $resource('/api/user/:userId/social/user/unfollow/:unfollowedId',
+        {userId: '@userId', unfollowedId: '@unfollowedId'},
+        {
+            'unfollowUser': {
+                method: 'POST',
+                transformResponse: [
+                    glxTransformResponseCollection.fromJsonConverter,
+                    glxTransformResponseCollection.extractData,
+                    glxTransformResponseCollection.onSuccessTransform(function(data){
+                        _userInfoResource.getUserInfo();
+                        return data;
+                    })
+                ]
+            }
+        }
+    );
 
-    var glxUserEntity = angular.extend({}, _pubFields, _userInfoResource, _userAvatarResource,_userTagsResource);
+    var glxUserEntity = angular.extend({}, _pubFields, _userInfoResource, _userAvatarResource,_userTagsResource,
+        _followUserResource, _unfollowUserResource);
 
     return glxUserEntity;
 });

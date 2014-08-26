@@ -2,10 +2,25 @@ angular.module('glxEntities').factory('glxTransformResponseCollection', function
 
     var glxTransformResponseCollection = {
         fromJsonConverter: function (data) {
-            return angular.fromJson(data);
+            try{
+                return angular.fromJson(data);
+            } catch(e){
+                return data;
+            }
+
         },
         extractData: function (data) {
-            return data.data;
+            if (data.data) return data.data;
+            return data;
+        },
+        onSuccessTransform: function(cb){
+            return function(data, headers){
+                if (cb && /[(201*)(200*)]/.test(headers('Status'))){
+                    return cb(data, headers);
+                } else {
+                    return data;
+                }
+            };
         }
     };
 
