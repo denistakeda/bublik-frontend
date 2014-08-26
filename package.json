@@ -7,6 +7,7 @@
     "grunt-angular-templates": "~0.5",
     "grunt-autoprefixer": "~1.0.1",
     "grunt-browser-output": "0.1.0",
+    "grunt-cache-bust": "~0.4.4",
     "grunt-connect-proxy": "~0.1.11",
     "grunt-contrib-clean": "~0.5",
     "grunt-contrib-concat": "~0.3",

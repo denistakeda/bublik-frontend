@@ -39,7 +39,7 @@ gulp.task('css', ['clean'], function() {
     return gulp.src('app.less')
         .pipe(less())
         .pipe(cssmin({keepSpecialComments: 0}))
-        .pipe(rename('app.full.min.css'))
+        .pipe(rename('app.full.min.b41cf7f0c9839f37.css'))
         .pipe(gulp.dest('dist/'));
 });
 
@@ -86,7 +86,7 @@ gulp.task('indexHtml', ['clean'], function() {
             $('script[data-remove!="exclude"]').remove();
             $('link').remove();
             $('body').append('<script src="app.full.min.js"></script>');
-            $('head').append('<link rel="stylesheet" href="app.full.min.css">');
+            $('head').append('<link rel="stylesheet" href="app.full.min.b41cf7f0c9839f37.css">');
         }))
         .pipe(htmlmin(htmlminOptions))
         .pipe(gulp.dest('dist/'));

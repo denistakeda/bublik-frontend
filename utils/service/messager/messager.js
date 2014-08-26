@@ -10,9 +10,6 @@
 angular.module('glxUtils').factory('glxMessager', function ($timeout, $q, glxConfig, $filter) {
     var _private = {
         showAlert: function (alert, bootstrapClass) {
-
-            console.log(glxConfig);
-
             _public.alerts.push(alert);
             alert.displayClass = bootstrapClass + " glx-added-alert";
             $q.when($timeout(function () {
