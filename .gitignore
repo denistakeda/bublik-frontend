@@ -1,6 +1,6 @@
-**/.idea/*
-*/target/*
-node_modules/*
-*/node_modules/*
-*/bootstrap/dist/*
-**/widgets/**/*.css
+/.idea/*
+/node_modules/*
+/bower_components/*
+*.css
+/dist/*
+

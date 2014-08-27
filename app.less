@@ -1,0 +1,60 @@
+@import "bower_components/bootstrap/less/bootstrap.less";
+//@import "bower_components/bootstrap/less/theme.less";
+@import "bower_components/font-awesome/less/font-awesome.less";
+@import "bower_components/jcrop/css/jquery.Jcrop.css";
+@fa-font-path: "bower_components/font-awesome/fonts";
+
+/*Application styles*/
+@import "styles/glx.less";
+
+/* Component LESS */
+@import "pages/pages";
+@import "utils/utils";
+@import "entities/entities.less";
+@import "widgets/widgets";
+/* Add Component LESS Above */
+
+/* Required for Angular UI Bootstrap */
+.nav, .pagination, .carousel a { cursor: pointer; }
+
+/* Personal preference for BS modal.  The LESS below makes the backdrop white and
+   causes the modal to fade in rather than slide in. */
+//@modal-backdrop-bg: white;
+//.modal {
+//	&.fade {
+//		.transition(opacity .3s);
+//	}
+//	&.fade .modal-dialog {
+//		.translate(0,0);
+//	}
+//}
+
+
+//Bublik content
+
+.hoverable:hover{
+  background-color: @hoverColor;
+}
+.selected {
+  background-color: @selectColor;
+}
+.user-name {
+  font-size: @font-size-h3;
+}
+
+.section-head{
+  font-size: @font-size-h4;
+  padding:5px;
+  font-weight: bold;
+}
+.empty-content{
+  background-color: darken(@gray-lighter, 10%);
+  color: @gray;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  border-radius: 5px;
+  border: 2px dashed @gray;
+  margin-top: 5px;
+  margin-bottom:5px;
+}

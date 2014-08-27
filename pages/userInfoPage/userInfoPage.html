@@ -1,0 +1,41 @@
+<div class="row">
+    <div class="col-md-3 col-sm-3 col-xs-3">
+        <img ng-src="{{userInfo.avatar.preview_url||getDefaultAvatar()}}" class="avatar img-responsive img-rounded"  ng-click="userInfo.actions.update&&changeAvatar()">
+
+        <glx-follow-button glx-social-actions="userInfo.social.actions"></glx-follow-button>
+
+        <glx-follow-list glx-title="{{'widget.userInfo.social.followed_users'|glxLocalize}}">
+            <glx-social-item ng-repeat="preview in userInfo.social.followed_users" glx-social-preview="preview"></glx-social-item>
+        </glx-follow-list>
+
+        <glx-follow-list glx-title="{{'widget.userInfo.social.followers'|glxLocalize}}">
+            <glx-social-item ng-repeat="preview in userInfo.social.followers" glx-social-preview="preview"></glx-social-item>
+        </glx-follow-list>
+
+    </div>
+    <div class="col-md-9 col-sm-9 col-xs-9">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 user-name">
+                <glx-editable-field
+                     glx-model="userInfo.first_name"
+                     glx-on-change="updateUserName()"
+                     glx-editable="userInfo.actions.update"></glx-editable-field>
+                <glx-editable-field
+                     glx-model="userInfo.last_name"
+                     glx-on-change="updateUserName()"
+                     glx-editable="userInfo.actions.update"></glx-editable-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <glx-tags glx-model="userInfo.interests"
+                     glx-allow-control="userInfo.actions.update"
+                     glx-add-tag-function="addTag"
+                     glx-remove-tag-function="removeTag"
+                     glx-empty-list-caption="{{'widget.userInfo.emptyInterestsCaption'|glxLocalize}}"
+                     glx-head-caption="{{'widget.userInfo.interestsHeader'|glxLocalize}}"
+                     glx-add-tag-caption="{{'widget.userInfo.addInterestCaption'|glxLocalize}}"></glx-tags>
+            </div>
+        </div>
+    </div>
+</div>

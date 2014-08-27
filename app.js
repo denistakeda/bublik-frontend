@@ -1,31 +1,35 @@
-var express = require('express'),
-	app = express();
+angular.module('glxBublik', ['ui.bootstrap', 'ui.utils', 'ngRoute', 'glxPages', 'glxUtils', 'glxEntities', 'glxWidgets']);
 
-var lessMiddleware = require('less-middleware');
+angular.module('glxBublik').config(function($routeProvider, glxPaths) {
 
-//
-// Create a node-static server instance to serve the './public' folder
-//
-if ( ~process.argv.slice(2).indexOf('--production') )	{
-	// production
-	console.log('production')
-	app.use('/',express.static( __dirname + "/target/build", { maxAge: 3600 }) );
-} else {
-	// development
-	console.log('development');
-	app.use(lessMiddleware({
-		src: __dirname + '/src',
-		dest: __dirname + "/src",
-		prefix: '/',
-		compress: true
-	}));
-    app.use('/',express.static(__dirname + "/src", { maxAge: false }));
-}
+    /* Add New Routes Above */
+    angular.forEach(glxPaths.allRouting, function(routing){
+        $routeProvider.
+            when(routing.path, {
+                template: routing.template,
+                controller: routing.controller
+            }
+        );
+    });
 
-app.get(/\/steal.*/, function(req, res){
-	res.send("(function(){})();");
-})
-//require('./fixtures/wat')(app);	// WAT fixture
-//require('./fixtures/smartsearch')(app);	// smartsearch fixture
+    $routeProvider.otherwise(glxPaths.defaultRouting.path, {
+        template: glxPaths.defaultRouting.template,
+        controller: glxPaths.defaultRouting.controller
+    });
 
-require('http').createServer(app).listen(8282);
+});
+
+angular.module('glxBublik').run(function($rootScope) {
+
+    $rootScope.safeApply = function(fn) {
+        var phase = $rootScope.$$phase;
+        if (phase === '$apply' || phase === '$digest') {
+            if (fn && (typeof(fn) === 'function')) {
+                fn();
+            }
+        } else {
+            this.$apply(fn);
+        }
+    };
+
+});
