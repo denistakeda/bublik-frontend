@@ -27,12 +27,12 @@ angular.module('glxPages').directive('glxUserInfoPage', function ($modal, glxCon
             scope.addTag = function (tag) {
                 glxUserEntity.addInterests({}, {interests: [tag]}, undefined, function () {
                     glxMessager.showErrorAlert("widget.userInfo.alert.addInterest.error");
-                })
+                });
             };
             scope.removeTag = function (tag) {
                 glxUserEntity.removeInterests({}, {interests: [tag]}, undefined, function () {
                     glxMessager.showErrorAlert("widget.userInfo.alert.removeInterest.error");
-                })
+                });
             };
 
             scope.userInfo = glxUserEntity.userInfo;

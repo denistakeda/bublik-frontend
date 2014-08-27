@@ -25,6 +25,8 @@
   <script src="bower_components/angular-ui-utils/ui-utils.js"></script>
   <script src="bower_components/angular-cookies/angular-cookies.js"></script>
   <script src="bower_components/jcrop/js/jquery.Jcrop.js"></script>
+  <script src="bower_components/spin.js/spin.js"></script>
+  <script src="bower_components/angular-spinner/angular-spinner.js"></script>
   <!-- Add New Bower Component JS Above -->
 
 
@@ -34,11 +36,10 @@
   <script src="pages/pages.js"></script>
   <script src="pages/login/login.js"></script>
   <script src="utils/utils.js"></script>
+  <script src="utils/service/applicationReady/applicationReady.js"></script>
   <script src="entities/entities.js"></script>
   <script src="entities/service/transformResponseCollection.js"></script>
   <script src="utils/filters/localize/localize.js"></script>
-  <script src="bower_components/spin.js/spin.js"></script>
-  <script src="bower_components/angular-spinner/angular-spinner.js"></script>
   <script src="pages/menuTop/menuTop.js"></script>
   <script src="entities/service/currentUserEntity/currentUserEntity.js"></script>
   <script src="utils/constants/config/config.js"></script>
@@ -61,6 +62,8 @@
   <script src="pages/registration/ensureUnique/ensureUnique.js"></script>
   <script src="pages/menuSide/menuSide.js"></script>
   <script src="utils/service/locationHelper/locationHelper.js"></script>
+  <script src="utils/directive/loading/loading.js"></script>
+
   <!-- Add New Component JS Above -->
 
 
@@ -69,7 +72,7 @@
   <div class="container bs-docs-container">
       <div class="row">
           <!--Left column-->
-          <div glx-load="isResourceLoading()">
+          <div glx-loading="!isApplicationReady()">
               <div  class="col-md-10 col-sm-10 col-xs-10 widget-container container" role="main" ng-view></div>
           </div>
 
