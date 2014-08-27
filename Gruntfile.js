@@ -126,7 +126,7 @@ module.exports = function (grunt) {
         },
         clean: {
             before: {
-                src: ['dist', 'temp']
+                src: ['dist', 'temp', 'src']
             },
             after: {
                 src: ['temp']
@@ -245,9 +245,12 @@ module.exports = function (grunt) {
                     createFolderGlobs('*-spec.js')
                 ],
                 logLevel: 'ERROR',
-                reporters: ['mocha'],
+                reporters: ['mocha', 'junit'],
                 autoWatch: false, //watching is handled by grunt-contrib-watch
-                singleRun: true
+                singleRun: true,
+                junitReporter: {
+                    outputFile: 'src/test-output/unit.xml'
+                }
             },
             all_tests: {
                 browsers: ['PhantomJS', 'Chrome', 'Firefox']
@@ -261,8 +264,8 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', [/*'jshint',*/'clean:before', 'less', 'dom_munger', 'ngtemplates', 'autoprefixer', 'cssmin', 'concat', 'ngmin', 'uglify', 'copy', 'htmlmin', 'imagemin', 'cacheBust', 'clean:after']);
     grunt.registerTask('serve', ['dom_munger:read'/*,'jshint'*/, 'configureProxies:server', 'connect:develop', 'configureProxies:production', 'connect:production', 'watch']);
-    grunt.registerTask('production', ['connect:production', 'watch']);
     grunt.registerTask('test', ['dom_munger:read', 'karma:all_tests']);
+    grunt.registerTask('default', ['build', 'dom_munger:read','karma:during_watch']);
 
     grunt.event.on('watch', function (action, filepath) {
         //https://github.com/gruntjs/grunt-contrib-watch/issues/156
