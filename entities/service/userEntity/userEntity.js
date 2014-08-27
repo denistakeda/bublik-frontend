@@ -47,11 +47,11 @@ angular.module('glxEntities').factory('glxUserEntity', function ($resource, $rou
                     _privFields.lastSendedInterest = data.interests;
                     return angular.toJson(data);
                 },
-                transformResponse: function (data, headers) {
-                    if (/201*/.test(headers('Status')))
+                transformResponse:
+                    glxTransformResponseCollection.onSuccessTransform(function(data){
                         _pubFields.userInfo.interests = _pubFields.userInfo.interests.concat(_privFields.lastSendedInterest);
-                    return data;
-                }
+                        return data;
+                    })
             },
             'removeInterests': {
                 method: 'POST', //because angular don't supported DELETE request with body
