@@ -1,4 +1,4 @@
-angular.module('glxEntities').factory('glxUserEntity', function ($resource, $routeParams, glxTransformResponseCollection, glxCurrentUserEntity) {
+angular.module('glxEntities').factory('glxUserEntity', function ($resource, $routeParams, glxTransformResponseCollection) {
     var _pubFields = {
         userInfo: {}
     };
@@ -34,7 +34,6 @@ angular.module('glxEntities').factory('glxUserEntity', function ($resource, $rou
                     glxTransformResponseCollection.extractData,
                     function (data) {
                         _pubFields.userInfo.avatar = data;
-                        return data;
                     }
                 ]
             }
@@ -48,10 +47,11 @@ angular.module('glxEntities').factory('glxUserEntity', function ($resource, $rou
                     _privFields.lastSendedInterest = data.interests;
                     return angular.toJson(data);
                 },
-                transformResponse: glxTransformResponseCollection.onSuccessTransform(function(data){
-                    _pubFields.userInfo.interests = _pubFields.userInfo.interests.concat(_privFields.lastSendedInterest);
-                    return data;
-                })
+                transformResponse:
+                    glxTransformResponseCollection.onSuccessTransform(function(data){
+                        _pubFields.userInfo.interests = _pubFields.userInfo.interests.concat(_privFields.lastSendedInterest);
+                        return data;
+                    })
             },
             'removeInterests': {
                 method: 'POST', //because angular don't supported DELETE request with body
@@ -100,8 +100,7 @@ angular.module('glxEntities').factory('glxUserEntity', function ($resource, $rou
         }
     );
 
-    var glxUserEntity = angular.extend({}, _pubFields, _userInfoResource, _userAvatarResource,_userTagsResource,
-        _followUserResource, _unfollowUserResource);
+    var glxUserEntity = angular.extend({}, _pubFields, _userInfoResource, _userAvatarResource,_userTagsResource);
 
     return glxUserEntity;
 });
