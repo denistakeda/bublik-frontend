@@ -10,7 +10,7 @@
     "moduleTemplates": "templates/module",
 
     "partialDirectory": "partial/",
-    "directiveDirectory": "directive/",
+    "directiveDirectory": "",
     "filterDirectory": "filter/",
     "serviceDirectory": "service/",
     "inject": {
