@@ -1,4 +1,4 @@
-angular.module('glxEntities').factory('glxCurrentUserEntity', function ($resource, $cookies, $location, glxTransformResponseCollection) {
+angular.module('glxEntities').factory('glxCurrentUserEntity', function ($resource, $q, $cookies, $location, glxTransformResponseCollection) {
 
     var _pupFields = {
         currentUser: {}
@@ -24,14 +24,28 @@ angular.module('glxEntities').factory('glxCurrentUserEntity', function ($resourc
                 transformResponse: [
                     glxTransformResponseCollection.fromJsonConverter,
                     glxTransformResponseCollection.extractData,
-                    function (data, headers) {
-                        if (/200*/.test(headers('Status'))) {
-                            $cookies['ACCESS_TOKEN'] = data.access_token;
-                            _currentUserResource.getCurrentUser();
-                            $location.path('/user/' + data.id);//TODO try to see the way without path hardcode
-                        }
+                    glxTransformResponseCollection.onSuccessTransform(function(data){
+                        $cookies['ACCESS_TOKEN'] = data.access_token;
+                        _currentUserResource.getCurrentUser();
+                        $location.path('/user/' + data.id);
                         return data;
-                    }
+                    })
+                ]
+            }
+        });
+    var _registrationResource = $resource('/api/user/new', {},
+        {
+            'registration': {
+                method: 'PUT',
+                transformResponse: [
+                    glxTransformResponseCollection.fromJsonConverter,
+                    glxTransformResponseCollection.extractData,
+                    glxTransformResponseCollection.onSuccessTransform(function(data){
+                        $cookies['ACCESS_TOKEN'] = data.access_token;
+                        _currentUserResource.getCurrentUser();
+                        $location.path('/user/' + data.id);
+                        return data;
+                    })
                 ]
             }
         });
@@ -54,8 +68,15 @@ angular.module('glxEntities').factory('glxCurrentUserEntity', function ($resourc
                 ]
             }
         });
+    var _loginUniqueResource = $resource('/api/user/login/check/:login', {login: '@login'},
+        {
+           'checkLogin': {
+               method: 'GET'
+           }
+        });
 
-    var glxCurrenUserEntity = angular.extend({}, _pupFields, _currentUserResource, _loginResource, _logoutResource);
+    var glxCurrenUserEntity = angular.extend({}, _pupFields, _currentUserResource, _loginResource, _logoutResource
+        , _registrationResource, _loginUniqueResource);
 
     return glxCurrenUserEntity;
 });

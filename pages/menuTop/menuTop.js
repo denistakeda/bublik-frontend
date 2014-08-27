@@ -14,7 +14,7 @@ angular.module('glxPages').directive('glxMenuTop', function (glxCurrentUserEntit
             };
 
             scope.getUserAvatar = function () {
-                return scope.currentUser.info.avatar_preview_url || config.defaultAvatar;
+                return scope.currentUser.info.avatar_preview_url || glxConfig.defaultAvatar;
             }
 
         }

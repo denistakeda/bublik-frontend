@@ -9,7 +9,7 @@ angular.module('glxBublik').constant('glxPaths', {
     allRouting: {
         userRegistration: {
             path: "/registration",
-            template: "<div class='glx-user-registration'></div>",
+            template: "<glx-registration></glx-registration>",
             controller: "ClearStorageCtrl"
         },
         userLogin: {
