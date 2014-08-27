@@ -1,23 +1,23 @@
-describe('<%= "glx"+_.capitalize(name) %>', function() {
+describe('<%= "glx"+_.capitalize(name) %>', function () {
 
-  beforeEach(module('<%= appname %>'));
+    beforeEach(module('<%= appname %>'));
 
-  var scope,compile;
+    var scope, compile;
 
-  beforeEach(inject(function($rootScope,$compile) {
-    scope = $rootScope.$new();
-    compile = $compile;
-  }));
+    beforeEach(inject(function ($rootScope, $compile) {
+        scope = $rootScope.$new();
+        compile = $compile;
+    }));
 
-  it('should ...', function() {
+    it('should ...', function () {
 
-    /*
-    To test your directive, you need to create some html that would use your directive,
-    send that through compile() then compare the results.
+        /*
+         To test your directive, you need to create some html that would use your directive,
+         send that through compile() then compare the results.
 
-    var element = compile('<div mydirective name="name">hi</div>')(scope);
-    expect(element.text()).toBe('hello, world');
-    */
+         var element = compile('<div mydirective name="name">hi</div>')(scope);
+         expect(element.text()).toBe('hello, world');
+         */
 
-  });
+    });
 });
