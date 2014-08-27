@@ -59,6 +59,8 @@
   <script src="pages/registration/registration.js"></script>
   <script src="pages/registration/pwCheck/pwCheck.js"></script>
   <script src="pages/registration/ensureUnique/ensureUnique.js"></script>
+  <script src="pages/menuSide/menuSide.js"></script>
+  <script src="utils/service/locationHelper/locationHelper.js"></script>
   <!-- Add New Component JS Above -->
 
 
@@ -72,17 +74,9 @@
           </div>
 
           <!--Rigth column-->
-          <!--<div class="col-md-3">
-
-              <div class="row" ng-hide="isResourceLoading()">
-                  <div class="glx-rigth-menu"></div>
-              </div>
-
-              <div class="row">
-                  <div class="glx-widget-pack"></div>
-              </div>
-
-          </div>-->
+          <div class="col-md-2 col-sm-2 col-xs-2 pull-right">
+              <glx-menu-side class="row"></glx-menu-side>
+          </div>
       </div>
       <glx-user-alerts></glx-user-alerts>
   </div>
