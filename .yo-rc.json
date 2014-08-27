@@ -1,6 +1,14 @@
 {
   "generator-cg-angular": {
     "uirouter": false,
+
+    "partialTemplates": "templates/partial",
+    "directiveSimpleTemplates": "templates/directive/simple",
+    "directiveComplexTemplates": "templates/directive/complex",
+    "serviceTemplates": "templates/service",
+    "filterTemplates": "templates/filter",
+    "moduleTemplates": "templates/module",
+
     "partialDirectory": "partial/",
     "directiveDirectory": "directive/",
     "filterDirectory": "filter/",
