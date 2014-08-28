@@ -1,4 +1,4 @@
-angular.module('glxPages').directive('glxUserInfoPage', function ($modal, glxConfig, glxUserEntity, glxMessager) {
+angular.module('glxPages').directive('glxUserInfoPage', function ($modal, glxConfig, glxUserEntity, glxMessager, glxLocationHelper) {
     return {
         restrict: 'E',
         scope: {
@@ -34,6 +34,14 @@ angular.module('glxPages').directive('glxUserInfoPage', function ($modal, glxCon
                     glxMessager.showErrorAlert("widget.userInfo.alert.removeInterest.error");
                 });
             };
+
+            scope.toFollowers = function(){
+                glxLocationHelper.redirectTo("/user/" + glxUserEntity.userInfo.id + "/followers");
+            }
+
+            scope.toFollowed = function(){
+                glxLocationHelper.redirectTo("/user/" + glxUserEntity.userInfo.id + "/followed");
+            }
 
             scope.userInfo = glxUserEntity.userInfo;
             glxUserEntity.getUserInfo();

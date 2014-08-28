@@ -2,7 +2,8 @@ angular.module('glxWidgets').directive('glxFollowList', function () {
     return {
         restrict: 'E',
         scope: {
-            glxTitle: '@glxTitle'
+            glxTitle: '@',
+            glxRedirectOnClick: '='
         },
         transclude: true,
         templateUrl: 'widgets/followList/followList.html',

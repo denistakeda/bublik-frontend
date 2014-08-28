@@ -4,11 +4,11 @@
 
         <glx-follow-button glx-social-actions="userInfo.social.actions"></glx-follow-button>
 
-        <glx-follow-list glx-title="{{'widget.userInfo.social.followed_users'|glxLocalize}}">
+        <glx-follow-list glx-title="{{'widget.userInfo.social.followed_users'|glxLocalize}}" glx-redirect-on-click="toFollowed">
             <glx-social-item ng-repeat="preview in userInfo.social.followed_users" glx-social-preview="preview"></glx-social-item>
         </glx-follow-list>
 
-        <glx-follow-list glx-title="{{'widget.userInfo.social.followers'|glxLocalize}}">
+        <glx-follow-list glx-title="{{'widget.userInfo.social.followers'|glxLocalize}}" glx-redirect-on-click="toFollowers">
             <glx-social-item ng-repeat="preview in userInfo.social.followers" glx-social-preview="preview"></glx-social-item>
         </glx-follow-list>
 
