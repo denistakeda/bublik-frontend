@@ -3,7 +3,6 @@ angular.module('<%= appname %>').directive('<%= "glx"+_.capitalize(name) %>', fu
         restrict: 'A',
         link: function (scope, element, attrs, fn) {
 
-
         }
     };
 });
