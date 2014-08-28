@@ -103,7 +103,7 @@ module.exports = function (grunt) {
                 baseDir: 'dist/',
                 rename: true
             },
-            files: ['**.html', '**.css', '**.js', 'imgs/*.jpg', 'imgs/*.png']
+            files: ['**.html', '**.css', '**.js']
         },
         watch: {
             main: {
