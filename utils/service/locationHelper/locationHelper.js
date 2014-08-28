@@ -6,6 +6,9 @@ angular.module('glxUtils').factory('glxLocationHelper',function($location) {
         },
         redirectTo: function(path){
             $location.path(path);
+        },
+        currentPath: function(){
+            return $location.path();
         }
     };
 

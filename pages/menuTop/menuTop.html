@@ -6,6 +6,9 @@
                     <a href>{{'mainpage.topMenu.aboutUs'|glxLocalize}}</a>
                 </li>
             </ul>
+            <button type="button" class="btn btn-default navbar-btn pull-left" ng-hide="!currentUser.info.id" ng-click="createCompany()">
+                {{'mainpage.topMenu.companyCreate'|glxLocalize}}
+            </button>
             <ul class="nav navbar-nav navbar-right" ng-if="!currentUser || !currentUser.info || !currentUser.info.id">
                 <li><a href="#/registration">{{'mainpage.topMenu.registration'|glxLocalize}}</a></li>
                 <li><a href="#/login">{{'mainpage.topMenu.login'|glxLocalize}}</a></li>
