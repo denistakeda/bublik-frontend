@@ -1,10 +1,10 @@
-angular.module('glxPages').directive('glxUserFollowers', function(glxSocialEntity) {
+angular.module('glxPages').directive('glxUserFollowers', function(glxSocialEntity, glxConfig) {
     return {
         restrict: 'E',
         scope: {},
         templateUrl: 'pages/userFollowers/userFollowers.html',
         link: function(scope, element, attrs, fn) {
-            var limit = 10;
+            var limit = glxConfig.socialObjectLimit;
 
             scope.offset = 0;
 
