@@ -74,11 +74,7 @@ angular.module('glxEntities').factory('glxUserEntity', function ($resource, $rou
                 method: 'POST',
                 transformResponse: [
                     glxTransformResponseCollection.fromJsonConverter,
-                    glxTransformResponseCollection.extractData,
-                    glxTransformResponseCollection.onSuccessTransform(function(data){
-                        _userInfoResource.getUserInfo();
-                        return data;
-                    })
+                    glxTransformResponseCollection.extractData
                 ]
             }
         }
@@ -90,11 +86,7 @@ angular.module('glxEntities').factory('glxUserEntity', function ($resource, $rou
                 method: 'POST',
                 transformResponse: [
                     glxTransformResponseCollection.fromJsonConverter,
-                    glxTransformResponseCollection.extractData,
-                    glxTransformResponseCollection.onSuccessTransform(function(data){
-                        _userInfoResource.getUserInfo();
-                        return data;
-                    })
+                    glxTransformResponseCollection.extractData
                 ]
             }
         }
