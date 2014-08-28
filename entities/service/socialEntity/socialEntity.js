@@ -2,7 +2,8 @@ angular.module('glxEntities').factory('glxSocialEntity', function ($resource, $r
 
     var _pubFields = {
         socialInfo: {
-            followers: []
+            followers: [],
+            followed: []
         }
     };
 
@@ -24,7 +25,25 @@ angular.module('glxEntities').factory('glxSocialEntity', function ($resource, $r
         }
     );
 
-    var glxSocialEntity = angular.extend({}, _pubFields, _userFollowersResource);
+    var _userFollowedResource = $resource('/api/user/:userId/social/user/followed',
+        {userId: $routeParams.userId, limit: '@limit', offset: '@offset'},
+        {
+            'getFollowed': {
+                method: 'GET',
+                isArray: true,
+                transformResponse: [
+                    glxTransformResponseCollection.fromJsonConverter,
+                    glxTransformResponseCollection.extractData,
+                    function (data) {
+                        _pubFields.socialInfo.followed = _pubFields.socialInfo.followed.concat(data);
+                        return data;
+                    }
+                ]
+            }
+        }
+    );
+
+    var glxSocialEntity = angular.extend({}, _pubFields, _userFollowersResource, _userFollowedResource);
 
     return glxSocialEntity;
 });
