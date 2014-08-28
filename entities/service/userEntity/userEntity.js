@@ -100,7 +100,7 @@ angular.module('glxEntities').factory('glxUserEntity', function ($resource, $rou
         }
     );
 
-    var glxUserEntity = angular.extend({}, _pubFields, _userInfoResource, _userAvatarResource,_userTagsResource);
+    var glxUserEntity = angular.extend({}, _pubFields, _userInfoResource, _userAvatarResource, _userTagsResource, _followUserResource, _unfollowUserResource);
 
     return glxUserEntity;
 });
