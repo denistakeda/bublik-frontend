@@ -1,2 +1,55 @@
-<div>
-</div>
+<form class="form-horizontal" name="registrationForm" novalidate ng-submit="registration()">
+    <legend>{{"widget.company.registration.header"|glxLocalize}}</legend>
+
+    <div class="form-group has-feedback">
+        <label for="title" class="col-md-2 col-sm-2 col-xs-2 control-label">{{"widget.company.title"|glxLocalize}}</label>
+        <div class="col-md-10 col-sm-10 col-xs-10">
+            <input type="text" class="form-control" id="title" ng-model="company.title">
+        </div>
+
+        <div ng-show="registrationForm.email.$dirty">
+            <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="registrationForm.email.$valid"></span>
+            <span class="glyphicon glyphicon-remove form-control-feedback"
+                  ng-show="registrationForm.email.$invalid"></span>
+        </div>
+
+        <div class="help-block " ng-show="registrationForm.email.$dirty && registrationForm.email.$invalid">
+            <p ng-show="registrationForm.email.$error.required" class="text-danger">
+                {{"widget.userRegistration.fields.login.emptyFieldError"|glxLocalize}}
+            </p>
+
+            <p ng-show="registrationForm.email.$error.email" class="text-danger">
+                {{"widget.userRegistration.fields.login.incorrectEmailError"|glxLocalize}}
+            </p>
+
+            <p ng-show="registrationForm.email.$error.unique" class="text-danger">
+                {{"widget.userRegistration.fields.login.alreadyExistError"|glxLocalize}}
+            </p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="slogan" class="col-md-2 col-sm-2 col-xs-2 control-label">{{"widget.company.slogan"|glxLocalize}}</label>
+        <div class="col-md-10 col-sm-10 col-xs-10">
+            <input type="text" class="form-control" id="slogan" ng-model="company.slogan">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10 col-sm-offset-2 col-sm-10 col-xs-offset-2 col-xs-10">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="company.hidden">{{"widget.company.hidden"|glxLocalize}}
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <!--Submit button-->
+    <button type="submit" class="btn btn-default pull-right"
+            ng-disabled="registrationForm.$invalid"
+            ng-class="registrationForm.$valid?'btn-success':'btn-default'">
+        {{"widget.button.submit"|glxLocalize}}
+    </button>
+
+</form>
