@@ -103,7 +103,7 @@ module.exports = function (grunt) {
                 baseDir: 'dist/',
                 rename: true
             },
-            files: ['**.html', '**.css', '**.js']
+            files: ['dist/**.html', 'dist/**.css', 'dist/**.js']
         },
         watch: {
             main: {
@@ -177,8 +177,8 @@ module.exports = function (grunt) {
                 options: {
                     remove: ['script[data-remove!="false"]', 'link[data-remove!="false"]'],
                     append: [
-                        {selector: 'body', html: '<script src="app.full.min.d64a21de6d912948.js"></script>'},
-                        {selector: 'head', html: '<link rel="stylesheet" href="app.full.min.b41cf7f0c9839f37.css">'}
+                        {selector: 'body', html: '<script src="app.full.min.js"></script>'},
+                        {selector: 'head', html: '<link rel="stylesheet" href="app.full.min.css">'}
                     ]
                 },
                 src: 'index.html',
@@ -188,7 +188,7 @@ module.exports = function (grunt) {
         cssmin: {
             main: {
                 src: ['temp/app.css', '<%= dom_munger.data.appcss %>'],
-                dest: 'dist/app.full.min.b41cf7f0c9839f37.css'
+                dest: 'dist/app.full.min.css'
             }
         },
         concat: {
@@ -206,7 +206,7 @@ module.exports = function (grunt) {
         uglify: {
             main: {
                 src: 'temp/app.full.js',
-                dest: 'dist/app.full.min.d64a21de6d912948.js'
+                dest: 'dist/app.full.min.js'
             }
         },
         htmlmin: {

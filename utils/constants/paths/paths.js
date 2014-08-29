@@ -2,6 +2,13 @@ angular.module('glxBublik').controller('ClearStorageCtrl', function(){
 
 });
 
+angular.module('glxBublik').controller('userInfoCtrl',
+    function($routeParams, glxUserEntity, glxApplicationReady){
+        glxApplicationReady.waitBackend();
+        glxUserEntity.getUserInfo({userId: $routeParams.userId}, glxApplicationReady.backendReady);
+    }
+);
+
 angular.module('glxBublik').constant('glxPaths', {
     defaultRouting: {
         path: "/top"
@@ -20,10 +27,7 @@ angular.module('glxBublik').constant('glxPaths', {
         userInfo: {
             path: "/user/:userId",
             template: "<glx-user-info-page></glx-user-info-page>",
-            controller: function($routeParams, glxUserEntity, glxApplicationReady){
-                glxApplicationReady.waitBackend();
-                glxUserEntity.getUserInfo({userId: $routeParams.userId}, glxApplicationReady.backendReady);
-            }
+            controller: 'userInfoCtrl'
         },
         userFollowers: {
             path: "/user/:userId/followers",
