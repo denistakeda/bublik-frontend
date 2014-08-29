@@ -1,4 +1,4 @@
-angular.module('glxPages').directive('glxUserInfoPage', function ($modal, glxConfig, glxUserEntity, glxMessager, glxLocationHelper) {
+angular.module('glxPages').directive('glxUserInfoPage', function ($modal, glxConfig, glxUserEntity, glxMessager, glxLocationHelper, glxCurrentUserEntity) {
     return {
         restrict: 'E',
         scope: {
@@ -24,6 +24,32 @@ angular.module('glxPages').directive('glxUserInfoPage', function ($modal, glxCon
                 });
             };
 
+            scope.follow = function(){
+                glxUserEntity.followUser({
+                    userId: glxCurrentUserEntity.currentUser.info.id,
+                    followedId: glxUserEntity.userInfo.id
+                }, {},
+                function(){
+                    glxUserEntity.getUserInfo();
+                },
+                function(){
+                    glxMessager.showErrorAlert('widget.userInfo.backenderror');
+                });
+            };
+
+            scope.unfollow = function(){
+                glxUserEntity.unfollowUser({
+                        userId: glxCurrentUserEntity.currentUser.info.id,
+                        unfollowedId: glxUserEntity.userInfo.id
+                    }, {},
+                    function(){
+                        glxUserEntity.getUserInfo();
+                    },
+                    function(){
+                        glxMessager.showErrorAlert('widget.userInfo.backenderror');
+                    });
+            };
+
             scope.addTag = function (tag) {
                 glxUserEntity.addInterests({}, {interests: [tag]}, undefined, function () {
                     glxMessager.showErrorAlert("widget.userInfo.alert.addInterest.error");
@@ -37,14 +63,14 @@ angular.module('glxPages').directive('glxUserInfoPage', function ($modal, glxCon
 
             scope.toFollowers = function(){
                 glxLocationHelper.redirectTo("/user/" + glxUserEntity.userInfo.id + "/followers");
-            }
+            };
 
             scope.toFollowed = function(){
                 glxLocationHelper.redirectTo("/user/" + glxUserEntity.userInfo.id + "/followed");
-            }
+            };
 
             scope.userInfo = glxUserEntity.userInfo;
-            glxUserEntity.getUserInfo();
+            //glxUserEntity.getUserInfo();
 
         }
     };

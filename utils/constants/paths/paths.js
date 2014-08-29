@@ -20,7 +20,10 @@ angular.module('glxBublik').constant('glxPaths', {
         userInfo: {
             path: "/user/:userId",
             template: "<glx-user-info-page></glx-user-info-page>",
-            controller: "ClearStorageCtrl"
+            controller: function($routeParams, glxUserEntity, glxApplicationReady){
+                glxApplicationReady.waitBackend();
+                glxUserEntity.getUserInfo({userId: $routeParams.userId}, glxApplicationReady.backendReady);
+            }
         },
         userFollowers: {
             path: "/user/:userId/followers",
