@@ -25,10 +25,6 @@ angular.module('glxPages').directive('glxLogin',
                         return 'has-error';
                     }
                 };
-
-                //commonBackend.alreadyLoaded();
-
-                //$rootScope.loading = false;
             }
         };
     });
