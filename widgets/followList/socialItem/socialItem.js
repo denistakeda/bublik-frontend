@@ -1,4 +1,4 @@
-angular.module('glxWidgets').directive('glxSocialItem', function (glxConfig, glxUserEntity) {
+angular.module('glxWidgets').directive('glxSocialItem', function (glxConfig) {
     return {
         restrict: 'E',
         require: '^glxFollowList',
@@ -11,10 +11,6 @@ angular.module('glxWidgets').directive('glxSocialItem', function (glxConfig, glx
 
             scope.getPreviewImage = function(){
                 return scope.glxSocialPreview.preview_url || glxConfig.defaultAvatar;
-            };
-
-            scope.openUser = function(){
-                glxUserEntity.getUserInfo({userId: scope.glxSocialPreview.id});
             };
         }
     };
