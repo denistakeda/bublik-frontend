@@ -5,14 +5,17 @@ angular.module('glxPages').directive('glxUserInfoPage', function ($modal, glxCon
         },
         templateUrl: 'pages/userInfoPage/userInfoPage.html',
         link: function (scope, element, attrs, fn) {
+            var currentUserInfo = glxCurrentUserEntity.currentUser.info;
+
             scope.changeAvatar = function () {
                 var avatarModalInstanse = $modal.open({
                     templateUrl: "widgets/userAvatar/userAvatar.html",
                     controller: 'glxUserAvatar'
                 });
             };
-            scope.getDefaultAvatar = function () {
-                return glxConfig.defaultAvatar;
+
+            scope.getAvatar = function () {
+                return scope.userInfo.avatar && scope.userInfo.avatar.preview_url || glxConfig.defaultAvatar;
             };
 
             scope.updateUserName = function () {
@@ -26,11 +29,11 @@ angular.module('glxPages').directive('glxUserInfoPage', function ($modal, glxCon
 
             scope.follow = function(){
                 glxUserEntity.followUser({
-                    userId: glxCurrentUserEntity.currentUser.info.id,
+                    userId: currentUserInfo.id,
                     followedId: glxUserEntity.userInfo.id
                 }, {},
                 function(){
-                    glxUserEntity.getUserInfo();
+                    glxUserEntity.getUserInfo({userId: scope.userInfo.id});
                 },
                 function(){
                     glxMessager.showErrorAlert('widget.userInfo.backenderror');
@@ -39,11 +42,11 @@ angular.module('glxPages').directive('glxUserInfoPage', function ($modal, glxCon
 
             scope.unfollow = function(){
                 glxUserEntity.unfollowUser({
-                        userId: glxCurrentUserEntity.currentUser.info.id,
+                        userId: currentUserInfo.id,
                         unfollowedId: glxUserEntity.userInfo.id
                     }, {},
                     function(){
-                        glxUserEntity.getUserInfo();
+                        glxUserEntity.getUserInfo({userId: scope.userInfo.id});
                     },
                     function(){
                         glxMessager.showErrorAlert('widget.userInfo.backenderror');
@@ -70,8 +73,6 @@ angular.module('glxPages').directive('glxUserInfoPage', function ($modal, glxCon
             };
 
             scope.userInfo = glxUserEntity.userInfo;
-            //glxUserEntity.getUserInfo();
-
         }
     };
 });
