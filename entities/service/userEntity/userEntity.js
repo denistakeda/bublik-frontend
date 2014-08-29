@@ -6,13 +6,14 @@ angular.module('glxEntities').factory('glxUserEntity', function ($resource, $rou
         lastSendedInterest: []  //TODO do it without field
     };
     var _userInfoResource = $resource('/api/user/:userId',
-        {userId: $routeParams.userId},
+        {userId: '@userId'},
         {
             'getUserInfo': {
                 method: 'GET',
                 transformResponse: [
                     glxTransformResponseCollection.fromJsonConverter,
                     glxTransformResponseCollection.extractData,
+                    glxTransformResponseCollection.clearEntity(_pubFields.userInfo),
                     function (data) {
                         angular.extend(_pubFields.userInfo, data);
                         return data;
