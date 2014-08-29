@@ -1,36 +1,20 @@
-angular.module('glxUtils').factory('glxApplicationReady', function ($rootScope, glxDictionary) {
+angular.module('glxUtils').factory('glxApplicationReady', function ($rootScope) {
 
-    var isBackendLoaded = true;
+    var _serviceReady = {};
 
-    var _servicesReady = {
-        isLocalizationLoaded: function(){
-            return glxDictionary!=={};
+    var _pub = {
+        waitResource: function(res){
+            _serviceReady[res] = false;
         },
-        isBackendDataLoaded: function(){
-            return isBackendLoaded;
-        }
-    };
-
-    var _applicationReady = {
-        isApplicationReady: function(){
-            return _servicesReady.isLocalizationLoaded() && _servicesReady.isBackendDataLoaded();
-        }
-    };
-
-    var _control = {
-        waitBackend: function(){
-            isBackendLoaded = false;
+        resourceReady: function(res){
+            _serviceReady[res] = true;
         },
-        backendReady: function(){
-            isBackendLoaded = true;
+        isResourceReady: function(res){
+            return _serviceReady[res];
         }
     };
 
-    $rootScope.isApplicationReady = _applicationReady.isApplicationReady;
-    $rootScope.isLocalizationLoaded = _servicesReady.isLocalizationLoaded;
-    $rootScope.isBackendDataLoaded = _servicesReady.isBackendDataLoaded;
-
-    var glxApplicationReady = angular.extend({}, _servicesReady, _applicationReady, _control);
+    var glxApplicationReady = angular.extend({}, _pub);
 
     return glxApplicationReady;
 });
