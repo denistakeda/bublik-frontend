@@ -6,10 +6,6 @@ angular.module('glxWidgets').directive('glxFollowButton', function (glxUserEntit
             glxOnFollow: '&glxOnFollow',
             glxOnUnfollow: '&glxOnUnfollow'
         },
-        templateUrl: 'widgets/followButton/followButton.html',
-        link: function (scope, element, attrs, fn) {
-
-
-        }
+        templateUrl: 'widgets/followButton/followButton.html'
     };
 });

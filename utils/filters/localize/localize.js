@@ -1,8 +1,10 @@
-angular.module('glxUtils').factory('glxDictionary', function($http){
+angular.module('glxUtils').factory('glxDictionary', function($http, glxApplicationReady){
+    glxApplicationReady.waitResource('localization');
     var dictionary = {};
     $http({method: 'GET', url: '/api/localization'}).
         success(function(data){
             angular.extend(dictionary, data);
+            glxApplicationReady.resourceReady('localization');
         });
     return dictionary;
 });
