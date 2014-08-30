@@ -1,19 +1,31 @@
 glx-menu-side {
   display: block;
   background-color: @panel-success-heading-bg;
-  padding-top: 25px;
-  padding-bottom: 25px;
+  border-radius: 5px;
 
   .sidebar-header {
     width: 100%;
     margin-bottom: 5px;
   }
-  .sidebar-brand{
+  .sidebar-brand {
     padding: 5px;
   }
-  .menu-item.active {
-    .glyphicon:before {
-      color: @brand-primary;
+  .menu-item {
+    a {
+      padding-top: 20px;
+      &:hover:first-child {
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+      }
+      &:hover:last-child {
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+      }
+    }
+    &.active {
+      .glyphicon {
+        color: @brand-primary;
+      }
     }
   }
   .glyphicon {
@@ -21,6 +33,9 @@ glx-menu-side {
     font-size: 40px;
     padding-right: 5px;
     color: @gray-dark;
+    &.active {
+      color: @brand-primary;
+    }
   }
   .menu-item-label {
     width: 100%;
