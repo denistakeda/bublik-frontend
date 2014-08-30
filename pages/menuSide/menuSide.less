@@ -1,5 +1,8 @@
 glx-menu-side {
   display: block;
+  background-color: @panel-success-heading-bg;
+  padding-top: 25px;
+  padding-bottom: 25px;
 
   .sidebar-header {
     width: 100%;
@@ -8,17 +11,16 @@ glx-menu-side {
   .sidebar-brand{
     padding: 5px;
   }
-  .bublik-logo {
-    width: 120px;
-  }
   .menu-item.active {
     .glyphicon:before {
       color: @brand-primary;
     }
   }
-  .glyphicon:before {
+  .glyphicon {
+    display: block;
+    font-size: 40px;
     padding-right: 5px;
-    color: black;
+    color: @gray-dark;
   }
   .menu-item-label {
     width: 100%;
