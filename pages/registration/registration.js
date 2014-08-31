@@ -27,6 +27,8 @@ angular.module('glxPages').directive('glxRegistration', function (glxCurrentUser
                 }
             };
 
+            scope.validators = {minLength: {value: 10, message: 'test'}, required: {message: 'required'}}
+
         }
     };
 });
