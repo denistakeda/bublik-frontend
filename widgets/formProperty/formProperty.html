@@ -1,0 +1,37 @@
+<div class="form-group has-feedback">
+    <label for="{{glxId}}" class="col-sm-2 control-label">{{glxLabel|glxLocalize}}</label>
+    <div class="col-sm-10">
+        <input type="{{glxType}}"
+               class="form-control"
+               id="{{glxId}}"
+               name="{{glxId}}"
+               ng-model="model"
+               placeholder="{{glxPlaceholder}}"
+               ng-minlength="{{glxValidators.minLength.value}}"
+               ng-maxlength="{{glxValidators.maxLength.value}}"
+               ng-click="click()">
+    </div>
+
+    <!--Feedbacks-->
+    <div ng-show="model.$dirty">
+            <span class="glyphicon glyphicon-ok form-control-feedback"
+                  ng-show="model.$valid"></span>
+            <span class="glyphicon glyphicon-remove form-control-feedback"
+                  ng-show="model.$invalid"></span>
+    </div>
+
+    <!--Validators-->
+    <div class="help-block" ng-show="model.$dirty && model.$invalid">
+        <p ng-show="glxValidators.required && model.$error.required" class="text-danger">
+            {{glxValidators.required.message|glxLocalize}}
+        </p>
+
+        <p ng-show="glxValidators.minLength && model.$error.minlength" class="text-danger">
+            {{glxValidators.minLength.message|glxLocalize}}
+        </p>
+
+        <p ng-show="glxValidators.maxLength && model.$error.maxlength" class="text-danger">
+            {{glxValidators.maxLength.message|glxLocalize}}
+        </p>
+    </div>
+</div>
