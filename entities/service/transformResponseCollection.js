@@ -21,9 +21,17 @@ angular.module('glxEntities').factory('glxTransformResponseCollection', function
                     return data;
                 }
             };
+        },
+        clearEntity: function(entity){
+            return glxTransformResponseCollection.onSuccessTransform(function(data){
+                // TODO: impove this pull shit
+                angular.forEach(entity, function(v, k){
+                    delete entity[k];
+                })
+                return data;
+            });
         }
     };
-
 
     return glxTransformResponseCollection;
 });

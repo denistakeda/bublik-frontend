@@ -1,4 +1,4 @@
-angular.module('glxEntities').factory('glxCurrentUserEntity', function ($resource, $q, $cookies, $location, glxTransformResponseCollection) {
+angular.module('glxEntities').factory('glxCurrentUserEntity', function ($resource, $q, $cookies, $location, glxTransformResponseCollection, glxApplicationReady) {
 
     var _pupFields = {
         currentUser: {}
@@ -12,6 +12,7 @@ angular.module('glxEntities').factory('glxCurrentUserEntity', function ($resourc
                 glxTransformResponseCollection.extractData,
                 function (data, headers) {
                     angular.extend(_pupFields.currentUser, data);
+                    glxApplicationReady.resourceReady('currentUser');
                     return data;
                 }
             ]
