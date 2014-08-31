@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-3 col-sm-3 col-xs-3">
+    <div class="col-md-6 col-sm-6 col-xs-6">
         <img ng-src="{{userInfo.avatar.preview_url||getDefaultAvatar()}}" class="avatar img-responsive img-rounded"  ng-click="userInfo.actions.update&&changeAvatar()">
 
         <glx-follow-button glx-social-actions="userInfo.social.actions"
@@ -16,9 +16,9 @@
         </glx-follow-list>
 
     </div>
-    <div class="col-md-9 col-sm-9 col-xs-9">
+    <div class="col-md-18 col-sm-18 col-xs-18">
         <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12 user-name">
+            <div class="col-md-24 col-sm-24 col-xs-24 user-name">
                 <glx-editable-field
                      glx-model="userInfo.first_name"
                      glx-on-change="updateUserName()"
@@ -30,7 +30,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="col-md-24 col-sm-24 col-xs-24">
                 <glx-tags glx-model="userInfo.interests"
                      glx-allow-control="userInfo.actions.update"
                      glx-add-tag-function="addTag"
