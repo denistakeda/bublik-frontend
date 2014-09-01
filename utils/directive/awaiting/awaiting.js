@@ -1,24 +1,21 @@
 angular.module('glxUtils').directive('glxAwaiting', function (glxApplicationReady) {
     return {
         restrict: "A",
-        template: '<div us-spinner ng-show="isLoading()"></div><div class="ng-transclude" ng-hide="isLoading()"></div>',
         transclude: true,
         templateUrl: 'utils/directive/awaiting/awaiting.html',
         scope: {
-            glxAwaiting: "@glxAwaiting"
+            glxAwaiting: "@glxAwaiting",
+            glxSpinnerType: "@glxSpinnerType"
         },
         link: function (scope) {
-            if (scope.glxAwaiting === 'application') {
-                scope.isReady = function () {
-                    return glxApplicationReady.isResourceReady('localization') &&
-                        glxApplicationReady.isResourceReady('mainContent') &&
-                        glxApplicationReady.isResourceReady('currentUser');
+                scope.isReady = function(){
+                    if (scope.glxAwaiting === 'application'){
+                        return glxApplicationReady.isResourceReady('localization') &&
+                            glxApplicationReady.isResourceReady('currentUser');
+                    } else {
+                        return glxApplicationReady.isResourceReady(scope.glxAwaiting);
+                    }
                 };
-            } else {
-                scope.isReady = function () {
-                    return glxApplicationReady.isResourceReady(scope.glxAwaiting);
-                };
-            }
 
         }
     };

@@ -5,7 +5,9 @@ angular.module('glxBublik').controller('ClearStorageCtrl', function(){
 angular.module('glxBublik').controller('userInfoCtrl',
     function($routeParams, glxUserEntity, glxApplicationReady){
         glxApplicationReady.waitResource('mainContent');
-        glxUserEntity.getUserInfo({userId: $routeParams.userId}, glxApplicationReady.resourceReady('mainContent'));
+        glxUserEntity.getUserInfo({userId: $routeParams.userId}, function() {
+            glxApplicationReady.resourceReady('mainContent')
+        });
     }
 );
 
