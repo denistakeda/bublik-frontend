@@ -16,7 +16,6 @@ describe('glxCompanyEntity', function() {
         });
         httpBackend.flush();
         expect(companyId).toBe(resultId);
-
     }));
 
 });
