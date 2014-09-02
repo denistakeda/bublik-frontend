@@ -262,7 +262,7 @@ module.exports = function (grunt) {
     });
 
 
-    grunt.registerTask('build', [/*'jshint'*/,'clean:before', 'less', 'dom_munger', 'ngtemplates', 'autoprefixer', 'cssmin', 'concat', 'ngmin', 'uglify', 'copy', 'htmlmin', 'imagemin', 'cacheBust', 'clean:after']);
+    grunt.registerTask('build', [/*'jshint'*/'clean:before', 'less', 'dom_munger', 'ngtemplates', 'autoprefixer', 'cssmin', 'concat', 'ngmin', 'uglify', 'copy', 'htmlmin', 'imagemin', 'cacheBust', 'clean:after']);
     grunt.registerTask('serve', ['dom_munger:read'/*,'jshint'*/, 'configureProxies:server', 'connect:develop', 'configureProxies:production', 'connect:production', 'watch']);
     grunt.registerTask('test', ['dom_munger:read', 'karma:all_tests']);
     grunt.registerTask('default', ['build', 'dom_munger:read','karma:during_watch']);
