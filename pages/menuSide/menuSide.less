@@ -26,9 +26,14 @@ glx-menu-side {
       }
     }
   }
-  .glyphicon:before {
+  .glyphicon {
+    display: block;
+    font-size: 40px;
     padding-right: 5px;
-    color: black;
+    color: @gray-dark;
+    &.active {
+      color: @brand-primary;
+    }
   }
   .menu-item-label {
     width: 100%;
