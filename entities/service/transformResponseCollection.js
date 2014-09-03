@@ -27,7 +27,8 @@ angular.module('glxEntities').factory('glxTransformResponseCollection', function
                 // TODO: impove this pull shit
                 angular.forEach(entity, function(v, k){
                     delete entity[k];
-                })
+                });
+                console.log('data sfter clean', entity);
                 return data;
             });
         }

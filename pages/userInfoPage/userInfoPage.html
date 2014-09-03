@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-6 col-sm-6 col-xs-6">
-        <img ng-src="{{userInfo.avatar.preview_url||getDefaultAvatar()}}" class="avatar img-responsive img-rounded"  ng-click="userInfo.actions.update&&changeAvatar()">
+        <img ng-src="{{getAvatar()}}" class="avatar img-responsive img-rounded"  ng-click="userInfo.actions.update&&changeAvatar()">
 
         <glx-follow-button glx-social-actions="userInfo.social.actions"
                            glx-on-follow="follow()"
