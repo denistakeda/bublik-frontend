@@ -16,10 +16,7 @@ describe('glxCompanyEntity', function() {
         });
         httpBackend.flush();
         expect(companyId).toBe(resultId);
-<<<<<<< HEAD
-=======
 
->>>>>>> feat(companyEntity): create api for company creation
     }));
 
 });
