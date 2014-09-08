@@ -1,7 +1,10 @@
-angular.module('glxEntities').factory('glxUserEntity', function ($resource, $routeParams, glxTransformResponseCollection) {
+angular.module('glxEntities').factory('glxUserEntity', function ($resource, $routeParams, glxTransformResponseCollection, glxStorageCleaner) {
     var _pubFields = {
         userInfo: {}
     };
+
+    glxStorageCleaner.addLocationDependentStorage(_pubFields.userInfo);
+
     var _privFields = {
         lastSendedInterest: []  //TODO do it without field
     };
@@ -13,7 +16,6 @@ angular.module('glxEntities').factory('glxUserEntity', function ($resource, $rou
                 transformResponse: [
                     glxTransformResponseCollection.fromJsonConverter,
                     glxTransformResponseCollection.extractData,
-                    glxTransformResponseCollection.clearEntity(_pubFields.userInfo),
                     function (data) {
                         angular.extend(_pubFields.userInfo, data);
                         return data;

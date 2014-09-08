@@ -1,4 +1,4 @@
-angular.module('glxEntities').factory('glxSocialEntity', function ($resource, $routeParams, glxTransformResponseCollection) {
+angular.module('glxEntities').factory('glxSocialEntity', function ($resource, $routeParams, glxTransformResponseCollection, glxStorageCleaner) {
 
     var _pubFields = {
         socialInfo: {
@@ -6,6 +6,8 @@ angular.module('glxEntities').factory('glxSocialEntity', function ($resource, $r
             followed: []
         }
     };
+    glxStorageCleaner.addLocationDependentStorage(_pubFields.socialInfo.followed,
+        _pubFields.socialInfo.followers);
 
     var _userFollowersResource = $resource('/api/user/:userId/social/user/followers',
         {userId: $routeParams.userId, limit: '@limit', offset: '@offset'},
