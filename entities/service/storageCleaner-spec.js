@@ -22,4 +22,10 @@ describe('glxStorageCleaner', function() {
         expect(testObject).toEqual({});
     }));
 
+    it('user can add a storages for clear before the change url', inject(function(glxStorageCleaner) {
+        var testArray = [123, 456];
+        var testObject = {abc:"def", def: 123};
+        glxStorageCleaner.addLocationDependentStorage(testArray, testObject);
+    }));
+
 });
