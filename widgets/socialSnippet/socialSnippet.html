@@ -2,5 +2,5 @@
     <img class="image img-rounded" ng-src="{{getDefaultAvatar()}}"/>
 </div>
 <div class="col-md-16 col-xs-16 col-sm-16 data-wrapper">
-    <a ng-href="#/user/{{glxSnippetData.id}}" class="title">{{glxSnippetData.title}}</a>
+    <a glx-href="userInfo" glx-href-params="{userId: glxSnippetData.id}" class="title">{{glxSnippetData.title}}</a>
 </div>
