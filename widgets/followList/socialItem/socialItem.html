@@ -1,6 +1,6 @@
 <div class="preview col-md-8 col-xs-8 col-sm-8">
     <div class="row">
-        <a href="#/user/{{glxSocialPreview.id}}" class="preview-wrapper col-md-24 col-xs-24 col-sm-24">
+        <a glx-href="userInfo" glx-href-params="{userId: glxSocialPreview.id}" class="preview-wrapper col-md-24 col-xs-24 col-sm-24">
             <img class="image img-rounded" ng-src="{{getPreviewImage(preview)}}"/>
             <div class="title">{{glxSocialPreview.title}}</div>
         </a>

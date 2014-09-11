@@ -8,8 +8,8 @@
                 {{'mainpage.topMenu.companyCreate'|glxLocalize}}
             </button>
             <ul class="nav navbar-nav navbar-right" ng-if="!currentUser || !currentUser.info || !currentUser.info.id">
-                <li><a href="#/registration">{{'mainpage.topMenu.registration'|glxLocalize}}</a></li>
-                <li><a href="#/login">{{'mainpage.topMenu.login'|glxLocalize}}</a></li>
+                <li><a glx-href="userRegistration">{{'mainpage.topMenu.registration'|glxLocalize}}</a></li>
+                <li><a glx-href="userLogin">{{'mainpage.topMenu.login'|glxLocalize}}</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right" ng-if="currentUser.info && currentUser.info.id">
                 <li class="dropdown">
