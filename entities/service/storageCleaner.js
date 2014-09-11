@@ -5,8 +5,10 @@ angular.module('glxEntities').factory('glxStorageCleaner', function ($rootScope)
     };
 
     var glxStorageCleaner = {
-        addLocationDependentStorage: function(){
-            _private.storages = _private.storages.concat(arguments);
+        addLocationDependentStorage: function () {
+            angular.forEach(arguments, function (storage) {
+                _private.storages.push(storage);
+            });
         },
         clean: function () {
             angular.forEach(arguments, function (obj) {
@@ -21,8 +23,8 @@ angular.module('glxEntities').factory('glxStorageCleaner', function ($rootScope)
         }
     };
 
-    $rootScope.$on('$locationChangeStart', function(){
-        angular.forEach(_private.storages, function(storage){
+    $rootScope.$on('$locationChangeStart', function () {
+        angular.forEach(_private.storages, function (storage) {
             glxStorageCleaner.clean(storage);
         });
     });
