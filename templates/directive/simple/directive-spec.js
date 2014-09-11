@@ -2,11 +2,13 @@ describe('<%= "glx"+_.capitalize(name) %>', function () {
 
     beforeEach(module('<%= appname %>'));
 
-    var scope, compile;
+    var scope, element;
 
     beforeEach(inject(function ($rootScope, $compile) {
         scope = $rootScope.$new();
-        compile = $compile;
+        element = angular.element('insert your html here');
+        $compile(element)(scope);
+        scope.$digest();
     }));
 
     it('should ...', function () {
