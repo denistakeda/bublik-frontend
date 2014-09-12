@@ -1,11 +1,18 @@
-describe('userInfoPageCtrl', function() {
+describe('userInfoPageCtrl', function () {
 
-  beforeEach(module('glxPages'));
+    beforeEach(module('glxPages'));
 
-  it('should ...', inject(function(userInfoPageCtrl) {
+    var ctrl;
+    beforeEach(inject(function ($controller) {
+        ctrl = $controller('glxUserInfoPageCtrl', {
+            glxUserEntity: {
+                getUserInfo: function () {}
+            }
+        });
+    }));
 
-	//expect(userInfoPageCtrl.doSomething()).toEqual('something');
+    it('should ...', inject(function () {
 
-  }));
+    }));
 
 });
