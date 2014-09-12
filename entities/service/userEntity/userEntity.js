@@ -1,4 +1,4 @@
-angular.module('glxEntities').factory('glxUserEntity', function ($resource, $routeParams, glxEntity, glxTransformResponseCollection, glxStorageCleaner) {
+angular.module('glxEntities').factory('glxUserEntity', function ($resource, $routeParams, glxEntity, glxTransformResponseCollection) {
     return glxEntity({
         storage: {
             userInfo: {type: 'Object', cleanEvent: '$locationChangeStart'}
