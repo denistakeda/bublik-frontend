@@ -5,8 +5,6 @@
     <div ng-switch-when="logo">
         <img src="imgs/bub_dark.png" class="logo-spinner"/>
     </div>
-
-
 </div>
 
-<div ng-transclude ng-show="isReady()"></div>
+<div ng-transclude ng-show="isReady()" ng-class="contentClass"></div>
