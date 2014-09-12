@@ -6,7 +6,7 @@ angular.module('glxPages').directive('glxMenuTop', function (glxCurrentUserEntit
         templateUrl: 'pages/menuTop/menuTop.html',
         link: function (scope, element, attrs, fn) {
 
-            scope.currentUser = glxCurrentUserEntity.currentUser;
+            scope.currentUser = glxCurrentUserEntity.storage.currentUser;
             glxCurrentUserEntity.getCurrentUser();
 
             scope.createCompany = function(){

@@ -5,7 +5,7 @@ angular.module('glxPages').directive('glxUserInfoPage', function ($modal, glxCon
         },
         templateUrl: 'pages/userInfoPage/userInfoPage.html',
         link: function (scope, element, attrs, fn) {
-            var currentUserInfo = glxCurrentUserEntity.currentUser.info;
+
 
             scope.changeAvatar = function () {
                 var avatarModalInstanse = $modal.open({
@@ -30,7 +30,7 @@ angular.module('glxPages').directive('glxUserInfoPage', function ($modal, glxCon
             scope.follow = function(){
                 glxUserEntity.followUser({
                     userId: currentUserInfo.id,
-                    followedId: glxUserEntity.userInfo.id
+                    followedId: glxUserEntity.storage.userInfo.id
                 }, {},
                 function(){
                     glxUserEntity.getUserInfo({userId: scope.userInfo.id});
@@ -43,7 +43,7 @@ angular.module('glxPages').directive('glxUserInfoPage', function ($modal, glxCon
             scope.unfollow = function(){
                 glxUserEntity.unfollowUser({
                         userId: currentUserInfo.id,
-                        unfollowedId: glxUserEntity.userInfo.id
+                        unfollowedId: glxUserEntity.storage.userInfo.id
                     }, {},
                     function(){
                         glxUserEntity.getUserInfo({userId: scope.userInfo.id});
@@ -65,14 +65,15 @@ angular.module('glxPages').directive('glxUserInfoPage', function ($modal, glxCon
             };
 
             scope.toFollowers = function(){
-                glxLocationHelper.redirectTo("/user/" + glxUserEntity.userInfo.id + "/followers");
+                glxLocationHelper.redirectTo("/user/" + glxUserEntity.storage.userInfo.id + "/followers");
             };
 
             scope.toFollowed = function(){
-                glxLocationHelper.redirectTo("/user/" + glxUserEntity.userInfo.id + "/followed");
+                glxLocationHelper.redirectTo("/user/" + glxUserEntity.storage.userInfo.id + "/followed");
             };
 
-            scope.userInfo = glxUserEntity.userInfo;
+            scope.userInfo = glxUserEntity.storage.userInfo;
+            var currentUserInfo = glxCurrentUserEntity.storage.currentUser.info;
         }
     };
 });
