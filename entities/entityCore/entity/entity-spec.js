@@ -28,6 +28,17 @@ describe('glxEntity', function () {
         }, 'controller executed', 500);
     }));
 
+    it('should throw exception when incorrect type of storage', inject(function(glxEntity){
+        var createEntity = function(){
+            glxEntity({
+                storage: {type: 'IncorrectType'},
+                controller: function () {
+                }
+            });
+        };
+        expect(createEntity).toThrow();
+    }));
+
     describe('glxEntity creating correct object', function () {
         var entity;
         beforeEach(inject(function (glxEntity) {

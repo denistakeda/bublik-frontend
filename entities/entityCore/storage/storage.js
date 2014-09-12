@@ -9,6 +9,8 @@ angular.module('glxEntityCore').factory('glxStorage', function ($rootScope) {
                 return {};
             } else if(config.type==='Array'){
                 return [];
+            } else {
+                throw new Error('Incorrect type of storage: "'+config.type+'". Supported types: "Object" and "Array"');
             }
     };
 
