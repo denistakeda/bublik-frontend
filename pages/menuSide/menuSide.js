@@ -6,7 +6,7 @@ angular.module('glxPages').directive('glxMenuSide', function (glxCurrentUserEnti
         },
         templateUrl: 'pages/menuSide/menuSide.html',
         link: function (scope, element, attrs, fn) {
-            scope.currentUser = glxCurrentUserEntity.currentUser;
+            scope.currentUser = glxCurrentUserEntity.storage.currentUser;
             glxCurrentUserEntity.getCurrentUser();
 
             scope.goTo = function(menuItem){

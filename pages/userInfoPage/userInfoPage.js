@@ -5,7 +5,7 @@ angular.module('glxPages').directive('glxUserInfoPage', function ($modal, glxCon
         },
         templateUrl: 'pages/userInfoPage/userInfoPage.html',
         link: function (scope, element, attrs, fn) {
-            var currentUserInfo = glxCurrentUserEntity.currentUser.info;
+
 
             scope.changeAvatar = function () {
                 var avatarModalInstanse = $modal.open({
@@ -73,6 +73,7 @@ angular.module('glxPages').directive('glxUserInfoPage', function ($modal, glxCon
             };
 
             scope.userInfo = glxUserEntity.storage.userInfo;
+            var currentUserInfo = glxCurrentUserEntity.storage.currentUser.info;
         }
     };
 });
