@@ -2,21 +2,21 @@ describe('glxStorage', function () {
 
     beforeEach(module('glxEntityCore'));
 
-    xit('should create storage object', inject(function (glxStorage) {
+    it('should create storage object', inject(function (glxStorage) {
         expect(glxStorage.create({
                 storage1: {type: 'Object'}
             })
         ).toEqual({storage1: {}});
     }));
 
-    xit('should create storage array', inject(function (glxStorage) {
+    it('should create storage array', inject(function (glxStorage) {
         expect(glxStorage.create({
                 storage1: {type: 'Array'}
             })
         ).toEqual({storage1: []});
     }));
 
-    xit('should create a lot of storages', inject(function (glxStorage) {
+    it('should create a lot of storages', inject(function (glxStorage) {
         expect(glxStorage.create({
                 storage1: {type: 'Object'},
                 storage2: {type: 'Array'}
@@ -24,11 +24,11 @@ describe('glxStorage', function () {
         ).toEqual({storage1: {}, storage2: []});
     }));
 
-    xit('empty config should return empty storage', inject(function (glxStorage) {
+    it('empty config should return empty storage', inject(function (glxStorage) {
         expect(glxStorage.create({})).toEqual({});
     }));
 
-    xit('should clean storage after emit clean event', inject(function (glxStorage, $rootScope) {
+    it('should clean storage after emit clean event', inject(function (glxStorage, $rootScope) {
         var storage = glxStorage.create({
             storage1: {type: 'Object', cleanEvent: 'cleanEvent'},
             storage2: {type: 'Array', cleanEvent: 'cleanEvent'}

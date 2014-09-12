@@ -16,7 +16,6 @@ angular.module('glxEntityCore').factory('glxStorage', function ($rootScope) {
         var subscribe = function(event){
             $rootScope.$on(event, function(){
                 storage[storageName] = createStorage(storageConfig);
-                console.log('clearStorage '+ storageName+'on event '+event, storage[storageName]);
             });
         };
         if (angular.isArray(storageConfig.cleanEvent)){
