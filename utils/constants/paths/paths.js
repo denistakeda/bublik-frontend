@@ -1,11 +1,11 @@
 /**
  * Default routing controller
  */
-angular.module('glxBublik').controller('ClearStorageCtrl', function(glxApplicationReady){
+angular.module('glxUtils').controller('ClearStorageCtrl', function(glxApplicationReady){
     glxApplicationReady.resourceReady('mainContent');
 });
 
-angular.module('glxBublik').constant('glxPaths', {
+angular.module('glxUtils').constant('glxPaths', {
     defaultRouting: {
         path: "/"
     },

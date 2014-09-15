@@ -4,10 +4,10 @@ describe('glxHref', function () {
         var mockPaths = {
             allRouting: {
                 mockRouting: {path: '/mockRouting/:param1?param2=:param2'},
-                mockRouting2: {path: '/mockRouting2/:param1?param2=:param2'},
+                mockRouting2: {path: '/mockRouting2/:param1?param2=:param2'}
             }
         };
-        $provide.value('glxPaths', mockPaths);
+        $provide.constant('glxPaths', mockPaths);
     }));
 
     var scope, element;
@@ -21,7 +21,7 @@ describe('glxHref', function () {
         scope.$digest();
     }));
 
-    it('glxHrev should get path from the glxPath service', function () {
+    it('glxHref should get path from the glxPath service', function () {
         expect(element.attr('href')).toEqual('#/mockRouting/123?param2=abc');
     });
 

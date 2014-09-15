@@ -1,6 +1,6 @@
 describe('glxPaths', function() {
 
-  beforeEach(module('glxBublik'));
+  beforeEach(module('glxUtils'));
 
   it('should ...', inject(function(glxPaths) {
 
