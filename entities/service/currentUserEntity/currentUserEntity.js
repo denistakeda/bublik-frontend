@@ -5,6 +5,7 @@ angular.module('glxEntities').factory('glxCurrentUserEntity', function ($resourc
             currentUser: {type: 'Object', cleanEvent: '$locationChangeStart'}
         },
         controller: function (storage) {
+            var controller = this;
             angular.extend(this,
                 $resource('/api/user/current/info', {},
                     {'getCurrentUser': {
@@ -31,7 +32,7 @@ angular.module('glxEntities').factory('glxCurrentUserEntity', function ($resourc
                                 glxTransformResponseCollection.extractData,
                                 glxTransformResponseCollection.onSuccessTransform(function (data) {
                                     $cookies['ACCESS_TOKEN'] = data.access_token;
-                                    storage.getCurrentUser();
+                                    controller.getCurrentUser();
                                     $location.path('/user/' + data.id);
                                     return data;
                                 })
@@ -50,8 +51,8 @@ angular.module('glxEntities').factory('glxCurrentUserEntity', function ($resourc
                                 glxTransformResponseCollection.extractData,
                                 glxTransformResponseCollection.onSuccessTransform(function (data) {
                                     $cookies['ACCESS_TOKEN'] = data.access_token;
-                                    storage.getCurrentUser();
-                                    $location.path('/user/' + data.id);
+                                    controller.getCurrentUser();
+                                    $location.path('user/' + data.id);
                                     return data;
                                 })
                             ]
@@ -70,8 +71,8 @@ angular.module('glxEntities').factory('glxCurrentUserEntity', function ($resourc
                                 function (data, headers) {
                                     if (/200*/.test(headers('Status'))) {
                                         delete $cookies["ACCESS_TOKEN"];
-                                        storage.getCurrentUser();
-                                        $location.path('/login');//TODO try to see the way without path hardcode
+                                        controller.getCurrentUser();
+                                        $location.path('login');//TODO try to see the way without path hardcode
                                     }
                                     return data;
                                 }
