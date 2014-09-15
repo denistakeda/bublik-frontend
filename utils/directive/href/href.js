@@ -1,4 +1,4 @@
-angular.module('glxUtils').directive('glxHref', function (glxPaths) {
+angular.module('glxUtils').directive('glxHref', function (glxPaths, glxPathKeeper) {
     return {
         restrict: 'A',
         scope: {
@@ -7,11 +7,7 @@ angular.module('glxUtils').directive('glxHref', function (glxPaths) {
         },
         link: function (scope, element, attrs, fn) {
             var changeHref = function(){
-                var resultHref = glxPaths.allRouting[scope.glxHref].path;
-                angular.forEach(scope.glxHrefParams, function (v, k) {
-                    resultHref = resultHref.replace(':' + k, v);
-                });
-                element.attr('href', '#' + resultHref);
+                element.attr('href', glxPathKeeper.getHref(scope.glxHref, scope.glxHrefParams));
             };
             scope.$watchGroup(['glxHref','glxHrefParams'], function(newVal, oldVal){
                 if (newVal===oldVal) return;
