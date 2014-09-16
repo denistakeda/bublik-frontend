@@ -1,13 +1,15 @@
-angular.module('glxPages').directive('glxCreateCompanyPage', function (glxCompanyEntity, glxLocationHelper) {
+angular.module('glxPages').directive('glxCreateCompanyPage', function (glxCompanyEntity) {
     return {
         restrict: 'E',
         scope: {},
         templateUrl: 'pages/createCompanyPage/createCompanyPage.html',
         link: function (scope, elm, attrs, fn) {
             scope.company = {};
+            scope.waitResponse = false;
             scope.createCompany = function(){
-                glxCompanyEntity.createCompany({}, scope.company, function(data){
-                    glxLocationHelper.redirectTo('company/'+data.id);
+                scope.waitResponse = true;
+                glxCompanyEntity.createCompany({}, scope.company, undefined, function(){
+                    scope.waitResponse = false;
                 });
             };
         }
