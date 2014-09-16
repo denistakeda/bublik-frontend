@@ -4,14 +4,14 @@
             <div class="brand-container pull-left">
                 <a  href="#/"> <img class="brand" src="imgs/bub_brand.png"></a>
             </div>
-            <button type="button" class="btn btn-default navbar-btn pull-left" ng-hide="!currentUser.info.id" ng-click="createCompany()">
+            <button type="button" class="btn btn-default navbar-btn pull-left" ng-hide="!storage.currentUser.info.id" ng-click="createCompany()">
                 {{'mainpage.topMenu.companyCreate'|glxLocalize}}
             </button>
-            <ul class="nav navbar-nav navbar-right" ng-if="!currentUser || !currentUser.info || !currentUser.info.id">
+            <ul class="nav navbar-nav navbar-right" ng-if="!storage.currentUser || !storage.currentUser.info || !storage.currentUser.info.id">
                 <li><a glx-href="userRegistration">{{'mainpage.topMenu.registration'|glxLocalize}}</a></li>
                 <li><a glx-href="userLogin">{{'mainpage.topMenu.login'|glxLocalize}}</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right" ng-if="currentUser.info && currentUser.info.id">
+            <ul class="nav navbar-nav navbar-right" ng-if="storage.currentUser.info && storage.currentUser.info.id">
                 <li class="dropdown">
                     <div class="user-preview">
                         <div class="dropdown-toggle" data-toggle="dropdown">

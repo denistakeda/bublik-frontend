@@ -6,11 +6,11 @@ angular.module('glxPages').directive('glxMenuTop', function (glxCurrentUserEntit
         templateUrl: 'pages/menuTop/menuTop.html',
         link: function (scope, element, attrs, fn) {
 
-            scope.currentUser = glxCurrentUserEntity.storage.currentUser;
+            scope.storage = glxCurrentUserEntity.storage;
             glxCurrentUserEntity.getCurrentUser();
 
             scope.createCompany = function(){
-                glxLocationHelper.redirectTo("user/" + scope.currentUser.info.id + "/companies/new/");
+                glxLocationHelper.redirectTo("user/" + scope.storage.currentUser.info.id + "/companies/new/");
             };
 
             scope.logout = function () {
@@ -18,8 +18,8 @@ angular.module('glxPages').directive('glxMenuTop', function (glxCurrentUserEntit
             };
 
             scope.getUserAvatar = function () {
-                return scope.currentUser.info.avatar_preview_url || glxConfig.defaultAvatar;
-            }
+                return scope.storage.currentUser.info.avatar_preview_url || glxConfig.defaultAvatar;
+            };
 
         }
     };

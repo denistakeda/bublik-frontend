@@ -6,7 +6,7 @@ angular.module('glxPages').directive('glxMenuSide', function (glxCurrentUserEnti
         },
         templateUrl: 'pages/menuSide/menuSide.html',
         link: function (scope, element, attrs, fn) {
-            scope.currentUser = glxCurrentUserEntity.storage.currentUser;
+            scope.storage = glxCurrentUserEntity.storage;
             glxCurrentUserEntity.getCurrentUser();
 
             scope.goTo = function(menuItem){
@@ -18,7 +18,7 @@ angular.module('glxPages').directive('glxMenuSide', function (glxCurrentUserEnti
             };
 
             scope.getMenuItem = function(name){
-                return glxConfig.menuItems[name] && glxConfig.menuItems[name](scope.currentUser.info.id);
+                return glxConfig.menuItems[name] && glxConfig.menuItems[name](scope.storage.currentUser.info.id);
             };
 
         }

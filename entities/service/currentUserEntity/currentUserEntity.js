@@ -2,7 +2,7 @@ angular.module('glxEntities').factory('glxCurrentUserEntity', function ($resourc
 
     return glxEntity({
         storage: {
-            currentUser: {type: 'Object', cleanEvent: '$locationChangeStart'}
+            currentUser: {type: 'Object'}
         },
         controller: function (storage) {
             var controller = this;

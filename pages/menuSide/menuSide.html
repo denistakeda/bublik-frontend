@@ -1,7 +1,7 @@
 <div class="sidebar-wrapper text-center">
     <ul class="nav sidebar-nav">
         <li class="menu-item"
-            ng-repeat="item in currentUser.menu_items"
+            ng-repeat="item in storage.currentUser.menu_items"
             ng-init="menuItem=getMenuItem(item)"
             ng-show="menuItem && menuItem.label"
             ng-class="{active: checkActive(menuItem.link)}">
