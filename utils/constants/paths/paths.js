@@ -34,6 +34,16 @@ angular.module('glxUtils').constant('glxPaths', {
             path: "/user/:userId/followed",
             template: "<glx-user-followed></glx-user-followed>",
             controller: "ClearStorageCtrl"
+        },
+        createCompanyPage: {
+            path: '/company/create',
+            template: '<glx-create-company-page></glx-create-company-page>',
+            controller: 'ClearStorageCtrl'
+        },
+        companyPage: {
+            path: '/company/:companyId',
+            template: '<glx-company-page>I\'m already not implemented</glx-company-page>',
+            controller: 'ClearStorageCtrl'
         }
     }
 });

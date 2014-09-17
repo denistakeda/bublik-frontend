@@ -1,4 +1,4 @@
-angular.module('glxPages').directive('glxMenuTop', function (glxCurrentUserEntity, glxConfig, glxLocationHelper) {
+angular.module('glxPages').directive('glxMenuTop', function (glxCurrentUserEntity, glxConfig, glxPathKeeper) {
     return {
         restrict: 'E',
         scope: {
@@ -10,7 +10,7 @@ angular.module('glxPages').directive('glxMenuTop', function (glxCurrentUserEntit
             glxCurrentUserEntity.getCurrentUser();
 
             scope.createCompany = function(){
-                glxLocationHelper.redirectTo("user/" + scope.storage.currentUser.info.id + "/companies/new/");
+                glxPathKeeper.goToPath('createCompanyPage');
             };
 
             scope.logout = function () {
