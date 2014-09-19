@@ -44,11 +44,17 @@ describe('glxEntity', function () {
         beforeEach(inject(function (glxEntity) {
             entity = glxEntity({
                 storage: {storage1: {type: 'Object', cleanEvent: 'cleanEvent'}},
-                controller: function (storage) {
+                privateResources: function(storage){
+                    this.def = 'def';
+                },
+                controller: function (storage, privateResources) {
                     this.abc = 'abc';
                     this.doSmth = function () {
                     };
                     storage.storage1.abc = 'abc';
+                    this.getDefFromPrivate = function(){
+                        return privateResources.def;
+                    };
                 }
             });
         }));
@@ -74,6 +80,10 @@ describe('glxEntity', function () {
             $rootScope.$emit('cleanEvent');
             expect(entity.storage).toEqual({storage1: {}});
         }));
+
+        it('controller have link to private resources', function () {
+            expect(entity.getDefFromPrivate()).toBe('def');
+        });
     });
 
 });
