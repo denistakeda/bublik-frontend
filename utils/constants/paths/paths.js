@@ -42,8 +42,8 @@ angular.module('glxUtils').constant('glxPaths', {
         },
         companyPage: {
             path: '/company/:companyId',
-            template: '<glx-company-page>I\'m already not implemented</glx-company-page>',
-            controller: 'ClearStorageCtrl'
+            template: '<glx-company-page></glx-company-page>',
+            controller: 'glxCompanyPageCtrl'
         }
     }
 });
