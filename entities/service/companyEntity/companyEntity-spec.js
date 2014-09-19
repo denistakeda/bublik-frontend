@@ -19,4 +19,12 @@ describe('glxCompanyEntity', function() {
 
     }));
 
+    it('should get company info', inject(function(glxCompanyEntity){
+        var mockCompany = {id: 1, title: 'Some Company'};
+        httpBackend.when('GET', '/api/company/1').respond({data: mockCompany});
+        glxCompanyEntity.getCompany({}, {companyId: 1});
+        httpBackend.flush();
+        expect(glxCompanyEntity.storage.company).toEqual(mockCompany);
+    }));
+
 });
