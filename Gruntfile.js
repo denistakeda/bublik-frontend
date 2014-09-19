@@ -100,8 +100,7 @@ module.exports = function (grunt) {
         },
         cacheBust: {
             options: {
-                baseDir: 'dist/',
-                rename: true
+                rename: false
             },
             files: ['dist/**.html', 'dist/**.css', 'dist/**.js']
         },
