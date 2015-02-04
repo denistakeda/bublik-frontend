@@ -1,0 +1,20 @@
+<div class="row">
+    <!--Content column-->
+    <div class="col-md-18 col-sm-18 col-xs-18">
+        <div class="row">
+            <div class="company-title col-md-24 col-sm-24 col-xs-24">
+                <glx-editable-field
+                        glx-model="storage.company.title"
+                        glx-on-change="setCompanyTitle()"
+                        glx-editable="storage.company.actions.update"></glx-editable-field>
+            </div>
+        </div>
+
+        {{storage.company}}
+    </div>
+    <!--Logo column-->
+    <div class="col-md-6 col-sm-6 col-xs-6">
+        <img ng-src="{{getAvatar()}}" class="avatar img-responsive img-rounded"  ng-click="storage.company.actions.update&&changeAvatar()">
+    </div>
+
+</div>

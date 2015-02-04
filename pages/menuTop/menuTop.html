@@ -1,0 +1,35 @@
+<header class="navbar-static-top bs-docs-nav" id="top" role="banner">
+    <div class="container">
+        <nav class="collapse navbar-collapse bs-navbar-collapse navbar-" role="navigation">
+            <div class="brand-container pull-left">
+                <a  href="#/"> <img class="brand" src="imgs/bub_brand.png"></a>
+            </div>
+            <button type="button" class="btn btn-default navbar-btn pull-left" ng-hide="!storage.currentUser.info.id" ng-click="createCompany()">
+                {{'mainpage.topMenu.companyCreate'|glxLocalize}}
+            </button>
+            <ul class="nav navbar-nav navbar-right" ng-if="!storage.currentUser || !storage.currentUser.info || !storage.currentUser.info.id">
+                <li><a glx-href="userRegistration">{{'mainpage.topMenu.registration'|glxLocalize}}</a></li>
+                <li><a glx-href="userLogin">{{'mainpage.topMenu.login'|glxLocalize}}</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right" ng-if="storage.currentUser.info && storage.currentUser.info.id">
+                <li class="dropdown">
+                    <div class="user-preview">
+                        <div class="dropdown-toggle" data-toggle="dropdown">
+                            <img class="user-preview-img img-rounded" ng-src="{{getUserAvatar()}}"/><a class="caret"></a>
+                        </div>
+                    </div>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href ng-click="logout()">{{'mainpage.topMenu.logout'|glxLocalize}}</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-right" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-default glyphicon glyphicon-search form-control"></button>
+            </form>
+
+        </nav>
+    </div>
+</header>
